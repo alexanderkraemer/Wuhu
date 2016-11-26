@@ -43,3 +43,18 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.csprojResolveAssemblyReference.cache
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Wuhu.Server.exe.config
+C:\programmieren\Wuhu\Wuhu.Server\obj\Debug\Wuhu.Server.exe
+C:\programmieren\Wuhu\Wuhu.Server\obj\Debug\Wuhu.Server.pdb
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Wuhu.Server.exe
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Wuhu.Server.pdb
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.Domain.dll
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.SQLServer.dll
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.Common.pdb
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.Domain.pdb
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.SQLServer.pdb
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\programmieren\Wuhu\Wuhu.Server\obj\Debug\Wuhu.Server.csprojResolveAssemblyReference.cache

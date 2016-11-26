@@ -1,1 +1,13 @@
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\GenerateTestData.exe.config
+C:\programmieren\Wuhu\GenerateTestData\bin\Debug\GenerateTestData.exe.config
+C:\programmieren\Wuhu\GenerateTestData\bin\Debug\GenerateTestData.exe
+C:\programmieren\Wuhu\GenerateTestData\bin\Debug\GenerateTestData.pdb
+C:\programmieren\Wuhu\GenerateTestData\bin\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\GenerateTestData\bin\Debug\WuHu.Domain.dll
+C:\programmieren\Wuhu\GenerateTestData\bin\Debug\WuHu.SQLServer.dll
+C:\programmieren\Wuhu\GenerateTestData\bin\Debug\WuHu.Common.pdb
+C:\programmieren\Wuhu\GenerateTestData\bin\Debug\WuHu.Domain.pdb
+C:\programmieren\Wuhu\GenerateTestData\bin\Debug\WuHu.SQLServer.pdb
+C:\programmieren\Wuhu\GenerateTestData\obj\Debug\GenerateTestData.csprojResolveAssemblyReference.cache
+C:\programmieren\Wuhu\GenerateTestData\obj\Debug\GenerateTestData.exe
+C:\programmieren\Wuhu\GenerateTestData\obj\Debug\GenerateTestData.pdb

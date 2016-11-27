@@ -15,15 +15,14 @@ namespace WuHu.GenerateTestData
 
 		static void Main(string[] args)
 		{
-			var watch = System.Diagnostics.Stopwatch.StartNew();
 			
 			database = DalFactory.CreateDatabase();
 
 			Data.Clear(database);
 			Data.Insert(database);
 
-			watch.Stop();
-			Console.WriteLine("Time elapsed Seconds: " + watch.Elapsed.Seconds);
+			Console.WriteLine("done.");
+			Console.WriteLine("press {Enter} to quit this program...");
 			Console.Read();
 		}
 	}

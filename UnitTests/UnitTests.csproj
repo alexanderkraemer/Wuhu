@@ -62,14 +62,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TestDayDao.cs" />
+    <Compile Include="6TestDayDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestPlayerDao.cs" />
-    <Compile Include="TestRoleDao.cs" />
-    <Compile Include="TestPresenceDao.cs" />
-    <Compile Include="TestTeamDao.cs" />
-    <Compile Include="TestMatchDao.cs" />
-    <Compile Include="TestStatisticsDao.cs" />
+    <Compile Include="5TestPlayerDao.cs" />
+    <Compile Include="7TestRoleDao.cs" />
+    <Compile Include="3TestPresenceDao.cs" />
+    <Compile Include="4TestTeamDao.cs" />
+    <Compile Include="2TestMatchDao.cs" />
+    <Compile Include="1TestStatisticsDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

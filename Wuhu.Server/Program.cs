@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Common;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,25 +24,24 @@ namespace Wuhu.Server
 		}
 		static void Main(string[] args)
 		{
-			PrintTitle("WuHu Server");
+			PrintTitle("WuHu Server - Create Database");
 
-            string connString = ConfigurationManager
-                        .ConnectionStrings["DefaultConnectionString"]
-                        .ConnectionString;
+			IDatabase database = DalFactory.CreateDatabase();
+			Assert.IsNotNull(database);
 
-            IDatabase database = new Database(connString);
+			CreateDatabase(database);
+			Console.WriteLine("done.");
+			Console.WriteLine("press {Enter} to quit this program...");
+			Console.Read();
+		}
 
-            Assert.IsNotNull(database);
-
-            // delete Days, in case database was not empty
-            MatchDao MatchDao = new MatchDao(database);
-
-            Console.WriteLine(MatchDao.FindAll().Count);
-            // Console.Read();
-            // Assert.AreEqual(allPlayers.Count * allDays.Count, pd.FindAll().Count);
-
-
-            Console.Read();
+		public static void CreateDatabase(IDatabase database)
+		{
+			// hier den Absoluten Pfad zur Dateil "create_database.sql" eingeben:
+			string sqlPath = "\\\\psf\\Home\\Documents\\CloudStation\\FH\\5. Semester\\SWK\\Uebung\\Projekt\\Ausbaustufe 1\\create_database.sql";
+			string script = File.ReadAllText(sqlPath);
+			DbCommand cmd = database.CreateCommand(script);
+			database.ExecuteNonQuery(cmd);
 		}
 	}
 }

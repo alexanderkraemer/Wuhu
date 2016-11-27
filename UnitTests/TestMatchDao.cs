@@ -8,117 +8,156 @@ using System.Collections.Generic;
 
 namespace WuHu.UnitTests
 {
-    [TestClass]
-    public class TestMatchDao
-    {
-        private static IDatabase database;
-        private static IMatchDao dao;
+	// passed
+	[TestClass]
+	public class TestMatchDao
+	{
+		private static IDatabase database;
+		private static IMatchDao dao;
 
-        [ClassInitialize()]
-        public static void Initialize(TestContext context)
-        {
-            database = DalFactory.CreateDatabase();
+		[ClassInitialize()]
+		public static void Initialize(TestContext context)
+		{
+			database = DalFactory.CreateDatabase();
 
-            dao = DalFactory.CreateMatchDao(database);
+			dao = DalFactory.CreateMatchDao(database);
 
-            Assert.IsNotNull(database);
-        }
+			Assert.IsNotNull(database);
+		}
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            dao.DeleteAll();
-        }
+		[TestMethod]
+		public void TestMatchContructor()
+		{
+			Match m = new Match(1, 2, 3, new DateTime(2016, 11, 23), 4, 5);
 
-        [TestMethod]
-        public void InsertMatchs()
-        {
-            // delete Days, in case database was not empty
-            CheckDeleteById();
+			Assert.AreEqual(1, m.ID);
+			Assert.AreEqual(2, m.Team1ID);
+			Assert.AreEqual(3, m.Team2ID);
+			Assert.AreEqual(new DateTime(2016, 11, 23), m.Timestamp);
+			Assert.AreEqual(4, m.ResultPointsPlayer1);
+			Assert.AreEqual(5, m.ResultPointsPlayer2);
+		}
 
-            MatchDao MatchDao = new MatchDao(database);
+		[TestMethod]
+		public void InsertMatchs()
+		{
+			MatchDao MatchDao = new MatchDao(database);
 
-            MatchDao.Insert(new Match(15, 16, new DateTime(2016, 11, 23)));
-            
-            Assert.AreEqual(MatchDao.FindAll().Count, 1);
-        }
+			TeamDao teamdao = new TeamDao(database);
+			Team t1 = null;
+			Team t2 = null;
+			int i = 0;
+			foreach(Team t in teamdao.FindAll())
+			{
+				++i;
+				switch(i)
+				{
+					case 1:
+						t1 = t;
+						break;
+					case 2:
+						t2 = t;
+						break;
+				}
+			}
 
-        [TestMethod]
-        public void CheckInsert()
-        {
-            CheckDeleteAll();
-            MatchDao MatchDao = new MatchDao(database);
-          
-            int ret = MatchDao.Insert(new Match(15, 16, new DateTime(2016, 11, 23)));
+			int stat1 = MatchDao.FindAll().Count;
+			MatchDao.Insert(new Match(t1.ID, t2.ID, new DateTime(2016, 11, 23)));
+			int stat2 = MatchDao.FindAll().Count;
+			Assert.IsTrue(stat1 == stat2-1);
+		}
 
-            Assert.IsInstanceOfType(MatchDao.FindById(ret), typeof(Match));
-        }
+		[TestMethod]
+		public void CheckDeleteById()
+		{
+			MatchDao MatchDao = new MatchDao(database);
+			TeamDao teamdao = new TeamDao(database);
+			Team t1 = null;
+			Team t2 = null;
+			int i = 0;
+			foreach (Team t in teamdao.FindAll())
+			{
+				++i;
+				switch (i)
+				{
+					case 1:
+						t1 = t;
+						break;
+					case 2:
+						t2 = t;
+						break;
+				}
+			}
 
-        [TestMethod]
-        public void CheckDeleteById()
-        {
-            MatchDao MatchDao = new MatchDao(database);
+			int id = MatchDao.Insert(new Match(t1.ID, t2.ID, new DateTime(2016, 11, 27)));
 
-            foreach (Match Match in MatchDao.FindAll())
-            {
-                MatchDao.DeleteById(Match.ID);
-            }
-
-
-            Assert.AreEqual(MatchDao.FindAll().Count, 0);
-        }
-
-        [TestMethod]
-        public void CheckDeleteAll()
-        {
-            MatchDao MatchDao = new MatchDao(database);
-            MatchDao.DeleteAll();
-
-            Assert.AreEqual(MatchDao.FindAll().Count, 0);
-        }
-
-        [TestMethod]
-        public void GetAllMatchs()
-        {
-            InsertMatchs();
-
-            MatchDao MatchDao = new MatchDao(database);
-            IList<Match> allMatchs = MatchDao.FindAll();
-
-            Assert.AreEqual(allMatchs.Count, 1);
-        }
-
-        [TestMethod]
-        public void GetOneMatchByID()
-        {
-            MatchDao MatchDao = new MatchDao(database);
-            MatchDao.DeleteAll();
-
-            int retValue = MatchDao.Insert(new Match(15, 16, new DateTime(2016, 11, 23)));
-
-            Match match = MatchDao.FindById(retValue);
-
-            Assert.AreEqual(match.Team1ID, 15);
-            Assert.AreEqual(match.Team2ID, 16);
-            Assert.AreEqual(match.Timestamp, new DateTime(2016, 11, 23));
-        }
-
-        [TestMethod]
-        public void GetOneDayByIDError()
-        {
-            MatchDao MatchDao = new MatchDao(database);
-            MatchDao.DeleteAll();
-
-            Assert.IsNull(MatchDao.FindById(1));
-        }
-
-        [TestMethod]
-        public void DeleteDaysByIdError()
-        {
-            MatchDao MatchDao = new MatchDao(database);
+			int stat1 = MatchDao.FindAll().Count;
+			MatchDao.DeleteById(id);
+			int stat2 = MatchDao.FindAll().Count;
 
 
-            Assert.AreEqual(MatchDao.DeleteById(1), false);
-        }
-    }
+			Assert.AreEqual(stat1, stat2+1);
+		}
+
+		[TestMethod]
+		public void GetAllMatchs()
+		{
+			MatchDao MatchDao = new MatchDao(database);
+
+			int stat1 = MatchDao.FindAll().Count;
+			InsertMatchs();
+			int stat2 = MatchDao.FindAll().Count;
+
+			Assert.AreEqual(stat1, stat2-1);
+		}
+
+		[TestMethod]
+		public void GetOneMatchByID()
+		{
+			MatchDao MatchDao = new MatchDao(database);
+			TeamDao teamdao = new TeamDao(database);
+			Team t1 = null;
+			Team t2 = null;
+			int i = 0;
+			foreach (Team t in teamdao.FindAll())
+			{
+				++i;
+				switch (i)
+				{
+					case 1:
+						t1 = t;
+						break;
+					case 2:
+						t2 = t;
+						break;
+				}
+			}
+
+			int retValue = MatchDao.Insert(new Match(t1.ID, t2.ID, new DateTime(2016, 11, 23)));
+
+			Match match = MatchDao.FindById(retValue);
+
+			Assert.AreEqual(match.Team1ID, t1.ID);
+			Assert.AreEqual(match.Team2ID, t2.ID);
+			Assert.AreEqual(match.Timestamp, new DateTime(2016, 11, 23));
+		}
+
+		[TestMethod]
+		public void GetOneDayByIDError()
+		{
+			MatchDao MatchDao = new MatchDao(database);
+			MatchDao.DeleteAll();
+
+			Assert.IsNull(MatchDao.FindById(1));
+		}
+
+		[TestMethod]
+		public void DeleteDaysByIdError()
+		{
+			MatchDao MatchDao = new MatchDao(database);
+
+
+			Assert.AreEqual(MatchDao.DeleteById(1), false);
+		}
+	}
 }

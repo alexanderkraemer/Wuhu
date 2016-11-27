@@ -8,164 +8,121 @@ using System.Collections.Generic;
 
 namespace WuHu.UnitTests
 {
-    [TestClass]
-    public class TestDayDao
-    {
-        private static IDatabase database;
-        private static IDayDao dao;
+	// passed
+	[TestClass]
+	public class TestDayDao
+	{
+		private static IDatabase database;
+		private static IDayDao dao;
 
-        [ClassInitialize()]
-        public static void Initialize(TestContext context)
-        {
-            database = DalFactory.CreateDatabase();
+		[ClassInitialize()]
+		public static void Initialize(TestContext context)
+		{
+			database = DalFactory.CreateDatabase();
 
-            dao = DalFactory.CreateDayDao(database);
+			dao = DalFactory.CreateDayDao(database);
 
-            Assert.IsNotNull(database);
-        }
+			Assert.IsNotNull(database);
+		}
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            dao.DeleteAll();
-        }
+		[TestMethod]
+		public int InsertDay(string dayname = "testday", bool WithRandom = true)
+		{
+			Random rand = new Random();
+			int res;
+			if (WithRandom)
+			{
+				res = dao.Insert(new Day(dayname + rand.Next()));
+			}
+			else
+			{
+				res = dao.Insert(new Day(dayname));
+			}
+			
+			Assert.IsNotNull(dao.FindById(res));
+			Assert.AreEqual(dao.FindById(res).ID, res);
+			Assert.IsInstanceOfType(dao.FindById(res), typeof(Day));
+			return res;
+		}
 
-        [TestMethod]
-        public void InsertDays()
-        {
-            dao.Insert(new Day("Montag"));
-            dao.Insert(new Day("Dienstag"));
-            dao.Insert(new Day("Mittwoch"));
-            dao.Insert(new Day("Donnerstag"));
-            dao.Insert(new Day("Freitag"));
-            dao.Insert(new Day("Samstag"));
+		[TestMethod]
+		public void InsertDaysException()
+		{
+			dao.Insert(new Day("testdayInsertException"));
 
+			// is -1 because Montag exists already from last testMethod
+			Assert.AreEqual(dao.Insert(new Day("testdayInsertException")), -1);
+		}
 
-            Assert.AreEqual(dao.FindAll().Count, 6);
-        }
+		[TestMethod]
+		public void CheckUpdate()
+		{
+			Random rand = new Random();
+			int val = rand.Next();
+			dao.Insert(new Day("testday5" + val));
+			Day d = dao.FindByDayname("testday5" + val);
 
-        [TestMethod]
-        public void CheckIfTestDataIsValid()
-        {
-            InsertDays();
+			d.Name = "testday5Updated" + val;
 
-            Assert.AreEqual(dao.FindAll().Count, 6);
-            int i = 0;
-            foreach (Day day in dao.FindAll())
-            {
-                ++i;
-                switch (i)
-                {
-                    case 1:
-                        Assert.AreEqual(day.Name, "Montag");
-                        break;
-                    case 2:
-                        Assert.AreEqual(day.Name, "Dienstag");
-                        break;
-                    case 3:
-                        Assert.AreEqual(day.Name, "Mittwoch");
-                        break;
-                    case 4:
-                        Assert.AreEqual(day.Name, "Donnerstag");
-                        break;
-                    case 5:
-                        Assert.AreEqual(day.Name, "Freitag");
-                        break;
-                    case 6:
-                        Assert.AreEqual(day.Name, "Samstag");
-                        break;
-                }
-            }
-        }
+			dao.Update(d);
 
-        [TestMethod]
-        public void InsertDaysException()
-        {
-            dao.Insert(new Day("Montag"));
+			Day d1 = dao.FindByDayname("testday5Updated" + val);
 
-            // is -1 because Montag exists already
-            Assert.AreEqual(dao.Insert(new Day("Montag")), -1);
-        }
+			Assert.AreEqual(d1.Name, "testday5Updated" + val);
+		}
 
-        [TestMethod]
-        public void CheckInsert()
-        {
-            Day montag = new Day("Montag");
-            int ret = dao.Insert(montag);
+		[TestMethod]
+		public void CheckDeleteById()
+		{
+			int ret = dao.Insert(new Day("testday 3"));
+			dao.DeleteById(ret);
 
-            Assert.IsInstanceOfType(dao.FindById(ret), typeof(Day));
-        }
+			Assert.IsNull(dao.FindById(ret));
+		}
 
-        [TestMethod]
-        public void CheckUpdate()
-        {
-            CheckInsert();
-            Day d = dao.FindByDayname("Montag");
+		[TestMethod]
+		public void GetAllDays()
+		{
+			Random rand = new Random();
+			int result1 = dao.FindAll().Count;
+			dao.Insert(new Day("testda4" + rand.Next()));
+			int result2 = dao.FindAll().Count;
 
-            d.Name = "Dienstag";
+			Assert.IsTrue(result1 == result2-1);
+		}
 
-            dao.Update(d);
+		[TestMethod]
+		public void GetOneDayByID()
+		{
+			Random rand = new Random();
+			int val = rand.Next();
+			int retValue = dao.Insert(new Day("testday6" + val));
 
-            Day d1 = dao.FindByDayname("Dienstag");
+			Day dienstag = dao.FindById(retValue);
 
-            Assert.AreEqual(d1.Name, "Dienstag");
-        }
-
-        [TestMethod]
-        public void CheckDeleteById()
-        {
-            foreach (Day day in dao.FindAll())
-            {
-                dao.DeleteById(day.ID);
-            }
+			Assert.AreEqual(dienstag.Name, "testday6" + val);
+		}
 
 
-            Assert.AreEqual(dao.FindAll().Count, 0);
-        }
+		[TestMethod]
+		public void GetOneDayByIDError()
+		{
+			int res = dao.Insert(new Day("testday 6"));
+			Assert.IsNotNull(dao.FindById(res));
+			dao.DeleteById(res);
+			Assert.IsNull(dao.FindById(res));
+		}
 
-        [TestMethod]
-        public void CheckDeleteAll()
-        {
-            InsertDays();
-            Assert.AreEqual(dao.FindAll().Count, 6);
-            dao.DeleteAll();
+		[TestMethod]
+		public void DeleteDaysByIdError()
+		{
+			Random rand = new Random();
+			int val = rand.Next();
+			int res = dao.Insert(new Day("testday 7" + val));
+			Assert.IsNotNull(dao.FindById(res));
+			dao.DeleteById(res);
 
-            Assert.AreEqual(dao.FindAll().Count, 0);
-        }
-
-        [TestMethod]
-        public void GetAllDays()
-        {
-            InsertDays();
-
-            IList<Day> allDays = dao.FindAll();
-
-            Assert.AreEqual(allDays.Count, 6);
-
-        }
-
-        [TestMethod]
-        public void GetOneDayByID()
-        {
-            int retValue = dao.Insert(new Day("Dienstag"));
-
-            Day dienstag = dao.FindById(retValue);
-
-            Assert.AreEqual(dienstag.Name, "Dienstag");
-        }
-
-
-        [TestMethod]
-        public void GetOneDayByIDError()
-        {
-            Assert.IsNull(dao.FindById(1));
-            Assert.IsNull(dao.FindByDayname("Dienstag"));
-        }
-
-        [TestMethod]
-        public void DeleteDaysByIdError()
-        {
-            Assert.AreEqual(dao.DeleteById(1), false);
-        }
-    }
+			Assert.IsFalse(dao.DeleteById(res));
+		}
+	}
 }

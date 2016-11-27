@@ -43,3 +43,20 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\NDbUnit.Core.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\NDbUnit.SqlClient.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\NDbUnit.SqlClient.pdb
+C:\programmieren\Wuhu\UnitTests\bin\Debug\UnitTests.dll.config
+C:\programmieren\Wuhu\UnitTests\bin\Debug\UnitTests.dll
+C:\programmieren\Wuhu\UnitTests\bin\Debug\UnitTests.pdb
+C:\programmieren\Wuhu\UnitTests\bin\Debug\NDbUnit.Core.dll
+C:\programmieren\Wuhu\UnitTests\bin\Debug\NDbUnit.SqlClient.dll
+C:\programmieren\Wuhu\UnitTests\bin\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\UnitTests\bin\Debug\WuHu.Domain.dll
+C:\programmieren\Wuhu\UnitTests\bin\Debug\Wuhu.Server.exe
+C:\programmieren\Wuhu\UnitTests\bin\Debug\WuHu.SQLServer.dll
+C:\programmieren\Wuhu\UnitTests\bin\Debug\WuHu.Common.pdb
+C:\programmieren\Wuhu\UnitTests\bin\Debug\WuHu.Domain.pdb
+C:\programmieren\Wuhu\UnitTests\bin\Debug\Wuhu.Server.pdb
+C:\programmieren\Wuhu\UnitTests\bin\Debug\WuHu.SQLServer.pdb
+C:\programmieren\Wuhu\UnitTests\bin\Debug\NDbUnit.SqlClient.pdb
+C:\programmieren\Wuhu\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+C:\programmieren\Wuhu\UnitTests\obj\Debug\UnitTests.dll
+C:\programmieren\Wuhu\UnitTests\obj\Debug\UnitTests.pdb

@@ -23,10 +23,5 @@ namespace WuHu.Domain
 		{
 			this.Name = Name;
 		}
-
-		public new string ToString()
-		{
-			return "Day " + this.ID + ": " + this.Name;
-		}
 	}
 }

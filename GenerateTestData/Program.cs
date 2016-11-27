@@ -15,9 +15,16 @@ namespace WuHu.GenerateTestData
 
 		static void Main(string[] args)
 		{
+			var watch = System.Diagnostics.Stopwatch.StartNew();
+			
 			database = DalFactory.CreateDatabase();
 
-			
+			Data.Clear(database);
+			Data.Insert(database);
+
+			watch.Stop();
+			Console.WriteLine("Time elapsed Seconds: " + watch.Elapsed.Seconds);
+			Console.Read();
 		}
 	}
 
@@ -65,8 +72,6 @@ namespace WuHu.GenerateTestData
 					 "Ostrander", "Reamer", "Reardon", "Reyes", "Rice", "Ripka", "Roberts", "Rogers", "Root", "Sandstrom",
 					 "Sawyer", "Schlicht", "Schmitt", "Schwager", "Schutz", "Schuster", "Tapia", "Thompson", "Tiernan", "Tisler" };
 
-			Console.WriteLine(_lastNames.Length);
-
 			string firstname = _firstNames[rFirst.Next(_firstNames.Length)];
 			string lastname = _lastNames[rLast.Next(_lastNames.Length)];
 
@@ -96,8 +101,9 @@ namespace WuHu.GenerateTestData
 				nickname = sb.ToString();
 			}
 
+			RoleDao rd = new RoleDao(database);
+			int role_id = rd.FindByRole("Member").ID;
 
-			int role_id = 1051;
 			int skills = 1;
 			string password = "myPassword";
 			string photopath = "userpic.png";
@@ -117,6 +123,7 @@ namespace WuHu.GenerateTestData
 
 		public IList<Team> GenerateTeams()
 		{
+			Random rand = new Random();
 			PlayerDao playerdao = new PlayerDao(database);
 			TeamDao teamdao = new TeamDao(database);
 
@@ -127,11 +134,21 @@ namespace WuHu.GenerateTestData
 			{
 				foreach(Player p2 in playerdao.FindAll())
 				{
-					++counter;
-					if(p1.ID != p2.ID)
+					if (counter < 100)
 					{
-						teamList.Add(new Team("Team " + counter, p1.ID, p2.ID));
-					}			
+						if (rand.NextDouble() > 0.6)
+						{
+							++counter;
+							if (p1.ID != p2.ID)
+							{
+								teamList.Add(new Team("Team " + counter, p1.ID, p2.ID));
+							}
+						}
+					}
+					else
+					{
+						break;
+					}
 				}
 			}
 			return teamList;
@@ -139,7 +156,7 @@ namespace WuHu.GenerateTestData
 
 		private DateTime RandomDay()
 		{
-			DateTime start = new DateTime(1995, 1, 1);
+			DateTime start = DateTime.Now.AddYears(-2);
 			int range = (DateTime.Today - start).Days;
 			return start.AddDays(gen.Next(range));
 		}
@@ -147,15 +164,23 @@ namespace WuHu.GenerateTestData
 		{
 			IList<Match> matchlist = new List<Match>();
 			TeamDao teamdao = new TeamDao(database);
+			IList<Team> teamlist = teamdao.FindAll();
 
-			foreach(Team team1 in teamdao.FindAll())
+			DateTime start = DateTime.Now.AddYears(-2);
+			int range = (DateTime.Today - start).Days;
+			Random rand = new Random();
+
+			for(int i = 0; i < range; ++i)
 			{
-				foreach(Team team2 in teamdao.FindAll())
+				for(int j = 0; j < 4; ++j)
 				{
-					if(team1.ID != team2.ID)
+					int r = rand.Next(teamlist.Count);
+					int r2 = rand.Next(teamlist.Count);
+					while (r == r2)
 					{
-						matchlist.Add(new Match(team1.ID, team2.ID, RandomDay()));
+						r2 = rand.Next(teamlist.Count);
 					}
+					matchlist.Add(new Match(teamlist[r].ID, teamlist[r2].ID, start.AddDays(i)));
 				}
 			}
 			return matchlist;
@@ -174,25 +199,40 @@ namespace WuHu.GenerateTestData
 			MatchDao m = new MatchDao(database);
 			StatisticDao s = new StatisticDao(database);
 
-			d.DeleteAll();
-			r.DeleteAll();
-			p.DeleteAll();
-			t.DeleteAll();
-			pr.DeleteAll();
-			m.DeleteAll();
 			s.DeleteAll();
+			Console.WriteLine("cleared statistics...");
+			m.DeleteAll();
+			Console.WriteLine("cleared matches...");
+			pr.DeleteAll();
+			Console.WriteLine("cleared presence...");
+			t.DeleteAll();
+			Console.WriteLine("cleared teams...");
+			p.DeleteAll();
+			Console.WriteLine("cleared player...");
+			r.DeleteAll();
+			Console.WriteLine("cleared roles...");
+			d.DeleteAll();
+			Console.WriteLine("cleared days...");
 		}
 
 		public static void Insert(IDatabase database)
 		{
 			InsertData id = new InsertData(database);
 			id.InsertDays();
+			Console.WriteLine("inserted days...");
 			id.InsertRoles();
+			Console.WriteLine("inserted roles...");
 			id.InsertPlayer(30);
+			Console.WriteLine("inserted player...");
 			id.InsertTeams();
+			Console.WriteLine("inserted teams...");
 			id.InsertPresence();
+			Console.WriteLine("inserted presence...");
 			id.InsertMatches();
+			Console.WriteLine("inserted matches...");
 			id.InsertStatistics();
+			Console.WriteLine("inserted statistics...");
+			Console.WriteLine("done.");
 		}
 	}
 
@@ -295,11 +335,25 @@ namespace WuHu.GenerateTestData
 			}
 		}
 
-		
+		public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+		{
+			for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(7))
+				yield return day;
+		}
 
 		public void InsertStatistics()
 		{
-
+			StatisticDao dao = new StatisticDao(database);
+			PlayerDao pdao = new PlayerDao(database);
+			int i = 0;
+			foreach (DateTime day in EachDay(new DateTime(2014, 11, 26), new DateTime(2016, 11, 26)))
+			{
+				++i;
+				foreach(Player player in pdao.FindAll())
+				{
+					dao.Insert(new Statistic(player.ID, i, day));
+				}
+			}
 		}
 	}
 }

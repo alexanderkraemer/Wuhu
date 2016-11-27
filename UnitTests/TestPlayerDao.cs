@@ -8,29 +8,24 @@ using System.Text;
 
 namespace WuHu.UnitTests
 {
+	// passed
 	[TestClass]
 	public class TestPlayerDao
 	{
-        private static IDatabase database;
-        private static IPlayerDao dao;
+		private static IDatabase database;
+		private static IPlayerDao dao;
 
-        [ClassInitialize()]
-        public static void Initialize(TestContext context)
-        {
-            database = DalFactory.CreateDatabase();
+		[ClassInitialize()]
+		public static void Initialize(TestContext context)
+		{
+			database = DalFactory.CreateDatabase();
 
-            dao = DalFactory.CreatePlayerDao(database);
+			dao = DalFactory.CreatePlayerDao(database);
 
-            Assert.IsNotNull(database);
-        }
+			Assert.IsNotNull(database);
+		}
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            dao.DeleteAll();
-        }
-
-        public Player GeneratePlayer()
+		public Player GeneratePlayer()
 		{
 			Random rFirst;
 			Random rLast;
@@ -90,7 +85,15 @@ namespace WuHu.UnitTests
 				nickname = sb.ToString();
 			}
 
-			int role_id = 1051;
+			RoleDao rd = new RoleDao(database);
+			Role re = null;
+			foreach(Role r in rd.FindAll())
+			{
+				re = r;
+				break;
+			}
+
+			int role_id = re.ID;
 			int skills = 1;
 			string password = "myPassword";
 			string photopath = "userpic.png";
@@ -99,93 +102,89 @@ namespace WuHu.UnitTests
 		}
 
 		[TestMethod]
-		public void InsertTestPlayers()
+		public int InsertTestPlayers()
 		{
-			CheckDeleteAll();
 			PlayerDao pd = new PlayerDao(database);
-			for (int i = 0; i < 30; ++i)
-			{
-				Player player = this.GeneratePlayer();
 
-				int ret = pd.Insert(player);
-			}
-			Assert.AreEqual(pd.FindAll().Count, 30);
-		  }
+			Player player = GeneratePlayer();
+			int stat1 = pd.FindAll().Count;
+			int ret = pd.Insert(player);
+			int stat2 = pd.FindAll().Count;
+			Assert.IsTrue(stat1 == stat2-1);
+			return ret;
+		}
 
 		[TestMethod]
 		public void CheckIfTestDataIsValid()
 		{
-			InsertTestPlayers();
+			int id = InsertTestPlayers();
 			PlayerDao pd = new PlayerDao(database);
+			Player p = pd.FindById(id);
 
-			foreach (Player p in pd.FindAll())
+			RoleDao rd = new RoleDao(database);
+			Role re = null;
+			foreach (Role r in rd.FindAll())
 			{
-				Assert.AreEqual(p.Password, "myPassword");
-				Assert.AreEqual(p.PhotoPath, "userpic.png");
-				Assert.AreEqual(p.RoleID, 1);
-				Assert.AreEqual(p.Skills, 1);
-
-				string firstname = p.FirstName;
-				string lastname = p.LastName;
-
-				StringBuilder sb = new StringBuilder();
-				sb.Append(firstname[0]);
-				sb.Append(firstname[1]);
-				sb.Append(lastname[0]);
-				sb.Append(lastname[1]);
-				string nickname = sb.ToString();
-
-				Assert.AreEqual(p.Nickname, nickname);
+				re = r;
+				break;
 			}
-		}
 
-		[TestMethod]
-		public void CheckInsert()
-		{
-			this.CheckDeleteAll();
-			PlayerDao pd = new PlayerDao(database);
-			Player player = new Player(1, "Alexander", "Krämer", "Alex", 100, "myPic.png", "password");
 
-			int ret = pd.Insert(player);
-			Assert.IsInstanceOfType(pd.FindById(ret), typeof(Player));
+			Assert.AreEqual(p.Password, "myPassword");
+			Assert.AreEqual(p.PhotoPath, "userpic.png");
+			Assert.AreEqual(p.RoleID, re.ID);
+			Assert.AreEqual(p.Skills, 1);
+
+			string firstname = p.FirstName;
+			string lastname = p.LastName;
+
+			StringBuilder sb = new StringBuilder();
+			sb.Append(firstname[0]);
+			sb.Append(firstname[1]);
+			sb.Append(lastname[0]);
+			sb.Append(lastname[1]);
+			string nickname = sb.ToString();
+
+			Assert.AreEqual(p.Nickname, nickname);
+			
 		}
 
 		[TestMethod]
 		public void CheckUpdate()
 		{
-			this.CheckInsert();
+			int id = InsertTestPlayers();
 			PlayerDao pd = new PlayerDao(database);
-			Player player = pd.FindByNickname("Alex");
-			player.Nickname = "Hannes";
+			Player player = pd.FindById(id);
+			Random rand = new Random();
+			int randVal = rand.Next();
+			player.Nickname = "Hannes" + randVal;
 			pd.Update(player);
 
-			Player newPlayer = pd.FindByNickname("Hannes");
+			Player newPlayer = pd.FindByNickname("Hannes" + randVal);
 
-			Assert.AreEqual(newPlayer.Nickname, "Hannes");
+			Assert.AreEqual(newPlayer.Nickname, "Hannes" + randVal);
 		}
 
 		[TestMethod]
 		public void CheckDeleteById()
 		{
-			this.CheckDeleteAll();
+			RoleDao rd = new RoleDao(database);
+			Role re = null;
+			foreach (Role r in rd.FindAll())
+			{
+				re = r;
+				break;
+			}
+
 			PlayerDao pd = new PlayerDao(database);
-			Player player = new Player(1, "Alexander", "Krämer", "Alex", 100, "myPic.png", "password");
+			Player player = new Player(re.ID, "Alexander", "Krämer", "Alex", 100, "myPic.png", "password");
 			int lastInsertedId = pd.Insert(player);
 
 			Assert.AreNotEqual(0, lastInsertedId);
 
 			pd.DeleteById(lastInsertedId);
 
-			Assert.AreEqual(0, pd.FindAll().Count);
-		}
-
-		[TestMethod]
-		public void CheckDeleteAll()
-		{
-			PlayerDao pd = new PlayerDao(database);
-			pd.DeleteAll();
-
-			Assert.AreEqual(pd.FindAll().Count, 0);
+			Assert.IsNull(pd.FindById(lastInsertedId));
 		}
 	}
 }

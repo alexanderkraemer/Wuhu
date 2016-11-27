@@ -29,10 +29,5 @@ namespace WuHu.Domain
 			this.Skill = Skill;
 			this.Timestamp = Timestamp;
 		}
-
-		public new string ToString()
-		{
-			return $"ID: {this.ID}; Player: {this.PlayerID}; Skill: {this.Skill}; Timestamp: {this.Timestamp};";
-		}
 	}
 }

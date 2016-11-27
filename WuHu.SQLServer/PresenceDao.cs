@@ -120,8 +120,6 @@ namespace WuHu.SQLServer
 			{
                 try
                 {
-                    Console.WriteLine(command.CommandText);
-
                     return database.ExecuteNonQuery(command);
                 }
                 catch (SqlException)

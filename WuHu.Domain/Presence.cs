@@ -17,10 +17,5 @@ namespace WuHu.Domain
 			this.PlayerID = PlayerID;
 			this.DayID = DayID;
 		}
-
-		public new string ToString()
-		{
-			return $"Player: {this.PlayerID}; Day: {this.DayID}";
-		}
 	}
 }

@@ -22,10 +22,5 @@ namespace WuHu.Domain
 		{
 			this.Name = Name;
 		}
-
-		public new string ToString()
-		{
-			return $"ID: {this.ID}; Name: {this.Name}";
-		}
 	}
 }

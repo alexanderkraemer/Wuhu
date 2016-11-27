@@ -22,16 +22,11 @@ namespace WuHu.Domain
 			this.Player2ID = Player2ID;
 		}
 
-		public Team (string Name, int Player1ID, int Player2ID)
+		public Team(string Name, int Player1ID, int Player2ID)
 		{
 			this.Name = Name;
 			this.Player1ID = Player1ID;
 			this.Player2ID = Player2ID;
-		}
-
-		public new string ToString()
-		{
-			return $"ID: {this.ID}; Name: {this.Name}; Player 1: {this.Player1ID}; Player 2: {this.Player2ID};";
 		}
 	}
 }

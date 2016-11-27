@@ -43,10 +43,5 @@ namespace WuHu.Domain
 			this.PhotoPath = PhotoPath;
 			this.Password = Password;
 		}
-
-		public new string ToString()
-		{
-			return $"ID: {this.ID} Name: {this.FirstName} {this.LastName} ({this.Nickname}); Skills: {this.Skills};";
-		}
 	}
 }

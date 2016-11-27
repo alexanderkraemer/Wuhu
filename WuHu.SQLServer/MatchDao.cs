@@ -77,7 +77,6 @@ namespace WuHu.SQLServer
 		protected DbCommand CreateInsertCommand(int team_id1, int team_id2, DateTime timestamp,
 			int? results_points_p1, int? results_points_p2)
 		{
-            Console.WriteLine(results_points_p1 == null);
             DbCommand command;
             if (results_points_p1 == null && results_points_p2 == null)
             {

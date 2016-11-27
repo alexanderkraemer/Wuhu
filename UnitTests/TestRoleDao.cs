@@ -9,133 +9,124 @@ using System.Collections.Generic;
 
 namespace WuHu.UnitTests
 {
-    [TestClass]
-    public class TestRoleDao
-    {
-        private static IDatabase database;
-        private static IRoleDao dao;
+	// passed
+	[TestClass]
+	public class TestRoleDao
+	{
+		private static IDatabase database;
+		private static IRoleDao dao;
 
-        [ClassInitialize()]
-        public static void Initialize(TestContext context)
-        {
-            database = DalFactory.CreateDatabase();
+		[ClassInitialize()]
+		public static void Initialize(TestContext context)
+		{
+			database = DalFactory.CreateDatabase();
 
-            dao = DalFactory.CreateRoleDao(database);
+			dao = DalFactory.CreateRoleDao(database);
 
-            Assert.IsNotNull(database);
-        }
+			Assert.IsNotNull(database);
+		}
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            // dao.DeleteAll();
-        }
+		[TestInitialize]
+		public void Initialize()
+		{
+			// dao.DeleteAll();
+		}
 
-        [TestMethod]
-        public void InsertRoles()
-        {
-            dao.Insert(new Role("Admin"));
-            dao.Insert(new Role("Member"));
+		[TestMethod]
+		public int InsertRoles(string rolename = "TestRole", bool WithRand = true)
+		{
+			Random rand = new Random();
+			int res1 = dao.FindAll().Count;
+			Role role;
+			if (WithRand)
+			{
+				role = new Role(rolename + rand.Next());
+			}
+			else
+			{
+				role = new Role(rolename);
+			}
 
-            Assert.AreEqual(dao.FindAll().Count, 2);
-        }
 
-        [TestMethod]
-        public void InsertDaysException()
-        {
-            dao.Insert(new Role("Admin"));
+			int ret = dao.Insert(role);
+			int res2 = dao.FindAll().Count;
+			
+			Assert.IsTrue(res1 == res2-1);
 
-            // is -1 because Montag exists already
-            Assert.AreEqual(dao.Insert(new Role("Admin")), -1);
-        }
+			return ret;
+		}
 
-        [TestMethod]
-        public void CheckInsert()
-        {
-            Role admin = new Role("Admin");
-            int ret = dao.Insert(admin);
+		[TestMethod]
+		public void CheckInsert()
+		{
+			Role admin = new Role("Testrole 1");
+			int ret = dao.Insert(admin);
 
-            Assert.IsInstanceOfType(dao.FindById(ret), typeof(Role));
-        }
+			Assert.IsInstanceOfType(dao.FindById(ret), typeof(Role));
+		}
 
-        [TestMethod]
-        public void CheckDeleteById()
-        {
-            InsertRoles();
+		[TestMethod]
+		public void CheckDeleteById()
+		{
+			int res = InsertRoles();
+			dao.DeleteById(res);
+			
+			Assert.IsNull(dao.FindById(res));
+		}
 
-            foreach (Role role in dao.FindAll())
-            {
-                dao.DeleteById(role.ID);
-            }
+		[TestMethod]
+		public void GetAllRoles()
+		{
+			int first = dao.FindAll().Count;
+			InsertRoles();
+			int second = dao.FindAll().Count;
 
-            Assert.AreEqual(dao.FindAll().Count, 0);
-        }
+			Assert.IsTrue(first == second-1);
+		}
 
-        [TestMethod]
-        public void CheckDeleteAll()
-        {
-            InsertRoles();
-            dao.DeleteAll();
+		[TestMethod]
+		public void GetOneRoleByID()
+		{
+			int retValue = dao.Insert(new Role("TestGetRoleById"));
 
-            Assert.AreEqual(dao.FindAll().Count, 0);
-        }
+			Role amdin = dao.FindById(retValue);
 
-        [TestMethod]
-        public void GetAllRoles()
-        {
-            InsertRoles();
+			Assert.AreEqual(amdin.Name, "TestGetRoleById");
+		}
 
-            IList<Role> allRoles = dao.FindAll();
+		[TestMethod]
+		public void GetOneRoleByName()
+		{
+			int retValue = dao.Insert(new Role("TestGetRoleByName"));
 
-            Assert.AreEqual(allRoles.Count, 2);
-        }
+			Role role = dao.FindByRole("TestGetRoleByName");
 
-        [TestMethod]
-        public void GetOneRoleByID()
-        {
-            int retValue = dao.Insert(new Role("Admin"));
+			Assert.AreEqual(retValue, role.ID);
+		}
 
-            Role amdin = dao.FindById(retValue);
+		[TestMethod]
+		public void UpdateRole()
+		{
+			int retValue = dao.Insert(new Role("TestUpdateRole"));
 
-            Assert.AreEqual(amdin.Name, "Admin");
-        }
+			Role ret = dao.FindById(retValue);
 
-        [TestMethod]
-        public void GetOneRoleByName()
-        {
-            int retValue = dao.Insert(new Role("Admin"));
+			ret.Name = "TestUpdateRoleUpdate";
 
-            Role amdin = dao.FindByRole("Admin");
+			dao.Update(ret);
 
-            Assert.AreEqual(amdin.Name, "Admin");
-        }
 
-        [TestMethod]
-        public void UpdateRole()
-        {
-            //int retValue = dao.Insert(new Role("Admin"));
+			Assert.AreEqual(dao.FindById(ret.ID).Name, "TestUpdateRoleUpdate");
+		}
 
-            Role ret = dao.FindByRole("Admin");
+		[TestMethod]
+		public void GetOneDayByIDError()
+		{
+			int retValue = dao.Insert(new Role("TestFindByIDError"));
 
-            ret.Name = "Member";
-
-            dao.Update(ret);
-            
-
-            Assert.AreEqual(dao.FindById(ret.ID).Name, "Member");
-        }
-
-        [TestMethod]
-        public void GetOneDayByIDError()
-        {
-            Assert.IsNull(dao.FindById(1));
-            Assert.IsNull(dao.FindByRole("Admin"));
-        }
-
-        [TestMethod]
-        public void DeleteDaysByIdError()
-        {
-            Assert.AreEqual(dao.DeleteById(1), false);
-        }
-    }
+			Assert.IsNotNull(dao.FindById(retValue));
+			dao.DeleteById(retValue);
+			Assert.IsNull(dao.FindById(retValue));
+		}
+	}
 }

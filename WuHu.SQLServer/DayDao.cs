@@ -150,7 +150,7 @@ namespace WuHu.SQLServer
             using (DbCommand command = CreateDelteByIdCommand(id))
             {
                 return database.ExecuteNonQuery(command) == 1;
-            }
+            } 
         }
 
         public bool DeleteAll()

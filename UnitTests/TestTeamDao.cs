@@ -8,94 +8,170 @@ using System.Collections.Generic;
 
 namespace WuHu.UnitTests
 {
-    [TestClass]
-    public class TestTeamDao
-    {
-        private static IDatabase database;
-        private static ITeamDao dao;
+	// passed
+	[TestClass]
+	public class TestTeamDao
+	{
+		private static IDatabase database;
+		private static ITeamDao dao;
 
-        [ClassInitialize()]
-        public static void Initialize(TestContext context)
-        {
-            database = DalFactory.CreateDatabase();
+		[ClassInitialize()]
+		public static void Initialize(TestContext context)
+		{
+			database = DalFactory.CreateDatabase();
 
-            dao = DalFactory.CreateTeamDao(database);
+			dao = DalFactory.CreateTeamDao(database);
 
-            Assert.IsNotNull(database);
-        }
+			Assert.IsNotNull(database);
+		}
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            dao.DeleteAll();
-        }
+		[TestMethod]
+		public int InsertTeams(string teamname = "Testteam")
+		{
+			PlayerDao pd = new PlayerDao(database);
 
-        [TestMethod]
-        public void InsertTeams()
-        {
-            dao.Insert(new Team("Team 1", 1111, 1112));
-            dao.Insert(new Team("Team 2", 1113, 1114));
+			int i = 0;
+			int player1 = 0;
+			int player2 = 0;
+			foreach(Player p in pd.FindAll())
+			{
+				++i;
+				switch (i)
+				{
+					case 1:
+						player1 = p.ID;
+						break;
+					case 2:
+						player2 = p.ID;
+						break;
+				}
+			}
+			Assert.AreNotEqual(0, player1);
+			Assert.AreNotEqual(0, player2);
 
-            Assert.AreEqual(dao.FindAll().Count, 2);
-        }
+			Random rand = new Random();
 
-        [TestMethod]
-        public void InsertTeamsException()
-        {
-            dao.Insert(new Team("Team 1", 1111, 1112));
-            dao.Insert(new Team("Team 2", 1113, 1114));
+			int res = dao.Insert(new Team(teamname + rand.Next() , player1, player2));
 
-            // is -1 because Montag exists already
-            Assert.AreEqual(dao.Insert(new Team("Team 1", 1115, 1116)), -1);
-        }
+			Assert.AreEqual(dao.FindById(res).ID, res);
 
-        [TestMethod]
-        public void CheckInsert()
-        {
-            int ret = dao.Insert(new Team("Team 1", 1111, 1112));
-            
-            Assert.IsInstanceOfType(dao.FindById(ret), typeof(Team));
-        }
+			return res;
+		}
 
-        [TestMethod]
-        public void CheckDeleteById()
-        {
-            foreach (Team team in dao.FindAll())
-            {
-                dao.DeleteById(team.ID);
-            }
+		[TestMethod]
+		public void GetOneTeamByID()
+		{
+			int teamId = InsertTeams("getOneTeamByIdTest");
 
-            Assert.AreEqual(dao.FindAll().Count, 0);
-        }
+			Team team = dao.FindById(teamId);
 
-        [TestMethod]
-        public void CheckDeleteAll()
-        {
-            dao.Insert(new Team("Team 1", 1111, 1112));
-            Assert.AreEqual(dao.FindAll().Count, 1);
+			Assert.IsNotNull(team);
+			Assert.IsInstanceOfType(team, typeof(Team));
+		}
 
-            dao.DeleteAll();
-            Assert.AreEqual(dao.FindAll().Count, 0);
-        }
+		[TestMethod]
+		public void InsertTeamsException()
+		{
+			int randVal;
+			Random rand = new Random();
+			randVal = rand.Next();
 
-        [TestMethod]
-        public void GetAllTeams()
-        {
-            InsertTeams();
+			PlayerDao pd = new PlayerDao(database);
 
-            IList<Team> allTeams = dao.FindAll();
+			int i = 0;
+			int player1 = 0;
+			int player2 = 0;
+			foreach (Player p in pd.FindAll())
+			{
+				++i;
+				switch (i)
+				{
+					case 1:
+						player1 = p.ID;
+						break;
+					case 2:
+						player2 = p.ID;
+						break;
+				}
+			}
+			Assert.AreNotEqual(0, player1);
+			Assert.AreNotEqual(0, player2);
 
-            Assert.AreEqual(allTeams.Count, 2);
-        }
+			dao.Insert(new Team("Team" + randVal, player1, player2));
 
-        [TestMethod]
-        public void GetOneTeamByID()
-        {
-            int retValue = dao.Insert(new Team("Team", 1111, 1112));
+			// is -1 because Montag exists already
+			Assert.AreEqual(dao.Insert(new Team("Team" + randVal, player1, player2)), -1);
+		}
 
-            Team amdin = dao.FindById(retValue);
+		[TestMethod]
+		public void CheckInsert()
+		{
+			int firstState = dao.FindAll().Count;
 
-            Assert.AreEqual(amdin.Name, "Team");
-        }
-    }
+			InsertTeams();
+
+			int secondState = dao.FindAll().Count;
+
+			Assert.IsTrue(firstState == (secondState - 1));
+		}
+
+		[TestMethod]
+		public void CheckUpdate()
+		{
+			PlayerDao pd = new PlayerDao(database);
+
+			int i = 0;
+			int player1 = 0;
+			int player2 = 0;
+			int player3 = 0;
+			foreach (Player p in pd.FindAll())
+			{
+				++i;
+				switch (i)
+				{
+					case 1:
+						player1 = p.ID;
+						break;
+					case 2:
+						player2 = p.ID;
+						break;
+					case 3:
+						player3 = p.ID;
+						break;
+				}
+			}
+			Random rand = new Random();
+			int randVal = rand.Next();
+			int res = dao.Insert(new Team("teamname" + randVal, player1, player2));
+			Team t = dao.FindById(res);
+			t.Player2ID = player3;
+			dao.Update(t);
+
+			Team t2 = dao.FindById(res);
+			Assert.IsTrue(t2.Player1ID == t.Player1ID);
+			Assert.IsTrue(t2.Player2ID == t.Player2ID);
+		}
+
+		[TestMethod]
+		public void GetAllTeams()
+		{
+			TeamDao teamdao = new TeamDao(database);
+
+			int stat1 = teamdao.FindAll().Count;
+			InsertTeams();
+			int stat2 = teamdao.FindAll().Count;
+
+			Assert.AreEqual(stat1, stat2-1);
+		}
+
+		[TestMethod]
+		public void CheckDeleteById()
+		{
+			int ret = InsertTeams("checkdeleteTest");
+
+			Assert.IsNotNull(dao.FindById(ret));
+			dao.DeleteById(ret);
+			Assert.IsNull(dao.FindById(ret));
+		}
+	}
 }

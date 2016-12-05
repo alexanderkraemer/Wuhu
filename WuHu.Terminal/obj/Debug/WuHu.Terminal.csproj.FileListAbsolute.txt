@@ -12,3 +12,19 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.csproj.GenerateResource.Cache
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.exe
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.pdb
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Terminal.exe.config
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.exe
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.pdb
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Terminal.exe
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Terminal.pdb
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.csprojResolveAssemblyReference.cache
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\MainWindow.g.cs
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\App.g.cs
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal_MarkupCompile.cache
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal_MarkupCompile.lref
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\MainWindow.baml
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.g.resources
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.Properties.Resources.resources
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.csproj.GenerateResource.Cache
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\views\PlayerOverview.g.cs
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\views\PlayerOverview.baml

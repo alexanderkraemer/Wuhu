@@ -1,0 +1,40 @@
+﻿<Window x:Class="WuHu.Terminal.PlayerOverview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WuHu.Terminal"
+        mc:Ignorable="d"
+        Title="PlayerOverview" Height="300" Width="300">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="2*" />
+		</Grid.ColumnDefinitions>
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.5*" />
+				<RowDefinition Height="0.5*" />
+				<RowDefinition Height="0.5*" />
+				<RowDefinition Height="0.5*" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+		</Grid>
+		<ListBox Grid.Row="0"
+                     Name="listMedia"
+                     BorderThickness="0"
+                     DataContext="{Binding CurrentFolder}"
+                     ItemsSource="{Binding Items}"
+                     SelectedItem="{Binding CurrentItem, Mode=TwoWay}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border Margin="2" Padding="3">
+						<Image Source="\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\images\DSCF0045.jpg">
+						</Image>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</Window>

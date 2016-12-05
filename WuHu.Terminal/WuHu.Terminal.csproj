@@ -67,13 +67,13 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PlayerOverview.xaml">
+    <Page Include="views\PlayerOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlayerOverview.xaml.cs">
+    <Compile Include="views\PlayerOverview.xaml.cs">
       <DependentUpon>PlayerOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">

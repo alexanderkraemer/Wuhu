@@ -10,8 +10,8 @@
     <Grid>
         <TabControl>
             <TabItem Header="General">
-                <Label Content="Content goes here..." />
-            </TabItem>
+					<Frame Source="\views\PlayerOverview.xaml" />
+				</TabItem>
             <TabItem Header="Security" />
             <TabItem Header="Details" />
         </TabControl>

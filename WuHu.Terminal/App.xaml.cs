@@ -8,10 +8,10 @@ using System.Windows;
 
 namespace WuHu.Terminal
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
-    {
-    }
+	/// <summary>
+	/// Interaction logic for App.xaml
+	/// </summary>
+	public partial class App : Application
+	{
+	}
 }

@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="WuHu.Terminal.Views.Player.PlayerList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WuHu.Terminal.Views.Player"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="5" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ListBox ItemsSource="{Binding Path=PlayerData}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<TextBlock Text="{Binding FullName}"></TextBlock>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+		<TextBlock Grid.Column="2" FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Right side</TextBlock>
+	</Grid>
+</UserControl>

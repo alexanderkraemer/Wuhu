@@ -1,30 +1,30 @@
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\bin\Debug\WuHu.Terminal.exe.config
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\bin\Debug\WuHu.Terminal.exe
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\bin\Debug\WuHu.Terminal.pdb
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.csprojResolveAssemblyReference.cache
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\MainWindow.g.cs
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\App.g.cs
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal_MarkupCompile.cache
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal_MarkupCompile.lref
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\MainWindow.baml
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.g.resources
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.Properties.Resources.resources
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.csproj.GenerateResource.Cache
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.exe
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.pdb
 C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Terminal.exe.config
-C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.exe
-C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.pdb
 C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Terminal.exe
 C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Terminal.pdb
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.csprojResolveAssemblyReference.cache
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\MainWindow.g.cs
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\Views\Player\PlayerList.g.cs
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\App.g.cs
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal_MarkupCompile.cache
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal_MarkupCompile.lref
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\MainWindow.baml
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\Views\Player\PlayerList.baml
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.g.resources
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.Properties.Resources.resources
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.csproj.GenerateResource.Cache
-C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\views\PlayerOverview.g.cs
-C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\views\PlayerOverview.baml
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.exe
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\WuHu.Terminal.pdb
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.BusinessLogic.dll
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Domain.dll
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\Wuhu.Server.exe
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.SQLServer.dll
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.BusinessLogic.pdb
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Common.pdb
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.Domain.pdb
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\Wuhu.Server.pdb
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\WuHu.SQLServer.pdb
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll

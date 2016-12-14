@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\
 WuHu.Terminal
 none
 false
 DEBUG;TRACE
-C:\programmieren\Wuhu\WuHu.Terminal\App.xaml
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\App.xaml
 2-1672212845
 
-12-1959431560
-18442048460
+13-411932064
+20-1320144030
 MainWindow.xaml;Views\Player\PlayerList.xaml;
 
 True

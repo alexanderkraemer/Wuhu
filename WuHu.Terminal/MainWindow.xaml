@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WuHu.Terminal"
 		  xmlns:player="clr-namespace:WuHu.Terminal.Views.Player"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="625">
 
 	<Grid>
 		<TabControl TabStripPlacement="Top">
@@ -16,7 +16,8 @@
 			<TabItem Header="Player">
 				<player:PlayerList></player:PlayerList>
 			</TabItem>
-			<TabItem Header="Matches" />
+			<TabItem Header="Matches">
+			</TabItem>
 			<TabItem Header="Statistics" />
 		</TabControl>
 	</Grid>

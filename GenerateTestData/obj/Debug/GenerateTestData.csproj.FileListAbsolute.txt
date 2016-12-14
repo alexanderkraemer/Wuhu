@@ -22,3 +22,15 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\obj\Debug\GenerateTestData.csprojResolveAssemblyReference.cache
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\obj\Debug\GenerateTestData.exe
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\obj\Debug\GenerateTestData.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\GenerateTestData.exe.config
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\obj\Debug\GenerateTestData.exe
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\obj\Debug\GenerateTestData.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\GenerateTestData.exe
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\GenerateTestData.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\WuHu.Common.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\WuHu.Domain.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\WuHu.SQLServer.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\WuHu.Common.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\WuHu.Domain.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\bin\Debug\WuHu.SQLServer.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\GenerateTestData\obj\Debug\GenerateTestData.csprojResolveAssemblyReference.cache

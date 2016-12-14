@@ -12,22 +12,22 @@ namespace WuHu.Terminal.ViewModels
 {
 	public class PlayerListVM
 	{
-		private IList<PlayerVM> list;
+		private IList<PlayerDC> list;
 
 		public PlayerListVM()
 		{
-			list = new List<PlayerVM>();
+			list = new List<PlayerDC>();
 			LoadPlayers();
 		}
 
-		ObservableCollection<PlayerVM> playerData = new ObservableCollection<PlayerVM>();
-		public ObservableCollection<PlayerVM> PlayerData
+		ObservableCollection<PlayerDC> playerData = new ObservableCollection<PlayerDC>();
+		public ObservableCollection<PlayerDC> PlayerData
 		{
 			get
 			{
 				if (playerData.Count <= 0)
 				{
-					foreach (PlayerVM p in list)
+					foreach (PlayerDC p in list)
 					{
 						playerData.Add(p);
 					}
@@ -38,10 +38,11 @@ namespace WuHu.Terminal.ViewModels
 
 		public void LoadPlayers()
 		{
-			BLPlayer blp = new BLPlayer();
-			foreach (Player p in blp.GetPlayerList())
+			PlayerReference.PlayerServiceClient client = new PlayerReference.PlayerServiceClient();
+
+			foreach (PlayerDC p in client.GetPlayerList())
 			{
-				list.Add(new PlayerVM(p));
+				list.Add(p);
 			}
 		}
 	}

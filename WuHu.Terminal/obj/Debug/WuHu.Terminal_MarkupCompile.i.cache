@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\App.xaml
-2-1672212845
+8-210972329
 
-13-411932064
-20993746310
-MainWindow.xaml;Views\Player\PlayerList.xaml;
+19-1980155390
+20-945505451
+MainWindow.xaml;Views\Matches\MatchEdit.xaml;Views\Matches\MatchList.xaml;Views\Player\Home.xaml;Views\Player\PlayerEdit.xaml;Views\Player\PlayerList.xaml;Views\Teams\TeamEdit.xaml;Views\Teams\TeamList.xaml;
 
 True
 

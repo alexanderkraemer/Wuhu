@@ -92,7 +92,6 @@ namespace WuHu.SQLServer
                 database.DefineParameter(command, "@team_id2", DbType.UInt32, team_id2);
                 database.DefineParameter(command, "@timestamp", DbType.DateTime, timestamp);
                 return command;
-            
 		}
 		public Match FindById(int id)
 		{
@@ -116,7 +115,6 @@ namespace WuHu.SQLServer
 
 		public IList<Match> FindAll()
 		{
-			
 			using (DbCommand command = CreateFindAllCommand())
 			using (IDataReader reader = database.ExecuteReader(command))
 			{
@@ -129,7 +127,6 @@ namespace WuHu.SQLServer
                     matchs.Add(new Match((int)reader["id"], (int)reader["team_id1"], (int)reader["team_id2"],
                          (DateTime)reader["timestamp"], res1, res2));
                 }
-                    
 				return matchs;
 			}
 		}

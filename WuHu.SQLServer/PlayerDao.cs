@@ -13,11 +13,11 @@ namespace WuHu.SQLServer
 	{
 		private const string SQL_FIND_BY_ID = "SELECT * FROM player WHERE id=@Id ORDER BY id";
 		private const string SQL_FIND_ALL = "SELECT * FROM player ORDER BY id";
-		private const string SQL_UPDATE = "UPDATE player SET role_id=@roleID, skills=@skills, first_name=@firstname, last_name=@lastname, nickname=@nickname, photopath=@photopath, password=@password WHERE Id=@Id";
-		private const string SQL_INSERT = "INSERT INTO player (role_id, skills, first_name, last_name, nickname, photopath, password) OUTPUT Inserted.id VALUES (@roleID, @skills, @firstname, @lastname, @nickname, @photopath, @password)";
+		private const string SQL_UPDATE = "UPDATE player SET is_admin=@isAdmin, skills=@skills, first_name=@firstname, last_name=@lastname, nickname=@nickname, photopath=@photopath, password=@password, isMonday=@isMonday, isTuesday=@isTuesday, isWednesday=@isWednesday, isThursday=@isThursday, isFriday=@isFriday, isSaturday=@isSaturday WHERE Id=@Id";
+		private const string SQL_INSERT = "INSERT INTO player (is_admin, skills, first_name, last_name, nickname, photopath, password, isMonday, isTuesday, isWednesday, isThursday, isFriday, isSaturday) OUTPUT Inserted.id VALUES (@isAdmin, @skills, @firstname, @lastname, @nickname, @photopath, @password, @isMonday, @isTuesday, @isWednesday, @isThursday, @isFriday, @isSaturday)";
 		private const string SQL_FIND_BY_NICKNAME = "SELECT * FROM player WHERE nickname=@nickname ORDER BY id";
 		private const string SQL_DELETE_ALL = "DELETE FROM player WHERE 1 = 1";
-        private const string SQL_DELETE_BY_ID = "DELETE FROM player WHERE id=@Id";
+      private const string SQL_DELETE_BY_ID = "DELETE FROM player WHERE id=@Id";
 
 
         private IDatabase database;
@@ -59,29 +59,43 @@ namespace WuHu.SQLServer
 			return database.CreateCommand(SQL_DELETE_ALL);
 		}
 
-		protected DbCommand CreateUpdateCommand(int id, int role_id, int skills, string firstname, string lastname, string nickname, string photopath, string password)
+		protected DbCommand CreateUpdateCommand(int id, bool isAdmin, int skills, string firstname, string lastname, string nickname, string photopath, string password, bool isMonday,
+			bool isTuesday, bool isWednesday, bool isThursday, bool isFriday, bool isSaturday)
 		{
 			DbCommand updateCommand = database.CreateCommand(SQL_UPDATE);
 			database.DefineParameter(updateCommand, "@Id", DbType.UInt16, id);
-			database.DefineParameter(updateCommand, "@roleID", DbType.UInt16, role_id);
+			database.DefineParameter(updateCommand, "@isAdmin", DbType.UInt16, isAdmin);
 			database.DefineParameter(updateCommand, "@skills", DbType.UInt16, skills);
 			database.DefineParameter(updateCommand, "@firstname", DbType.String, firstname);
 			database.DefineParameter(updateCommand, "@lastname", DbType.String, lastname);
 			database.DefineParameter(updateCommand, "@nickname", DbType.String, nickname);
 			database.DefineParameter(updateCommand, "@photopath", DbType.String, photopath);
 			database.DefineParameter(updateCommand, "@password", DbType.String, password);
+			database.DefineParameter(updateCommand, "@isMonday", DbType.Boolean, isMonday);
+			database.DefineParameter(updateCommand, "@isTuesday", DbType.Boolean, isTuesday);
+			database.DefineParameter(updateCommand, "@isWednesday", DbType.Boolean, isWednesday);
+			database.DefineParameter(updateCommand, "@isThursday", DbType.Boolean, isThursday);
+			database.DefineParameter(updateCommand, "@isFriday", DbType.Boolean, isFriday);
+			database.DefineParameter(updateCommand, "@isSaturday", DbType.Boolean, isSaturday);
 			return updateCommand;
 		}
-		protected DbCommand CreateInsertCommand(int role_id, int skills, string firstname, string lastname, string nickname, string photopath, string password)
+		protected DbCommand CreateInsertCommand(bool isAdmin, int skills, string firstname, string lastname, string nickname, string photopath, string password, bool isMonday,
+			bool isTuesday, bool isWednesday, bool isThursday, bool isFriday, bool isSaturday)
 		{
 			DbCommand insertCommand = database.CreateCommand(SQL_INSERT);
-			database.DefineParameter(insertCommand, "@roleID", DbType.UInt16, role_id);
+			database.DefineParameter(insertCommand, "@isAdmin", DbType.UInt16, isAdmin);
 			database.DefineParameter(insertCommand, "@skills", DbType.UInt16, skills);
 			database.DefineParameter(insertCommand, "@firstname", DbType.String, firstname);
 			database.DefineParameter(insertCommand, "@lastname", DbType.String, lastname);
 			database.DefineParameter(insertCommand, "@nickname", DbType.String, nickname);
 			database.DefineParameter(insertCommand, "@photopath", DbType.String, photopath);
 			database.DefineParameter(insertCommand, "@password", DbType.String, password);
+			database.DefineParameter(insertCommand, "@isMonday", DbType.Boolean, isMonday);
+			database.DefineParameter(insertCommand, "@isTuesday", DbType.Boolean, isTuesday);
+			database.DefineParameter(insertCommand, "@isWednesday", DbType.Boolean, isWednesday);
+			database.DefineParameter(insertCommand, "@isThursday", DbType.Boolean, isThursday);
+			database.DefineParameter(insertCommand, "@isFriday", DbType.Boolean, isFriday);
+			database.DefineParameter(insertCommand, "@isSaturday", DbType.Boolean, isSaturday);
 			return insertCommand;
 		}
 
@@ -92,8 +106,9 @@ namespace WuHu.SQLServer
 			{
 				if (reader.Read())
 				{
-					return new Player((int)reader["id"], (int)reader["role_id"], (string)reader["first_name"], (string)reader["last_name"],
-						 (string)reader["nickname"], (int)reader["skills"], (string)reader["photopath"], (string)reader["password"]);
+					return new Player((int)reader["id"], (bool)reader["is_admin"], (string)reader["first_name"], (string)reader["last_name"],
+						 (string)reader["nickname"], (int)reader["skills"], (string)reader["photopath"], (string)reader["password"], (bool)reader["isMonday"],
+						 (bool)reader["isTuesday"], (bool)reader["isWednesday"], (bool)reader["isThursday"], (bool)reader["isFriday"], (bool)reader["isSaturday"]);
 				}
 				else
 				{
@@ -109,8 +124,9 @@ namespace WuHu.SQLServer
 			{
 				if (reader.Read())
 				{
-					return new Player((int)reader["id"], (int)reader["role_id"], (string)reader["first_name"], (string)reader["last_name"],
-						 (string)reader["nickname"], (int)reader["skills"], (string)reader["photopath"], (string)reader["password"]);
+					return new Player((int)reader["id"], (bool)reader["is_Admin"], (string)reader["first_name"], (string)reader["last_name"],
+						 (string)reader["nickname"], (int)reader["skills"], (string)reader["photopath"], (string)reader["password"], (bool)reader["isMonday"],
+						 (bool)reader["isTuesday"], (bool)reader["isWednesday"], (bool)reader["isThursday"], (bool)reader["isFriday"], (bool)reader["isSaturday"]);
 				}
 				else
 				{
@@ -126,8 +142,9 @@ namespace WuHu.SQLServer
 			{
 				List<Player> players = new List<Player>();
 				while (reader.Read())
-					players.Add(new Player((int)reader["id"], (int)reader["role_id"], (string)reader["first_name"], (string)reader["last_name"],
-						 (string)reader["nickname"], (int)reader["skills"], (string)reader["photopath"], (string)reader["password"]));
+					players.Add(new Player((int)reader["id"], (bool)reader["is_Admin"], (string)reader["first_name"], (string)reader["last_name"],
+						 (string)reader["nickname"], (int)reader["skills"], (string)reader["photopath"], (string)reader["password"], (bool)reader["isMonday"],
+						 (bool)reader["isTuesday"], (bool)reader["isWednesday"], (bool)reader["isThursday"], (bool)reader["isFriday"], (bool)reader["isSaturday"]));
 				return players;
 			}
 		}
@@ -150,8 +167,9 @@ namespace WuHu.SQLServer
 
 		public bool Update(Player player)
 		{
-			using (DbCommand command = CreateUpdateCommand(player.ID, player.RoleID, player.Skills,
-				 player.FirstName, player.LastName, player.Nickname, player.PhotoPath, player.Password))
+			using (DbCommand command = CreateUpdateCommand(player.ID, player.isAdmin, player.Skills,
+				 player.FirstName, player.LastName, player.Nickname, player.PhotoPath, player.Password, player.isMonday,
+				 player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday))
 			{
 				return database.ExecuteNonQuery(command) == 1;
 			}
@@ -159,8 +177,9 @@ namespace WuHu.SQLServer
 
 		public int Insert(Player player)
 		{
-			using (DbCommand command = CreateInsertCommand(player.RoleID, player.Skills,
-				 player.FirstName, player.LastName, player.Nickname, player.PhotoPath, player.Password))
+			using (DbCommand command = CreateInsertCommand(player.isAdmin, player.Skills,
+				 player.FirstName, player.LastName, player.Nickname, player.PhotoPath, player.Password, player.isMonday,
+				 player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday))
 			{
                 try
                 {

@@ -35,24 +35,9 @@ namespace WuHu.Common
             return CreateDao<IPlayerDao>(database, "PlayerDao");
         }
 
-        public static IDayDao CreateDayDao(IDatabase database)
-        {
-            return CreateDao<IDayDao>(database, "DayDao");
-        }
-
         public static IMatchDao CreateMatchDao(IDatabase database)
         {
             return CreateDao<IMatchDao>(database, "MatchDao");
-        }
-
-        public static IPresenceDao CreatePresenceDao(IDatabase database)
-        {
-            return CreateDao<IPresenceDao>(database, "PresenceDao");
-        }
-
-        public static IRoleDao CreateRoleDao(IDatabase database)
-        {
-            return CreateDao<IRoleDao>(database, "RoleDao");
         }
 
         public static IStatisticDao CreateStatisticDao(IDatabase database)

@@ -5,44 +5,49 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WuHu.Terminal.Views.Player"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="600">
+       d:DesignHeight="360" d:DesignWidth="640">
 
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="2*" />
-			<ColumnDefinition Width="5" />
 			<ColumnDefinition Width="5*" />
 		</Grid.ColumnDefinitions>
-
-		<ListBox ItemsSource="{Binding Path=PlayerData}">
+		<ListBox Grid.Column="0" ItemsSource="{Binding Players}" SelectedItem="{Binding CurrentPlayer}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<StackPanel>
-						<TextBlock Text="{Binding FullName}"></TextBlock>
-					</StackPanel>
+					<TextBlock FontSize="10pt">
+						<TextBlock VerticalAlignment="Center" Text="{Binding FullName}"></TextBlock>	
+					</TextBlock>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-
-		<GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-
-		<Grid Grid.Column="2">
+		<Grid Grid.Column="1" DataContext="{Binding CurrentPlayer}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="2*" />
 				<ColumnDefinition Width="4*" />
 			</Grid.ColumnDefinitions>
-			<StackPanel Grid.Column="0" Margin="10">
-				<Image Source="images/img.jpg" />
-			</StackPanel>
+			<Grid Grid.Column="0" Margin="10">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="2*" />
+					<RowDefinition Height="1*" />
+				</Grid.RowDefinitions>
+				<StackPanel Grid.Row="0">
+					<Image Source="images" />
+				</StackPanel>
+				<StackPanel Grid.Row="1">
+					<Button Margin="5"  Click="EditPlayerButtonClick">Edit</Button>
+					<Button Margin="5" Click="DeletePlayerButtonClick">Delete</Button>
+				</StackPanel>
+			</Grid>
 			<Grid Grid.Column="1">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="1*" />
 					<RowDefinition Height="1*" />
 					<RowDefinition Height="1*" />
 					<RowDefinition Height="1*" />
-					<RowDefinition Height="1*" />
-					<RowDefinition Height="1*" />
-					<RowDefinition Height="1*" />
+					<RowDefinition Height="2*" />
+					<RowDefinition Height="2*" />
+					<RowDefinition Height="5*" />
 				</Grid.RowDefinitions>
 				<Grid Grid.Row="0" VerticalAlignment="Center">
 					<Grid.ColumnDefinitions>
@@ -50,7 +55,7 @@
 						<ColumnDefinition Width="3*" />
 					</Grid.ColumnDefinitions>
 					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">First Name:</Label>
-					<TextBox Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+					<TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="12" Margin="10" Text="{Binding FirstName}"></TextBlock>
 				</Grid>
 				<Grid Grid.Row="1" VerticalAlignment="Center">
 					<Grid.ColumnDefinitions>
@@ -58,7 +63,7 @@
 						<ColumnDefinition Width="3*" />
 					</Grid.ColumnDefinitions>
 					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Last Name:</Label>
-					<TextBox Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+					<TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="12" Margin="10" Text="{Binding LastName}"></TextBlock>
 				</Grid>
 				<Grid Grid.Row="2" VerticalAlignment="Center">
 					<Grid.ColumnDefinitions>
@@ -66,31 +71,47 @@
 						<ColumnDefinition Width="3*" />
 					</Grid.ColumnDefinitions>
 					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Nickname:</Label>
-					<TextBox Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+					<TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="12" Margin="10" Text="{Binding Nickname}"></TextBlock>
 				</Grid>
 				<Grid Grid.Row="3" VerticalAlignment="Center">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="1*" />
 						<ColumnDefinition Width="3*" />
 					</Grid.ColumnDefinitions>
-					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Photopath:</Label>
-					<TextBox Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Skills:</Label>
+					<TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="12" Margin="10" Text="{Binding Skills}"></TextBlock>
 				</Grid>
 				<Grid Grid.Row="4" VerticalAlignment="Center">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="1*" />
 						<ColumnDefinition Width="3*" />
 					</Grid.ColumnDefinitions>
-					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Password:</Label>
-					<TextBox Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Presence:</Label>
+					<Grid Grid.Column="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*"/>
+							<ColumnDefinition Width="1*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="1*" />
+						</Grid.RowDefinitions>
+						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="True" Grid.Column="0" Grid.Row="0">Mo</CheckBox>
+						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isTuesday}" Grid.Column="1" Grid.Row="0">Tu</CheckBox>
+						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isWednesday}" Grid.Column="0" Grid.Row="1">We</CheckBox>
+						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isThursday}" Grid.Column="1" Grid.Row="1">Th</CheckBox>
+						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isFriday}" Grid.Column="0" Grid.Row="2">Fr</CheckBox>
+						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isSaturday}" Grid.Column="1" Grid.Row="2">Sa</CheckBox>
+					</Grid>
 				</Grid>
-				<Grid Grid.Row="5" VerticalAlignment="Center">
+				<Grid Grid.Row="5">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="1*" />
 						<ColumnDefinition Width="3*" />
 					</Grid.ColumnDefinitions>
-					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">First Name:</Label>
-					<TextBox Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">is Admin:</Label>
+					<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isAdmin}" Grid.Column="1" Margin="10"></CheckBox>
 				</Grid>
 			</Grid>
 		</Grid>

@@ -38,6 +38,20 @@ namespace WuHu.GenerateTestData
 			this.database = database;
 		}
 
+		private bool RandomBool()
+		{
+			Random rand = new Random();
+			double randNumb = rand.NextDouble();
+			if (randNumb > 0.5)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 		private Player GeneratePlayer()
 		{
 			Random rFirst;
@@ -100,14 +114,21 @@ namespace WuHu.GenerateTestData
 				nickname = sb.ToString();
 			}
 
-			RoleDao rd = new RoleDao(database);
-			int role_id = rd.FindByRole("Member").ID;
-
+			
+			bool role_id = RandomBool();
+			bool isAdmin = RandomBool();
+			bool isMonday = RandomBool();
+			bool isTuesday = RandomBool();
+			bool isWednesday = RandomBool();
+			bool isThursday = RandomBool();
+			bool isFriday = RandomBool();
+			bool isSaturday = RandomBool();
 			int skills = 1;
 			string password = "myPassword";
 			string photopath = "userpic.png";
 
-			return new Player(role_id, firstname, lastname, nickname, skills, photopath, password);
+			return new Player(isAdmin, firstname, lastname, nickname, skills, photopath, password, isMonday,
+				isTuesday, isWednesday, isThursday, isFriday, isSaturday);
 		}
 		public IList<Player> GeneratePlayers(int number = 30)
 		{
@@ -153,12 +174,6 @@ namespace WuHu.GenerateTestData
 			return teamList;
 		}
 
-		private DateTime RandomDay()
-		{
-			DateTime start = DateTime.Now.AddYears(-2);
-			int range = (DateTime.Today - start).Days;
-			return start.AddDays(gen.Next(range));
-		}
 		public IList<Match> GenerateMatchs()
 		{
 			IList<Match> matchlist = new List<Match>();
@@ -190,11 +205,8 @@ namespace WuHu.GenerateTestData
 	{
 		public static void Clear(IDatabase database)
 		{
-			DayDao d = new DayDao(database);
-			RoleDao r = new RoleDao(database);
 			PlayerDao p = new PlayerDao(database);
 			TeamDao t = new TeamDao(database);
-			PresenceDao pr = new PresenceDao(database);
 			MatchDao m = new MatchDao(database);
 			StatisticDao s = new StatisticDao(database);
 
@@ -202,31 +214,19 @@ namespace WuHu.GenerateTestData
 			Console.WriteLine("cleared statistics...");
 			m.DeleteAll();
 			Console.WriteLine("cleared matches...");
-			pr.DeleteAll();
-			Console.WriteLine("cleared presence...");
 			t.DeleteAll();
 			Console.WriteLine("cleared teams...");
 			p.DeleteAll();
 			Console.WriteLine("cleared player...");
-			r.DeleteAll();
-			Console.WriteLine("cleared roles...");
-			d.DeleteAll();
-			Console.WriteLine("cleared days...");
 		}
 
 		public static void Insert(IDatabase database)
 		{
 			InsertData id = new InsertData(database);
-			id.InsertDays();
-			Console.WriteLine("inserted days...");
-			id.InsertRoles();
-			Console.WriteLine("inserted roles...");
 			id.InsertPlayer(30);
 			Console.WriteLine("inserted player...");
 			id.InsertTeams();
 			Console.WriteLine("inserted teams...");
-			id.InsertPresence();
-			Console.WriteLine("inserted presence...");
 			id.InsertMatches();
 			Console.WriteLine("inserted matches...");
 			id.InsertStatistics();
@@ -245,51 +245,6 @@ namespace WuHu.GenerateTestData
 			this.dataSource = new GenerateData(database);
 		}
 
-		private bool RandomBool()
-		{
-			Random rand = new Random();
-			double randNumb = rand.NextDouble();
-			if (randNumb > 0.5)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
-		public void InsertRoles()
-		{
-
-			RoleDao dao = new RoleDao(database);
-
-			Role admin = new Role("Admin");
-			Role member = new Role("Member");
-			Role editor = new Role("Editor");
-
-			dao.Insert(admin);
-			dao.Insert(member);
-			dao.Insert(editor);
-		}
-		public void InsertDays()
-		{
-			DayDao dao = new DayDao(database);
-
-			Day montag = new Day("Montag");
-			Day dienstag = new Day("Dienstag");
-			Day mittwoch = new Day("Mittwoch");
-			Day donnerstag = new Day("Donnerstag");
-			Day freitag = new Day("Freitag");
-			Day samstag = new Day("Samstag");
-
-			dao.Insert(montag);
-			dao.Insert(dienstag);
-			dao.Insert(mittwoch);
-			dao.Insert(donnerstag);
-			dao.Insert(freitag);
-			dao.Insert(samstag);
-		}
 		public void InsertPlayer(int number = 30)
 		{
 			PlayerDao dao = new PlayerDao(database);		
@@ -314,23 +269,6 @@ namespace WuHu.GenerateTestData
 			foreach(Match m in dataSource.GenerateMatchs())
 			{
 				dao.Insert(m);
-			}
-		}
-		public void InsertPresence()
-		{
-			PlayerDao pd = new PlayerDao(database);
-			DayDao dd = new DayDao(database);
-			PresenceDao pcd = new PresenceDao(database);
-
-			foreach (Player p in pd.FindAll())
-			{
-				foreach(Day d in dd.FindAll())
-				{
-					if(RandomBool())
-					{
-						pcd.Insert(new Presence(p.ID, d.ID));
-					}
-				}
 			}
 		}
 

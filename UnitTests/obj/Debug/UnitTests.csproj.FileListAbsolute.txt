@@ -60,3 +60,6 @@ C:\programmieren\Wuhu\UnitTests\bin\Debug\NDbUnit.SqlClient.pdb
 C:\programmieren\Wuhu\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
 C:\programmieren\Wuhu\UnitTests\obj\Debug\UnitTests.dll
 C:\programmieren\Wuhu\UnitTests\obj\Debug\UnitTests.pdb
+\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\NDbUnit.Core.dll
+\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\NDbUnit.SqlClient.dll
+\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\NDbUnit.SqlClient.pdb

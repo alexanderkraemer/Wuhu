@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -58,15 +62,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Service References\PlayerReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\PlayerListVM.cs" />
     <Compile Include="ViewModels\PlayerVM.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="Views\Matches\MatchEdit.xaml.cs">
+      <DependentUpon>MatchEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Matches\MatchList.xaml.cs">
+      <DependentUpon>MatchList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Player\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Player\PlayerEdit.xaml.cs">
+      <DependentUpon>PlayerEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Player\PlayerList.xaml.cs">
       <DependentUpon>PlayerList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Teams\TeamEdit.xaml.cs">
+      <DependentUpon>TeamEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Teams\TeamList.xaml.cs">
+      <DependentUpon>TeamList.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -80,7 +98,31 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Matches\MatchEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Matches\MatchList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Player\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Player\PlayerEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Player\PlayerList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Teams\TeamEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Teams\TeamList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,34 +145,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\WuHu.BusinessLogic.PlayerDC.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\PlayerReference\service.wsdl" />
-    <None Include="Service References\PlayerReference\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\PlayerReference\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\PlayerReference\WuHu.BusinessLogic.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WuHu.BusinessLogic\WuHu.BusinessLogic.csproj">
-      <Project>{e843ae62-5563-4163-b609-a9228ab85f02}</Project>
-      <Name>WuHu.BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WuHu.Common\WuHu.Common.csproj">
       <Project>{0a9ecfc0-b340-41b8-b94d-302bdbb6162d}</Project>
       <Name>WuHu.Common</Name>
@@ -149,23 +175,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\PlayerReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\PlayerReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\PlayerReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\PlayerReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
     <Resource Include="Views\Player\images\img.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Player\images\pic.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

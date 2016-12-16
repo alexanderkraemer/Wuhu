@@ -8,7 +8,7 @@ namespace WuHu.Common
 	{
         Statistic FindById(int id);
         IList<Statistic> FindByPlayer(int player_id);
-        Statistic FindByDay(DateTime date);
+		  IList<Statistic> FindByDay(DateTime date);
         IList<Statistic> FindAll();
         bool DeleteById(int id);
         int Insert(Statistic statistic);

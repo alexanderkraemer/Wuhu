@@ -97,19 +97,17 @@ namespace WuHu.SQLServer
 			}
 		}
 
-		public Statistic FindByDay(DateTime timestamp)
+		public IList<Statistic> FindByDay(DateTime timestamp)
 		{
 			using (DbCommand command = CreateFindByDayCommand(timestamp))
 			using (IDataReader reader = database.ExecuteReader(command))
 			{
-				if (reader.Read())
+				IList<Statistic> retList = new List<Statistic>();
+				while (reader.Read())
 				{
-					return new Statistic((int)reader["id"], (int)reader["player_id"], (int)reader["skill"], (DateTime)reader["timestamp"]);
+					retList.Add(new Statistic((int)reader["id"], (int)reader["player_id"], (int)reader["skill"], (DateTime)reader["timestamp"]));
 				}
-				else
-				{
-					return null;
-				}
+				return retList;
 			}
 		}
 

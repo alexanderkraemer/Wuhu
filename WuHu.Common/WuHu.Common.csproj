@@ -50,11 +50,8 @@
   <ItemGroup>
     <Compile Include="DalFactory.cs" />
     <Compile Include="IDatabase.cs" />
-    <Compile Include="IDayDao.cs" />
     <Compile Include="IMatchDao.cs" />
     <Compile Include="IPlayerDao.cs" />
-    <Compile Include="IPresenceDao.cs" />
-    <Compile Include="IRoleDao.cs" />
     <Compile Include="IStatisticDao.cs" />
     <Compile Include="ITeamDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,0 +1,4 @@
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Domain\bin\Release\WuHu.Domain.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Domain\bin\Release\WuHu.Domain.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Domain\obj\Release\WuHu.Domain.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Domain\obj\Release\WuHu.Domain.pdb

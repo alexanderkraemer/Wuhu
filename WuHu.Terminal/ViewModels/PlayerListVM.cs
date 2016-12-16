@@ -1,49 +1,59 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using WuHu.BusinessLogic;
 using WuHu.Domain;
+using WuHu.Terminal.Views.Player;
 
 namespace WuHu.Terminal.ViewModels
 {
-	public class PlayerListVM
+	public class PlayerListVM : INotifyPropertyChanged
 	{
-		private IList<PlayerDC> list;
+		private const string BASE_URL = "http://localhost:42382/";
 
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public ObservableCollection<PlayerVM> Players { get; set; }
 		public PlayerListVM()
 		{
-			list = new List<PlayerDC>();
-			LoadPlayers();
+			Players = new ObservableCollection<PlayerVM>();
+			LoadPlayer();
 		}
 
-		ObservableCollection<PlayerDC> playerData = new ObservableCollection<PlayerDC>();
-		public ObservableCollection<PlayerDC> PlayerData
+		public async void LoadPlayer()
 		{
-			get
+			this.Players.Clear();
+
+			string json;
+			HttpClient client = new HttpClient();
+			json = await client.GetStringAsync(BASE_URL + "api/players");
+			
+			ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(json);
+
+			foreach (var p in players)
 			{
-				if (playerData.Count <= 0)
+				Players.Add(new PlayerVM(p));
+			}
+		}
+	
+		private PlayerVM currentPlayer;
+		public PlayerVM CurrentPlayer
+		{
+			get { return currentPlayer; }
+			set
+			{
+				if (value != currentPlayer)
 				{
-					foreach (PlayerDC p in list)
-					{
-						playerData.Add(p);
-					}
+					currentPlayer = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentPlayer)));
 				}
-				return playerData;
 			}
 		}
 
-		public void LoadPlayers()
-		{
-			PlayerReference.PlayerServiceClient client = new PlayerReference.PlayerServiceClient();
-
-			foreach (PlayerDC p in client.GetPlayerList())
-			{
-				list.Add(p);
-			}
-		}
 	}
 }

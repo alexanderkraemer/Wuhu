@@ -17,15 +17,27 @@ namespace WuHu.Terminal.ViewModels
 		private const string BASE_URL = "http://localhost:42382/";
 
 		public event PropertyChangedEventHandler PropertyChanged;
+		private static PlayerListVM instance;
+		public ObservableCollection<PlayerVM> Players { get; private set; }
 
-		public ObservableCollection<PlayerVM> Players { get; set; }
-		public PlayerListVM()
+		public static PlayerListVM getInstance()
+		{
+			if(instance == null)
+			{
+				instance = new PlayerListVM();
+			}
+			return instance;
+		}
+
+		private PlayerListVM()
 		{
 			Players = new ObservableCollection<PlayerVM>();
 			LoadPlayer();
 		}
 
-		public async void LoadPlayer()
+
+
+		private async void LoadPlayer()
 		{
 			this.Players.Clear();
 

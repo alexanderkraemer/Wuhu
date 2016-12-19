@@ -17,11 +17,13 @@
 				<RowDefinition Height="1*" />
 			</Grid.RowDefinitions>
 			<StackPanel Grid.Row="0">
-				<Image Source="images/img.jpg" />
+				<Border BorderThickness="1" BorderBrush="Black">
+					<Image Source="images/pic.jpg" />
+				</Border>
 			</StackPanel>
 			<StackPanel Grid.Row="1" Margin="0 10">
-				<Button Click="SavePlayerButtonClick">Save</Button>
-				<Button Click="CancelPlayerButtonClick">Cancel</Button>
+				<Button Command="{Binding SaveCommand}">Save</Button>
+				<Button>Cancel</Button>
 			</StackPanel>
 		</Grid>
 		<Grid Grid.Column="1">
@@ -40,7 +42,7 @@
 					<ColumnDefinition Width="3*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">First Name:</Label>
-				<TextBox Name="tb_firstname" Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+				<TextBox Name="tb_firstname" Grid.Column="1" FontSize="12" Margin="10" Text="{Binding FirstName}"></TextBox>
 			</Grid>
 			<Grid Grid.Row="1" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -48,7 +50,7 @@
 					<ColumnDefinition Width="3*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Last Name:</Label>
-				<TextBox Name="tb_lastname" Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+				<TextBox Name="tb_lastname" Grid.Column="1" FontSize="12" Margin="10" Text="{Binding LastName}"></TextBox>
 			</Grid>
 			<Grid Grid.Row="2" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -56,7 +58,7 @@
 					<ColumnDefinition Width="3*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Nickname:</Label>
-				<TextBox Name="tb_nickname" Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+				<TextBox Name="tb_nickname" Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Nickname}"></TextBox>
 			</Grid>
 			<Grid Grid.Row="3" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -64,7 +66,7 @@
 					<ColumnDefinition Width="3*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Skills:</Label>
-				<TextBox Name="tb_skills"  Grid.Column="1" FontSize="12" Margin="10"></TextBox>
+				<TextBox Name="tb_skills"  Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Skills}"></TextBox>
 			</Grid>
 			<Grid Grid.Row="4" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -82,12 +84,12 @@
 						<RowDefinition Height="1*" />
 						<RowDefinition Height="1*" />
 					</Grid.RowDefinitions>
-					<CheckBox IsEnabled="True" IsChecked="{Binding isMonday}" Grid.Column="0" Grid.Row="0" Name="cb_presence_mo">Mo</CheckBox>
-					<CheckBox IsEnabled="True" IsChecked="{Binding isMonday}" Grid.Column="1" Grid.Row="0" Name="cb_presence_tu">Tu</CheckBox>
-					<CheckBox IsEnabled="True" IsChecked="{Binding isMonday}" Grid.Column="0" Grid.Row="1" Name="cb_presence_we">We</CheckBox>
-					<CheckBox IsEnabled="True" IsChecked="{Binding isMonday}" Grid.Column="1" Grid.Row="1" Name="cb_presence_th">Th</CheckBox>
-					<CheckBox IsEnabled="True" IsChecked="{Binding isMonday}" Grid.Column="0" Grid.Row="2" Name="cb_presence_fr">Fr</CheckBox>
-					<CheckBox IsEnabled="True" IsChecked="{Binding isMonday}" Grid.Column="1" Grid.Row="2" Name="cb_presence_sa">Sa</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isMonday}" Grid.Column="0" Grid.Row="0">Mo</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isTuesday}" Grid.Column="1" Grid.Row="0">Tu</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isWednesday}" Grid.Column="0" Grid.Row="1">We</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isThursday}" Grid.Column="1" Grid.Row="1">Th</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isFriday}" Grid.Column="0" Grid.Row="2">Fr</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isSaturday}" Grid.Column="1" Grid.Row="2">Sa</CheckBox>
 				</Grid>
 			</Grid>
 			<Grid Grid.Row="5">

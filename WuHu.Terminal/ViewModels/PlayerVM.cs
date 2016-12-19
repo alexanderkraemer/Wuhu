@@ -1,18 +1,30 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WuHu.Domain;
+using WuHu.Terminal.Views.Player;
 
 namespace WuHu.Terminal.ViewModels
 {
 	public class PlayerVM
 	{
+		private const string BASE_URL = "http://localhost:42382/";
 		private ICommand _saveCommad;
 		private Player currentPlayer;
+
+		public Player ConvertToPlayer()
+		{
+			return new Player(this.ID, this.isAdmin, this.FirstName, this.LastName,
+												this.Nickname, this.Skills, this.PhotoPath, this.Password, this.isMonday,
+												this.isTuesday, this.isWednesday, this.isThursday, this.isFriday, this.isSaturday);
+		}
 
 		public PlayerVM(Player p)
 		{
@@ -53,7 +65,14 @@ namespace WuHu.Terminal.ViewModels
 
 		public void Update(Player player)
 		{
+			HttpClient client = new HttpClient();
 
+			string json = JsonConvert.SerializeObject(player);
+
+			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+			client.PutAsync(BASE_URL + "api/players/" + httpContent, httpContent);
+			Debug.WriteLine("updatecommmand");
+			MainWindow.main.Content = new PlayerList();
 		}
 
 		// to server

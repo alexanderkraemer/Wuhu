@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -46,11 +47,16 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpPut]
 		[Route("{player}")]
-		public void Update(Player player)
+		public HttpResponseMessage Update([FromBody]Player player)
 		{
 			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
 			PlayerDao.Update(player);
+
+			var response = Request.CreateResponse(HttpStatusCode.Created);
+
+			return response;
+
 		}
 
 		[HttpPost]

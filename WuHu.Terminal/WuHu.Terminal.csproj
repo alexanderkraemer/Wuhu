@@ -65,6 +65,7 @@
     <Compile Include="ViewModels\PlayerListVM.cs" />
     <Compile Include="ViewModels\PlayerVM.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\TeamListVM.cs" />
     <Compile Include="Views\Matches\MatchEdit.xaml.cs">
       <DependentUpon>MatchEdit.xaml</DependentUpon>
     </Compile>

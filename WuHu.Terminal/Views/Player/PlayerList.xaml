@@ -32,11 +32,12 @@
 					<RowDefinition Height="1*" />
 				</Grid.RowDefinitions>
 				<StackPanel Grid.Row="0">
-					<Image Source="images" />
+					<Border BorderThickness="1" BorderBrush="Black">
+						<Image Source="images/pic.jpg" />
+					</Border>
 				</StackPanel>
 				<StackPanel Grid.Row="1">
 					<Button Margin="5"  Click="EditPlayerButtonClick">Edit</Button>
-					<Button Margin="5" Click="DeletePlayerButtonClick">Delete</Button>
 				</StackPanel>
 			</Grid>
 			<Grid Grid.Column="1">
@@ -97,7 +98,7 @@
 							<RowDefinition Height="1*" />
 							<RowDefinition Height="1*" />
 						</Grid.RowDefinitions>
-						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="True" Grid.Column="0" Grid.Row="0">Mo</CheckBox>
+						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isMonday}" Grid.Column="0" Grid.Row="0">Mo</CheckBox>
 						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isTuesday}" Grid.Column="1" Grid.Row="0">Tu</CheckBox>
 						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isWednesday}" Grid.Column="0" Grid.Row="1">We</CheckBox>
 						<CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding isThursday}" Grid.Column="1" Grid.Row="1">Th</CheckBox>

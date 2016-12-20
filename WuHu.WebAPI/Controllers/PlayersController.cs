@@ -46,17 +46,14 @@ namespace WuHu.WebAPI.Controllers
 		}
 
 		[HttpPut]
-		[Route("{player}")]
-		public HttpResponseMessage Update([FromBody]Player player)
+		[Route("{playerId}")]
+		public void Update([FromBody]Player player, int playerId)
 		{
 			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-
-			PlayerDao.Update(player);
-
-			var response = Request.CreateResponse(HttpStatusCode.Created);
-
-			return response;
-
+			Player p = new Player(playerId, player.isAdmin, player.FirstName, player.LastName,
+				player.Nickname, player.Skills, player.PhotoPath, player.Password, player.isMonday,
+				player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday);
+			PlayerDao.Update(p);
 		}
 
 		[HttpPost]

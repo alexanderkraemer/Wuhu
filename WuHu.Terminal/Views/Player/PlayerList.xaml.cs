@@ -30,7 +30,7 @@ namespace WuHu.Terminal.Views.Player
 		public PlayerList()
 		{
 			InitializeComponent();
-			this.DataContext = new PlayerListVM();
+			this.DataContext = PlayerListVM.getInstance();
 		}
 
 		public void PlayerListSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -48,7 +48,7 @@ namespace WuHu.Terminal.Views.Player
 
 		private void EditPlayerButtonClick(object sender, RoutedEventArgs e)
 		{
-			MainWindow.main.Content = new PlayerEdit(this.player);
+			MainWindow.main.Content = new PlayerEdit();
 		}
 	}
 }

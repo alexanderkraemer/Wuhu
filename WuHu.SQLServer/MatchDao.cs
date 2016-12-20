@@ -15,10 +15,10 @@ namespace WuHu.SQLServer
 	{
         private const string SQL_FIND_BY_ID = "SELECT * FROM matches WHERE id=@Id ORDER BY id";
         private const string SQL_FIND_ALL = "SELECT * FROM matches";
-        private const string SQL_UPDATE = "UPDATE matches SET team_id1=@team_id1, team_id2=@team_id2, timestamp=@timestamp, results_points_p1=@results_points_p1, results_points_p2=@results_points_p2 WHERE Id=@Id";
-        private const string SQL_UPDATE_NULL = "UPDATE matches SET team_id1=@team_id1, team_id2=@team_id2, timestamp=@timestamp WHERE Id=@Id";
-        private const string SQL_INSERT_NULL = "INSERT INTO matches (team_id1, team_id2, timestamp) OUTPUT Inserted.id VALUES (@team_id1, @team_id2, @timestamp)";
-        private const string SQL_INSERT = "INSERT INTO matches (team_id1, team_id2, timestamp, results_points_p1, results_points_p2) OUTPUT Inserted.Id VALUES (@team_id1, @team_id2, @timestamp, @results_points_p1, @results_points_p2)";
+        private const string SQL_UPDATE = "UPDATE matches SET team1_p1ID=@team1_p1ID, team1_p2ID=@team1_p2ID, team2_p1ID=@team2_p1ID, team2_p2ID=@team2_p2ID, tournamentId=@tournamentId, results_points_p2=@results_points_p2 WHERE Id=@Id";
+        private const string SQL_UPDATE_NULL = "UPDATE matches SET team1_p1ID=@team1_p1ID, team1_p2ID=@team1_p2ID, team2_p1ID=@team2_p1ID, team2_p2ID=@team2_p2ID, tournamentId=@tournamentId WHERE Id=@Id";
+        private const string SQL_INSERT_NULL = "INSERT INTO matches (team1_p1ID, team1_p2ID, team2_p1ID, team2_p2ID, tournamentId) OUTPUT Inserted.id VALUES (@team1_p1ID, @team1_p2ID, @team2_p1ID, @team2_p2ID, @tournamentId)";
+        private const string SQL_INSERT = "INSERT INTO matches (team1_p1ID, team1_p2ID, team2_p1ID, team2_p2ID, tournamentId, results_points_p1, results_points_p2) OUTPUT Inserted.Id VALUES (@team1_p1ID, @team1_p2ID, @team2_p1ID, @team2_p2ID, @tournamentId, @results_points_p1, @results_points_p2)";
         private const string SQL_DELETE_BY_ID = "DELETE FROM matches WHERE id=@Id";
         private const string SQL_DELETE_ALL = "DELETE FROM matches WHERE 1=1";
 
@@ -53,7 +53,7 @@ namespace WuHu.SQLServer
             return database.CreateCommand(SQL_DELETE_ALL);
         }
 
-        protected DbCommand CreateUpdateCommand(int id, int team_id1, int team_id2, DateTime timestamp, 
+        protected DbCommand CreateUpdateCommand(int id, int team1_p1ID, int team2_p1ID, int team1_p2ID, int team2_p2ID, int tournamentId, 
 			int? results_points_p1, int? results_points_p2)
 		{
             DbCommand command;
@@ -68,13 +68,16 @@ namespace WuHu.SQLServer
                 database.DefineParameter(command, "@results_points_p2", DbType.String, results_points_p2);
             }
             database.DefineParameter(command, "@Id", DbType.String, id);
-			database.DefineParameter(command, "@team_id1", DbType.String, team_id1);
-			database.DefineParameter(command, "@team_id2", DbType.String, team_id2);
-			database.DefineParameter(command, "@timestamp", DbType.String, timestamp);
+
+			database.DefineParameter(command, "@team1_p1ID", DbType.Int32, team1_p1ID);
+			database.DefineParameter(command, "@team2_p1ID", DbType.Int32, team2_p1ID);
+			database.DefineParameter(command, "@team1_p2ID", DbType.Int32, team1_p2ID);
+			database.DefineParameter(command, "@team2_p2ID", DbType.Int32, team2_p2ID);
+			database.DefineParameter(command, "@tournamentId", DbType.Int32, tournamentId);
 			
 			return command;
 		}
-		protected DbCommand CreateInsertCommand(int team_id1, int team_id2, DateTime timestamp,
+		protected DbCommand CreateInsertCommand(int team1_p1ID, int team2_p1ID, int team1_p2ID, int team2_p2ID, int tournamentId,
 			int? results_points_p1, int? results_points_p2)
 		{
             DbCommand command;
@@ -88,9 +91,11 @@ namespace WuHu.SQLServer
                 database.DefineParameter(command, "@results_points_p1", DbType.String, results_points_p1);
                 database.DefineParameter(command, "@results_points_p2", DbType.String, results_points_p2);
             }
-                database.DefineParameter(command, "@team_id1", DbType.UInt32, team_id1);
-                database.DefineParameter(command, "@team_id2", DbType.UInt32, team_id2);
-                database.DefineParameter(command, "@timestamp", DbType.DateTime, timestamp);
+			database.DefineParameter(command, "@team1_p1ID", DbType.Int32, team1_p1ID);
+			database.DefineParameter(command, "@team2_p1ID", DbType.Int32, team2_p1ID);
+			database.DefineParameter(command, "@team1_p2ID", DbType.Int32, team1_p2ID);
+			database.DefineParameter(command, "@team2_p2ID", DbType.Int32, team2_p2ID);
+			database.DefineParameter(command, "@tournamentId", DbType.Int32, tournamentId);
                 return command;
 		}
 		public Match FindById(int id)
@@ -103,8 +108,8 @@ namespace WuHu.SQLServer
                     int? res1 = reader.IsDBNull(reader.GetOrdinal("results_points_p1")) ? null : (int?)reader["results_points_p1"];
                     int? res2 = reader.IsDBNull(reader.GetOrdinal("results_points_p2")) ? null : (int?)reader["results_points_p2"];
 
-                    return new Match((int)reader["id"], (int)reader["team_id1"], (int)reader["team_id2"],
-                         (DateTime)reader["timestamp"], res1, res2);
+                    return new Match((int)reader["id"], (int)reader["team1_p1ID"], (int)reader["team2_p1ID"], (int)reader["team1_p2ID"], (int)reader["team2_p2ID"],
+                         (int)reader["tournamentId"], res1, res2);
                 }
 				else
 				{
@@ -124,8 +129,8 @@ namespace WuHu.SQLServer
                     int? res1 = reader.IsDBNull(reader.GetOrdinal("results_points_p1")) ? null : (int?)reader["results_points_p1"];
                     int? res2 = reader.IsDBNull(reader.GetOrdinal("results_points_p2")) ? null : (int?)reader["results_points_p2"];
 
-                    matchs.Add(new Match((int)reader["id"], (int)reader["team_id1"], (int)reader["team_id2"],
-                         (DateTime)reader["timestamp"], res1, res2));
+                    matchs.Add(new Match((int)reader["id"], (int)reader["team1_p1ID"], (int)reader["team2_p1ID"], (int)reader["team1_p2ID"], (int)reader["team2_p2ID"],
+								 (int)reader["tournamentId"], res1, res2));
                 }
 				return matchs;
 			}
@@ -133,8 +138,8 @@ namespace WuHu.SQLServer
 
         public bool Update(Match match)
         {
-            using (DbCommand command = CreateUpdateCommand(match.ID, match.Team1ID, match.Team2ID, 
-                match.Timestamp, match.ResultPointsPlayer1, match.ResultPointsPlayer2))
+            using (DbCommand command = CreateUpdateCommand(match.ID, match.Team1Player1, match.Team1Player2, match.Team2Player1, match.Team2Player2,
+					 match.TournamentId, match.ResultPointsPlayer1, match.ResultPointsPlayer2))
             {
                 return database.ExecuteNonQuery(command) == 1;
             }
@@ -142,8 +147,8 @@ namespace WuHu.SQLServer
 
         public int Insert(Match match)
         {
-            using (DbCommand command = CreateInsertCommand(match.Team1ID, match.Team2ID,
-                match.Timestamp, match.ResultPointsPlayer1, match.ResultPointsPlayer2))
+            using (DbCommand command = CreateInsertCommand(match.Team1Player1, match.Team1Player2, match.Team2Player1, match.Team2Player2,
+					 match.TournamentId, match.ResultPointsPlayer1, match.ResultPointsPlayer2))
             {
                 try
                 {

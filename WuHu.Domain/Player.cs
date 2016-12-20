@@ -39,6 +39,11 @@ namespace WuHu.Domain
 		[DataMember]
 		public bool isSaturday { get; set; }
 
+		public Player()
+		{
+
+		}
+
 		public Player(int ID, bool isAdmin, string FirstName, string LastName,
 			string Nickname, int Skills, string PhotoPath, string Password, bool isMonday, 
 			bool isTuesday, bool isWednesday, bool isThursday, bool isFriday, bool isSaturday)
@@ -59,23 +64,23 @@ namespace WuHu.Domain
 			this.isSaturday = isSaturday;
 		}
 
-		//public Player(bool isAdmin, string FirstName, string LastName,
-		//	string Nickname, int Skills, string PhotoPath, string Password, bool isMonday,
-		//	bool isTuesday, bool isWednesday, bool isThursday, bool isFriday, bool isSaturday)
-		//{
-		//	this.isAdmin = isAdmin;
-		//	this.FirstName = FirstName;
-		//	this.LastName = LastName;
-		//	this.Nickname = Nickname;
-		//	this.Skills = Skills;
-		//	this.PhotoPath = PhotoPath;
-		//	this.Password = Password;
-		//	this.isMonday = isMonday;
-		//	this.isTuesday = isTuesday;
-		//	this.isWednesday = isWednesday;
-		//	this.isThursday = isThursday;
-		//	this.isFriday = isFriday;
-		//	this.isSaturday = isSaturday;
-		//}
+		public Player(bool isAdmin, string FirstName, string LastName,
+			string Nickname, int Skills, string PhotoPath, string Password, bool isMonday,
+			bool isTuesday, bool isWednesday, bool isThursday, bool isFriday, bool isSaturday)
+		{
+			this.isAdmin = isAdmin;
+			this.FirstName = FirstName;
+			this.LastName = LastName;
+			this.Nickname = Nickname;
+			this.Skills = Skills;
+			this.PhotoPath = PhotoPath;
+			this.Password = Password;
+			this.isMonday = isMonday;
+			this.isTuesday = isTuesday;
+			this.isWednesday = isWednesday;
+			this.isThursday = isThursday;
+			this.isFriday = isFriday;
+			this.isSaturday = isSaturday;
+		}
 	}
 }

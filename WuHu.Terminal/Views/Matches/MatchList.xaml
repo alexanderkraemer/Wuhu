@@ -12,16 +12,26 @@
 			<ColumnDefinition Width="2*" />
 			<ColumnDefinition Width="5*" />
 		</Grid.ColumnDefinitions>
-		<ListBox SelectedIndex="0" Name="matchesList" ItemsSource="{Binding Path=MatchData}" SelectionChanged="MatchesListSelectionChanged">
+		<ListBox SelectedIndex="0" ItemsSource="{Binding Path=Matches}"  SelectedItem="{Binding CurrentMatch}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<StackPanel>
-						<TextBlock Text="{Binding FullName}"></TextBlock>
+					<StackPanel Orientation="Vertical">
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Team1Player1.FullName, Mode=OneWay}"></TextBlock>
+							<TextBlock Text=" - "></TextBlock>
+							<TextBlock Text="{Binding Team1Player2.FullName, Mode=OneWay}"></TextBlock>
+						</StackPanel>
+						<TextBlock Text=" vs. "></TextBlock>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Team2Player1.FullName, Mode=OneWay}"></TextBlock>
+							<TextBlock Text=" - "></TextBlock>
+							<TextBlock Text="{Binding Team2Player2.FullName, Mode=OneWay}"></TextBlock>
+						</StackPanel>
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-		<Grid Grid.Column="2">
+		<Grid Grid.Column="2" DataContext="{Binding CurrentMatch}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="1*" />
 				<RowDefinition Height="1*" />
@@ -36,7 +46,13 @@
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Team 1:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Team1}"></TextBlock>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Team1Player1.FullName, Mode=OneWay}"></TextBlock>
+						<TextBlock Text=" - "></TextBlock>
+						<TextBlock Text="{Binding Team1Player2.FullName, Mode=OneWay}"></TextBlock>		
+					</StackPanel>
+				</TextBlock>
 			</Grid>
 			<Grid Grid.Row="1" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -44,7 +60,13 @@
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Team 2:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Team2}"></TextBlock>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Team2Player1.FullName, Mode=OneWay}"></TextBlock>
+						<TextBlock Text=" - "></TextBlock>
+						<TextBlock Text="{Binding Team2Player2.FullName, Mode=OneWay}"></TextBlock>		
+					</StackPanel>
+				</TextBlock>
 			</Grid>
 			<Grid Grid.Row="2" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -60,7 +82,7 @@
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Result Team 1:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding resTeam1}"></TextBlock>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding ResultPointsPlayer1}"></TextBlock>
 			</Grid>
 			<Grid Grid.Row="4" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -68,12 +90,11 @@
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Result Team 2:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding resTeam2}"></TextBlock>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding ResultPointsPlayer2}"></TextBlock>
 			</Grid>
 			<Grid Grid.Row="5" VerticalAlignment="Top">
 				<StackPanel>
 					<Button Grid.Row="0" Margin="5 40 5 5"  Click="EditMatchButtonClick">Edit</Button>
-					<Button Grid.Row="0" Margin="5" Click="DeleteMatchButtonClick">Delete</Button>
 				</StackPanel>
 			</Grid>
 		</Grid>

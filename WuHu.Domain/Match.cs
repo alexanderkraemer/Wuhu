@@ -1,47 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WuHu.Domain
 {
-	[Serializable]
+	[DataContract]
 	public class Match
 	{
-		public int ID { get; }
-		public int Team1ID { get; set; }
-		public int Team2ID { get; set; }
-		public DateTime Timestamp { get; set; }
+		[DataMember]
+		public int ID { get; set; }
+		[DataMember]
+		public int Team1Player1 { get; set; }
+		[DataMember]
+		public int Team1Player2 { get; set; }
+		[DataMember]
+		public int Team2Player1 { get; set; }
+		[DataMember]
+		public int Team2Player2 { get; set; }
+		[DataMember]
+		public int TournamentId { get; set; }
+		[DataMember]
 		public int? ResultPointsPlayer1 { get; set; }
+		[DataMember]
 		public int? ResultPointsPlayer2 { get; set; }
 
-		public Match(int ID, int Team1ID, int Team2ID, DateTime Timestamp,
+		public Match()
+		{
+
+		}
+
+		public Match(int ID, int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int tournamentId)
+		{
+			this.ID = ID;
+			this.Team1Player1 = Team1Player1;
+			this.Team1Player2 = Team1Player2;
+			this.Team2Player1 = Team2Player1;
+			this.Team2Player2 = Team2Player2;
+			this.TournamentId = tournamentId;
+			this.ResultPointsPlayer1 = null;
+			this.ResultPointsPlayer2 = null;
+		}
+
+		public Match(int ID, int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int tournamentId,
 				int? ResultPointsPlayer1, int? ResultPointsPlayer2)
 		{
 			this.ID = ID;
-			this.Team1ID = Team1ID;
-			this.Team2ID = Team2ID;
-			this.Timestamp = Timestamp;
+			this.Team1Player1 = Team1Player1;
+			this.Team1Player2 = Team1Player2;
+			this.Team2Player1 = Team2Player1;
+			this.Team2Player2 = Team2Player2;
+			this.TournamentId = tournamentId;
 			this.ResultPointsPlayer1 = ResultPointsPlayer1;
 			this.ResultPointsPlayer2 = ResultPointsPlayer2;
 		}
 
-		public Match(int Team1ID, int Team2ID, DateTime Timestamp,
-			 int? ResultPointsPlayer1, int? ResultPointsPlayer2)
+		public Match(int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int tournamentId,
+				int? ResultPointsPlayer1, int? ResultPointsPlayer2)
 		{
-			this.Team1ID = Team1ID;
-			this.Team2ID = Team2ID;
-			this.Timestamp = Timestamp;
+			this.Team1Player1 = Team1Player1;
+			this.Team1Player2 = Team1Player2;
+			this.Team2Player1 = Team2Player1;
+			this.Team2Player2 = Team2Player2;
+			this.TournamentId = tournamentId;
 			this.ResultPointsPlayer1 = ResultPointsPlayer1;
 			this.ResultPointsPlayer2 = ResultPointsPlayer2;
 		}
 
-		public Match(int Team1ID, int Team2ID, DateTime Timestamp)
+		public Match(int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int tournamentId)
 		{
-			this.Team1ID = Team1ID;
-			this.Team2ID = Team2ID;
-			this.Timestamp = Timestamp;
+			this.Team1Player1 = Team1Player1;
+			this.Team1Player2 = Team1Player2;
+			this.Team2Player1 = Team2Player1;
+			this.Team2Player2 = Team2Player2;
+			this.TournamentId = tournamentId;
 			this.ResultPointsPlayer1 = null;
 			this.ResultPointsPlayer2 = null;
 		}

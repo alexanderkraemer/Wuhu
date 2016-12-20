@@ -23,7 +23,7 @@
 			</StackPanel>
 			<StackPanel Grid.Row="1" Margin="0 10">
 				<Button Command="{Binding SaveCommand}">Save</Button>
-				<Button>Cancel</Button>
+				<Button Command="{Binding CancelCommand}">Cancel</Button>
 			</StackPanel>
 		</Grid>
 		<Grid Grid.Column="1">

@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="5TestPlayerDao.cs" />
-    <Compile Include="4TestTeamDao.cs" />
+    <Compile Include="4TestTournamentDao.cs" />
     <Compile Include="2TestMatchDao.cs" />
     <Compile Include="1TestStatisticsDao.cs" />
   </ItemGroup>

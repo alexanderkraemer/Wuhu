@@ -21,7 +21,7 @@
 			<Button Click="NavHomeButton" Grid.Column="0" Margin="1">Home</Button>
 			<Button Click="NavPlayerButton" Grid.Column="1" Margin="1">Player</Button>
 			<Button Click="NavMatchesButton" Grid.Column="2" Margin="1">Matches</Button>
-			<Button Click="NavTeamsButton" Grid.Column="3" Margin="1">Teams</Button>
+			<Button Click="NavTournamentsButton" Grid.Column="3" Margin="1">Tournaments</Button>
 		</Grid>
 		<Frame Grid.Row="1" Name="MainFrame" NavigationUIVisibility="Hidden">
 		</Frame>

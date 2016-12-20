@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="WuHu.Terminal.Views.Teams.TeamList"
+﻿<UserControl x:Class="WuHu.Terminal.Views.Tournaments.TournamentList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WuHu.Terminal.Views.Teams"
+             xmlns:local="clr-namespace:WuHu.Terminal.Views.Tournaments"
              mc:Ignorable="d" 
              d:DesignHeight="360" d:DesignWidth="640">
 
@@ -12,16 +12,16 @@
 			<ColumnDefinition Width="2*" />
 			<ColumnDefinition Width="5*" />
 		</Grid.ColumnDefinitions>
-		<ListBox SelectedIndex="0" Name="teamsList" ItemsSource="{Binding Path=TeamsData}" SelectionChanged="TeamListSelectionChanged">
+		<ListBox Grid.Column="0" ItemsSource="{Binding Teams}" SelectedItem="{Binding CurrentTeam}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<StackPanel>
-						<TextBlock Text="{Binding Teamname}"></TextBlock>
-					</StackPanel>
+					<TextBlock FontSize="10pt">
+						<TextBlock VerticalAlignment="Center" Text="{Binding Name}"></TextBlock>	
+					</TextBlock>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-		<Grid Grid.Column="2">
+		<Grid Grid.Column="1" DataContext="{Binding CurrentTeam}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="1*" />
 				<RowDefinition Height="1*" />
@@ -34,7 +34,7 @@
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Spieler 1:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Spieler1}"></TextBlock>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Player1.FullName }"></TextBlock>
 			</Grid>
 			<Grid Grid.Row="1" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Spieler 2:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Spieler2}"></TextBlock>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Player2.FullName}"></TextBlock>
 			</Grid>
 			<Grid Grid.Row="2" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
@@ -55,7 +55,6 @@
 			<Grid Grid.Row="4" >
 				<StackPanel VerticalAlignment="Top">
 					<Button Grid.Row="0" Margin="5 40 5 5"  Click="EditTeamButtonClick">Edit</Button>
-					<Button Grid.Row="0" Margin="5" Click="DeleteTeamButtonClick">Delete</Button>
 				</StackPanel>
 			</Grid>
 		</Grid>

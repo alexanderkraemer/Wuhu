@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="WuHu.Terminal.Views.Player.PlayerCreate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WuHu.Terminal.Views.Player"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+		
+		<Grid Grid.Column="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="2*" />
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0" VerticalAlignment="Center">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="3*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">First Name:</Label>
+				<TextBox Name="tb_firstname" Grid.Column="1" FontSize="12" Margin="10" Text="{Binding FirstName}"></TextBox>
+			</Grid>
+			<Grid Grid.Row="1" VerticalAlignment="Center">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="3*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Last Name:</Label>
+				<TextBox Name="tb_lastname" Grid.Column="1" FontSize="12" Margin="10" Text="{Binding LastName}"></TextBox>
+			</Grid>
+			<Grid Grid.Row="2" VerticalAlignment="Center">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="3*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Nickname:</Label>
+				<TextBox Name="tb_nickname" Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Nickname}"></TextBox>
+			</Grid>
+			<Grid Grid.Row="3" VerticalAlignment="Center">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="3*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Skills:</Label>
+				<TextBox Name="tb_skills"  Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Skills}"></TextBox>
+			</Grid>
+			<Grid Grid.Row="4" VerticalAlignment="Center">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="3*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Presence:</Label>
+				<Grid Grid.Column="1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="1*"/>
+						<ColumnDefinition Width="1*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*" />
+					</Grid.RowDefinitions>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isMonday}" Grid.Column="0" Grid.Row="0">Mo</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isTuesday}" Grid.Column="1" Grid.Row="0">Tu</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isWednesday}" Grid.Column="0" Grid.Row="1">We</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isThursday}" Grid.Column="1" Grid.Row="1">Th</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isFriday}" Grid.Column="0" Grid.Row="2">Fr</CheckBox>
+					<CheckBox IsEnabled="True" IsChecked="{Binding isSaturday}" Grid.Column="1" Grid.Row="2">Sa</CheckBox>
+				</Grid>
+			</Grid>
+			<Grid Grid.Row="5">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="3*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">is Admin:</Label>
+				<CheckBox IsEnabled="True" IsChecked="{Binding isAdmin}" Grid.Column="1" VerticalAlignment="Center"></CheckBox>
+			</Grid>
+			<StackPanel Grid.Row="6" Margin="0 10">
+				<Button Command="{Binding SaveCommand}">Save</Button>
+				<Button Command="{Binding CancelCommand}">Cancel</Button>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>

@@ -15,7 +15,7 @@ namespace WuHu.SQLServer
 		private const string SQL_FIND_ALL = "SELECT * FROM player ORDER BY id";
 		private const string SQL_UPDATE = "UPDATE player SET is_admin=@isAdmin, skills=@skills, first_name=@firstname, last_name=@lastname, nickname=@nickname, photopath=@photopath, password=@password, isMonday=@isMonday, isTuesday=@isTuesday, isWednesday=@isWednesday, isThursday=@isThursday, isFriday=@isFriday, isSaturday=@isSaturday WHERE Id=@Id";
 		private const string SQL_INSERT = "INSERT INTO player (is_admin, skills, first_name, last_name, nickname, photopath, password, isMonday, isTuesday, isWednesday, isThursday, isFriday, isSaturday) OUTPUT Inserted.id VALUES (@isAdmin, @skills, @firstname, @lastname, @nickname, @photopath, @password, @isMonday, @isTuesday, @isWednesday, @isThursday, @isFriday, @isSaturday)";
-		private const string SQL_FIND_BY_NICKNAME = "SELECT * FROM player WHERE nickname=@nickname ORDER BY id";
+		private const string SQL_FIND_BY_NICKNAME = "SELECT * FROM player WHERE nickname=@nickname";
 		private const string SQL_DELETE_ALL = "DELETE FROM player WHERE 1 = 1";
       private const string SQL_DELETE_BY_ID = "DELETE FROM player WHERE id=@Id";
 
@@ -142,9 +142,11 @@ namespace WuHu.SQLServer
 			{
 				List<Player> players = new List<Player>();
 				while (reader.Read())
+				{
 					players.Add(new Player((int)reader["id"], (bool)reader["is_Admin"], (string)reader["first_name"], (string)reader["last_name"],
 						 (string)reader["nickname"], (int)reader["skills"], (string)reader["photopath"], (string)reader["password"], (bool)reader["isMonday"],
 						 (bool)reader["isTuesday"], (bool)reader["isWednesday"], (bool)reader["isThursday"], (bool)reader["isFriday"], (bool)reader["isSaturday"]));
+				}
 				return players;
 			}
 		}

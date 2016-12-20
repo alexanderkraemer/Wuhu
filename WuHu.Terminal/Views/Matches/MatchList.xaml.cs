@@ -26,20 +26,7 @@ namespace WuHu.Terminal.Views.Matches
 		public MatchList()
 		{
 			InitializeComponent();
-			// this.DataContext = new PlayerListVM();
-		}
-
-		public void MatchesListSelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			ListBox list = sender as ListBox;
-			//PlayerDC player = (PlayerDC) list.SelectedValue;
-
-			//this.player = player;
-		}
-
-		public void DeleteMatchButtonClick(object sender, object e)
-		{
-
+			this.DataContext = MatchListVM.getInstance();
 		}
 
 		private void EditMatchButtonClick(object sender, RoutedEventArgs e)

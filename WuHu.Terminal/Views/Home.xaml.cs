@@ -13,25 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WuHu.Terminal.Views.Teams
+namespace WuHu.Terminal.Views
 {
 	/// <summary>
-	/// Interaction logic for TeamList.xaml
+	/// Interaction logic for Home.xaml
 	/// </summary>
-	public partial class TeamEdit : UserControl
+	public partial class Home : UserControl
 	{
-		public TeamEdit()
+		public Home()
 		{
 			InitializeComponent();
-		}
-
-		public void SaveTeamButtonClick(object sender, object e)
-		{
-			MainWindow.main.Content = new TeamList();
-		}
-		public void CancelTeamButtonClick(object sender, object e)
-		{
-
 		}
 	}
 }

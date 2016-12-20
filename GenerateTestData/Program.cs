@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WuHu.Common;
 using WuHu.Domain;
+using WuHu.GenerateTestData;
 using WuHu.SQLServer;
 
 namespace WuHu.GenerateTestData
@@ -58,7 +59,7 @@ namespace WuHu.GenerateTestData
 			Random rLast;
 
 			rFirst = new Random();
-			rLast = new Random(rFirst.Next());
+			rLast = new Random();
 			string nickname;
 
 			// 33 firstnames
@@ -100,7 +101,7 @@ namespace WuHu.GenerateTestData
 			while (pd.FindByNickname(nickname) != null)
 			{
 				rFirst = new Random();
-				rLast = new Random(rFirst.Next());
+				rLast = new Random();
 
 				firstname = _firstNames[rFirst.Next(_firstNames.Length)];
 				lastname = _lastNames[rLast.Next(_lastNames.Length)];
@@ -133,7 +134,7 @@ namespace WuHu.GenerateTestData
 		public IList<Player> GeneratePlayers(int number = 30)
 		{
 			List<Player> playerlist = new List<Player>();
-			for(int i = 0; i < number; ++i)
+			for(int i = 0; i < number; i++)
 			{
 				playerlist.Add(GeneratePlayer());
 			}
@@ -141,62 +142,85 @@ namespace WuHu.GenerateTestData
 			return playerlist;
 		}
 
-		public IList<Team> GenerateTeams()
+
+		public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+		{
+			for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+				yield return day;
+		}
+
+		public IList<Tournament> GenerateTournaments()
 		{
 			Random rand = new Random();
 			PlayerDao playerdao = new PlayerDao(database);
-			TeamDao teamdao = new TeamDao(database);
+			TournamentDao tournamentDao = new TournamentDao(database);
 
-			List<Team> teamList = new List<Team>();
+			List<Tournament> tournamentList = new List<Tournament>();
 
 			int counter = 0;
-			foreach(Player p1 in playerdao.FindAll())
+
+			foreach (DateTime day in EachDay(DateTime.Today.AddYears(-1), DateTime.Today))
 			{
-				foreach(Player p2 in playerdao.FindAll())
-				{
-					if (counter < 100)
-					{
-						if (rand.NextDouble() > 0.6)
-						{
-							++counter;
-							if (p1.ID != p2.ID)
-							{
-								teamList.Add(new Team("Team " + counter, p1.ID, p2.ID));
-							}
-						}
-					}
-					else
-					{
-						break;
-					}
-				}
+				++counter;
+				tournamentList.Add(new Tournament("Tournament " + counter, day));
 			}
-			return teamList;
+			return tournamentList;
+		}
+
+		private int GenerateRandom(int start, int end)
+		{
+			Random rand = new Random();
+			return rand.Next(start, end);
+		}
+
+		private IList<E> ShuffleList<E>(IList<E> inputList)
+		{
+			IList<E> randomList = new List<E>();
+			IList<E> inputCopy = new List<E>();
+			foreach(var o in inputList)
+			{
+				inputCopy.Add(o);
+			}
+			Random r = new Random();
+			int randomIndex = 0;
+			while (inputCopy.Count > 0)
+			{
+				randomIndex = r.Next(0, inputCopy.Count); //Choose a random object in the list
+				randomList.Add(inputCopy[randomIndex]); //add it to the new, random list
+
+				inputCopy.RemoveAt(randomIndex); //remove to avoid duplicates
+			}
+
+			return randomList; //return the new random list
 		}
 
 		public IList<Match> GenerateMatchs()
 		{
 			IList<Match> matchlist = new List<Match>();
-			TeamDao teamdao = new TeamDao(database);
-			IList<Team> teamlist = teamdao.FindAll();
+			TournamentDao tournamentDao = new TournamentDao(database);
+			PlayerDao PlayerDao = new PlayerDao(database);
 
-			DateTime start = DateTime.Now.AddYears(-2);
-			int range = (DateTime.Today - start).Days;
-			Random rand = new Random();
+			IList<Tournament> tournamentList = tournamentDao.FindAll();
+			IList<Player> playerList = PlayerDao.FindAll();
+			Console.WriteLine(playerList.Count);
 
-			for(int i = 0; i < range; ++i)
+			
+			foreach(Player p in playerList)
 			{
-				for(int j = 0; j < 4; ++j)
-				{
-					int r = rand.Next(teamlist.Count);
-					int r2 = rand.Next(teamlist.Count);
-					while (r == r2)
-					{
-						r2 = rand.Next(teamlist.Count);
-					}
-					matchlist.Add(new Match(teamlist[r].ID, teamlist[r2].ID, start.AddDays(i)));
-				}
+				Console.WriteLine(p.ID);
 			}
+
+			foreach(Tournament t in tournamentList)
+			{
+				IList<Player> newList = ShuffleList<Player>(playerList);
+				int i = 0;
+			
+				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID));
+				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID));
+				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID));
+				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID));
+			}
+
 			return matchlist;
 		}
 	}
@@ -206,7 +230,7 @@ namespace WuHu.GenerateTestData
 		public static void Clear(IDatabase database)
 		{
 			PlayerDao p = new PlayerDao(database);
-			TeamDao t = new TeamDao(database);
+			TournamentDao t = new TournamentDao(database);
 			MatchDao m = new MatchDao(database);
 			StatisticDao s = new StatisticDao(database);
 
@@ -215,7 +239,7 @@ namespace WuHu.GenerateTestData
 			m.DeleteAll();
 			Console.WriteLine("cleared matches...");
 			t.DeleteAll();
-			Console.WriteLine("cleared teams...");
+			Console.WriteLine("cleared Tournaments...");
 			p.DeleteAll();
 			Console.WriteLine("cleared player...");
 		}
@@ -223,15 +247,14 @@ namespace WuHu.GenerateTestData
 		public static void Insert(IDatabase database)
 		{
 			InsertData id = new InsertData(database);
-			id.InsertPlayer(30);
+			id.InsertPlayer(500);
 			Console.WriteLine("inserted player...");
-			id.InsertTeams();
-			Console.WriteLine("inserted teams...");
+			id.InsertTournaments();
+			Console.WriteLine("inserted tournaments...");
 			id.InsertMatches();
 			Console.WriteLine("inserted matches...");
 			id.InsertStatistics();
 			Console.WriteLine("inserted statistics...");
-			Console.WriteLine("done.");
 		}
 	}
 
@@ -254,11 +277,11 @@ namespace WuHu.GenerateTestData
 				dao.Insert(p);
 			}
 		}
-		public void InsertTeams()
+		public void InsertTournaments()
 		{
-			TeamDao dao = new TeamDao(database);
+			TournamentDao dao = new TournamentDao(database);
 
-			foreach(Team t in dataSource.GenerateTeams())
+			foreach(Tournament t in dataSource.GenerateTournaments())
 			{
 				dao.Insert(t);
 			}

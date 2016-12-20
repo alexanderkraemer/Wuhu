@@ -43,11 +43,11 @@ namespace WuHu.UnitTests
 		{
 			MatchDao MatchDao = new MatchDao(database);
 
-			TeamDao teamdao = new TeamDao(database);
-			Team t1 = null;
-			Team t2 = null;
+			TournamentDao tournamentDao = new TournamentDao(database);
+			Tournament t1 = null;
+			Tournament t2 = null;
 			int i = 0;
-			foreach(Team t in teamdao.FindAll())
+			foreach(Tournament t in tournamentDao.FindAll())
 			{
 				++i;
 				switch(i)
@@ -71,11 +71,11 @@ namespace WuHu.UnitTests
 		public void CheckDeleteById()
 		{
 			MatchDao MatchDao = new MatchDao(database);
-			TeamDao teamdao = new TeamDao(database);
-			Team t1 = null;
-			Team t2 = null;
+			TournamentDao tournamentDao = new TournamentDao(database);
+			Tournament t1 = null;
+			Tournament t2 = null;
 			int i = 0;
-			foreach (Team t in teamdao.FindAll())
+			foreach (Tournament t in tournamentDao.FindAll())
 			{
 				++i;
 				switch (i)
@@ -124,11 +124,11 @@ namespace WuHu.UnitTests
 		public void GetOneMatchByID()
 		{
 			MatchDao MatchDao = new MatchDao(database);
-			TeamDao teamdao = new TeamDao(database);
-			Team t1 = null;
-			Team t2 = null;
+			TournamentDao tournamentDao = new TournamentDao(database);
+			Tournament t1 = null;
+			Tournament t2 = null;
 			int i = 0;
-			foreach (Team t in teamdao.FindAll())
+			foreach (Tournament t in tournamentDao.FindAll())
 			{
 				++i;
 				switch (i)

@@ -88,12 +88,6 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Matches\MatchEdit.g.cs
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Matches\MatchEdit.baml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Matches\MatchList.baml
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Player\Home.g.cs
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Player\Home.baml
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Teams\TeamList.g.cs
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Teams\TeamList.baml
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Teams\TeamEdit.g.cs
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Teams\TeamEdit.baml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\bin\Debug\Newtonsoft.Json.xml
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\bin\Debug\WuHu.Terminal.exe.config
@@ -151,3 +145,9 @@ C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\Views\Player\Home.baml
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\Views\Player\PlayerEdit.baml
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\Views\Teams\TeamEdit.baml
 C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\Views\Teams\TeamList.baml
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Tournaments\TournamentEdit.g.cs
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Tournaments\TournamentList.g.cs
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Tournaments\TournamentEdit.baml
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Tournaments\TournamentList.baml
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Home.g.cs
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\Views\Home.baml

@@ -62,17 +62,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\MatchListVM.cs" />
+    <Compile Include="ViewModels\MatchVM.cs" />
     <Compile Include="ViewModels\PlayerListVM.cs" />
     <Compile Include="ViewModels\PlayerVM.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
-    <Compile Include="ViewModels\TeamListVM.cs" />
+    <Compile Include="ViewModels\TournamentListVM.cs" />
+    <Compile Include="ViewModels\TournamentVM.cs" />
     <Compile Include="Views\Matches\MatchEdit.xaml.cs">
       <DependentUpon>MatchEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Matches\MatchList.xaml.cs">
       <DependentUpon>MatchList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Player\Home.xaml.cs">
+    <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Player\PlayerEdit.xaml.cs">
@@ -81,11 +84,11 @@
     <Compile Include="Views\Player\PlayerList.xaml.cs">
       <DependentUpon>PlayerList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Teams\TeamEdit.xaml.cs">
-      <DependentUpon>TeamEdit.xaml</DependentUpon>
+    <Compile Include="Views\Tournaments\TournamentEdit.xaml.cs">
+      <DependentUpon>TournamentEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Teams\TeamList.xaml.cs">
-      <DependentUpon>TeamList.xaml</DependentUpon>
+    <Compile Include="Views\Tournaments\TournamentList.xaml.cs">
+      <DependentUpon>TournamentList.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -107,7 +110,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Player\Home.xaml">
+    <Page Include="Views\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,11 +122,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Teams\TeamEdit.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\Tournaments\TournamentEdit.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Teams\TeamList.xaml">
+    <Page Include="Views\Tournaments\TournamentList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

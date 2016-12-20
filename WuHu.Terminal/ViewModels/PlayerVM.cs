@@ -17,13 +17,12 @@ namespace WuHu.Terminal.ViewModels
 	{
 		private const string BASE_URL = "http://localhost:42382/";
 		private ICommand _saveCommad;
-		private Player currentPlayer;
+		private ICommand _cancelCommad;
+		public Player currentPlayer;
 
-		public Player ConvertToPlayer()
+		public PlayerVM()
 		{
-			return new Player(this.ID, this.isAdmin, this.FirstName, this.LastName,
-												this.Nickname, this.Skills, this.PhotoPath, this.Password, this.isMonday,
-												this.isTuesday, this.isWednesday, this.isThursday, this.isFriday, this.isSaturday);
+			
 		}
 
 		public PlayerVM(Player p)
@@ -52,16 +51,43 @@ namespace WuHu.Terminal.ViewModels
 		{
 			get
 			{
-				if(_saveCommad == null)
+				if (_saveCommad == null)
 				{
 					_saveCommad = new RelayCommand(param =>
 					{
 						Update(currentPlayer);
-					}); 
+					});
 				}
 				return _saveCommad;
 			}
 		}
+
+		public ICommand CancelCommand
+		{
+			get
+			{
+				if (_cancelCommad == null)
+				{
+					_cancelCommad = new RelayCommand(param =>
+					{
+						Cancel();
+					});
+				}
+				return _cancelCommad;
+			}
+		}
+
+		private async void Cancel()
+		{
+			HttpClient client = new HttpClient();
+			string json = await client.GetStringAsync(BASE_URL + "api/players/" + currentPlayer.ID);
+
+			Player player = JsonConvert.DeserializeObject<Player>(json);
+			currentPlayer = player;
+			MainWindow.main.Content = new PlayerList();
+		}
+
+
 
 		public void Update(Player player)
 		{
@@ -70,7 +96,7 @@ namespace WuHu.Terminal.ViewModels
 			string json = JsonConvert.SerializeObject(player);
 
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-			client.PutAsync(BASE_URL + "api/players/" + httpContent, httpContent);
+			client.PutAsync(BASE_URL + "api/players/" + currentPlayer.ID, httpContent);
 			Debug.WriteLine("updatecommmand");
 			MainWindow.main.Content = new PlayerList();
 		}

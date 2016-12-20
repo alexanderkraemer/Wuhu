@@ -12,17 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WuHu.Terminal.ViewModels;
 
-namespace WuHu.Terminal.Views.Player
+namespace WuHu.Terminal.Views.Tournaments
 {
 	/// <summary>
-	/// Interaction logic for Home.xaml
+	/// Interaction logic for TournamentEdit.xaml
 	/// </summary>
-	public partial class Home : UserControl
+	public partial class TournamentEdit : UserControl
 	{
-		public Home()
+		public TournamentEdit()
 		{
 			InitializeComponent();
+			this.DataContext = TournamentListVM.getInstance().CurrentTeam;
 		}
 	}
 }

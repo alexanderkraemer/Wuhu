@@ -45,9 +45,9 @@ namespace WuHu.Common
             return CreateDao<IStatisticDao>(database, "StatisticDao");
         }
 
-        public static ITeamDao CreateTeamDao(IDatabase database)
+        public static ITournamentDao CreateTournamentDao(IDatabase database)
         {
-            return CreateDao<ITeamDao>(database, "TeamDao");
+            return CreateDao<ITournamentDao>(database, "TournamentDao");
         }
 
         private static T CreateDao<T>(IDatabase database, string typeName)

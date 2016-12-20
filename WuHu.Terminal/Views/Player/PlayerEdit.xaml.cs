@@ -21,28 +21,10 @@ namespace WuHu.Terminal.Views.Player
 	/// </summary>
 	public partial class PlayerEdit : UserControl
 	{
-		private PlayerVM player = null;
-
-		public PlayerEdit(PlayerVM player)
+		public PlayerEdit()
 		{
-			
-		}
-
-		public string Header { get; internal set; }
-
-		public void SavePlayerButtonClick(object sender, object e)
-		{
-			MainWindow.main.Content = new PlayerList();
-		}
-
-		public void CancelPlayerButtonClick(object sender, object e)
-		{
-			MainWindow.main.Content = new PlayerList();
-		}
-
-		public void SetTextBoxValue(TextBox textbox, string Value)
-		{
-			textbox.Text = Value;
+			InitializeComponent();
+			this.DataContext = PlayerListVM.getInstance().CurrentPlayer;
 		}
 	}
 }

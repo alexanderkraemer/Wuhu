@@ -35,9 +35,7 @@ namespace WuHu.Terminal.ViewModels
 			LoadPlayer();
 		}
 
-
-
-		private async void LoadPlayer()
+		public async Task<ObservableCollection<Player>> LoadPlayer()
 		{
 			this.Players.Clear();
 
@@ -51,6 +49,7 @@ namespace WuHu.Terminal.ViewModels
 			{
 				Players.Add(new PlayerVM(p));
 			}
+			return players;
 		}
 	
 		private PlayerVM currentPlayer;
@@ -66,6 +65,5 @@ namespace WuHu.Terminal.ViewModels
 				}
 			}
 		}
-
 	}
 }

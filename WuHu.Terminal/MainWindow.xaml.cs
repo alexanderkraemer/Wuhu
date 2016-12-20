@@ -1,8 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using WuHu.Terminal.Views;
 using WuHu.Terminal.Views.Matches;
 using WuHu.Terminal.Views.Player;
-using WuHu.Terminal.Views.Teams;
+using WuHu.Terminal.Views.Tournaments;
 
 namespace WuHu.Terminal
 {
@@ -38,9 +39,9 @@ namespace WuHu.Terminal
 			MainWindow.main.Content = new MatchList();
 		}
 
-		public void NavTeamsButton(object sender, object e)
+		public void NavTournamentsButton(object sender, object e)
 		{
-			MainWindow.main.Content = new TeamList();
+			MainWindow.main.Content = new TournamentList();
 		}
 	}
 }

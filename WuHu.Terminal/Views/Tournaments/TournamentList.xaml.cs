@@ -12,34 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WuHu.Terminal.ViewModels;
 
-namespace WuHu.Terminal.Views.Teams
+namespace WuHu.Terminal.Views.Tournaments
 {
 	/// <summary>
-	/// Interaction logic for TeamList.xaml
+	/// Interaction logic for TournamentList.xaml
 	/// </summary>
-	public partial class TeamList : UserControl
+	public partial class TournamentList : UserControl
 	{
-		public TeamList()
+		public TournamentList()
 		{
 			InitializeComponent();
-		}
-
-		public void TeamListSelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			ListBox list = sender as ListBox;
-			//PlayerDC player = (PlayerDC) list.SelectedValue;
-
-			//this.player = player;
+			this.DataContext = TournamentListVM.getInstance();
 		}
 
 		public void EditTeamButtonClick(object sender, object e)
 		{
-			MainWindow.main.Content = new TeamEdit();
-		}
-		public void DeleteTeamButtonClick(object sender, object e)
-		{
-
+			MainWindow.main.Content = new TournamentEdit();
 		}
 	}
 }

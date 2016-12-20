@@ -3,13 +3,13 @@ using WuHu.Domain;
 
 namespace WuHu.Common
 {
-	public interface ITeamDao
+	public interface ITournamentDao
 	{
-        Team FindById(int id);
-        IList<Team> FindAll();
+        Tournament FindById(int id);
+        IList<Tournament> FindAll();
         bool DeleteById(int id);
         bool DeleteAll();
-        int Insert(Team team);
-        bool Update(Team team);
+        int Insert(Tournament team);
+        bool Update(Tournament team);
     }
 }

@@ -12,15 +12,22 @@
 			<ColumnDefinition Width="2*" />
 			<ColumnDefinition Width="5*" />
 		</Grid.ColumnDefinitions>
-		<ListBox Grid.Column="0" ItemsSource="{Binding Players}" SelectedItem="{Binding CurrentPlayer}">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<TextBlock FontSize="10pt">
+		<Grid Grid.Column="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="25" />
+				<RowDefinition Height="1*"/>
+			</Grid.RowDefinitions>
+			<Button Grid.Row="0" Click="CreatePlayerButtonClick">Create Player</Button>
+			<ListBox Grid.Row="1" ItemsSource="{Binding Players}" SelectedItem="{Binding CurrentPlayer}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock FontSize="10pt">
 						<TextBlock VerticalAlignment="Center" Text="{Binding FullName}"></TextBlock>	
 					</TextBlock>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Grid>
 		<Grid Grid.Column="1" DataContext="{Binding CurrentPlayer}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="2*" />

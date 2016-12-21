@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -11,35 +14,68 @@ using WuHu.Terminal.Views.Matches;
 
 namespace WuHu.Terminal.ViewModels
 {
-	class MatchVM
+	public class MatchVM
 	{
 		private const string BASE_URL = "http://localhost:42382/";
-		private ICommand _saveCommad;
+		private ICommand _updateCommad;
 		private ICommand _cancelCommad;
 		public Match currentMatch;
 		private PlayerVM team1Player1;
 		private PlayerVM team1Player2;
 		private PlayerVM team2Player1;
 		private PlayerVM team2Player2;
+		private TournamentVM tournament;
+
+		private ObservableCollection<PlayerVM> playerList;
+
+		private ObservableCollection<TournamentVM> tournamentList;
+
+		public ObservableCollection<TournamentVM> Tournaments
+		{
+			get { return tournamentList; }
+		}
+
+		public ObservableCollection<PlayerVM> Players
+		{
+			get { return playerList; }
+		}
 
 		public MatchVM(Match m)
 		{
-			currentMatch = new Match(m.ID, m.Team1Player1, m.Team1Player2, m.Team2Player1, m.Team2Player2, m.TournamentId);
-			getTeam(m);
+			playerList = new ObservableCollection<PlayerVM>();
+			tournamentList = new ObservableCollection<TournamentVM>();
+
+
+			foreach (PlayerVM p in PlayerListVM.getInstance().Players)
+			{
+				playerList.Add(p);
+			}
+
+			tournamentList = new ObservableCollection<TournamentVM>(TournamentListVM.getInstance().
+				Tournaments.Where(tourn => tourn.Timestamp >= DateTime.Today || tourn.ID == m.TournamentId));
+			
+			currentMatch = m;
+			getData(m);
 
 			ID = m.ID;
-			Team1Player1ID = m.Team1Player1;
-			Team1Player2ID = m.Team1Player2;
-			Team2Player1ID = m.Team2Player1;
-			Team2Player2ID = m.Team2Player2;
-			TournamentId = m.TournamentId;
+			Team1Player1.ID = m.Team1Player1;
+			Team1Player2.ID = m.Team1Player2;
+			Team2Player1.ID = m.Team2Player1;
+			Team2Player2.ID = m.Team2Player2;
+			Tournament.ID = m.TournamentId;
 			ResultPointsPlayer1 = m.ResultPointsPlayer1;
 			ResultPointsPlayer2 = m.ResultPointsPlayer2;
 		}
-		
-		private async void getTeam(Match m)
+
+		private async void getData(Match m)
 		{
 			PlayerListVM plvm = PlayerListVM.getInstance();
+			TournamentListVM tlvm = TournamentListVM.getInstance();
+
+			tournament = tlvm.Tournaments.Where(t =>
+			{
+				return t.ID == m.TournamentId;
+			}).Single();
 
 			team1Player1 = plvm.Players.Where(t =>
 			{
@@ -62,22 +98,22 @@ namespace WuHu.Terminal.ViewModels
 			}).Single();
 		}
 		
-		public ICommand SaveCommand
+		public ICommand UpdateMatchCommand
 		{
 			get
 			{
-				if (_saveCommad == null)
+				if (_updateCommad == null)
 				{
-					_saveCommad = new RelayCommand(param =>
+					_updateCommad = new RelayCommand(param =>
 					{
 						Update(currentMatch);
 					});
 				}
-				return _saveCommad;
+				return _updateCommad;
 			}
 		}
 
-		public ICommand CancelCommand
+		public ICommand CancelMatchCommand
 		{
 			get
 			{
@@ -122,36 +158,6 @@ namespace WuHu.Terminal.ViewModels
 			set { currentMatch.ID = value; }
 		}
 
-		public int Team1Player1ID
-		{
-			get { return currentMatch.Team1Player1; }
-			set { currentMatch.Team1Player1 = value; }
-		}
-
-		public int Team1Player2ID
-		{
-			get { return currentMatch.Team1Player2; }
-			set { currentMatch.Team1Player2 = value; }
-		}
-
-		public int Team2Player1ID
-		{
-			get { return currentMatch.Team2Player1; }
-			set { currentMatch.Team2Player1 = value; }
-		}
-
-		public int Team2Player2ID
-		{
-			get { return currentMatch.Team2Player2; }
-			set { currentMatch.Team2Player2 = value; }
-		}
-
-		public int TournamentId
-		{
-			get { return currentMatch.TournamentId; }
-			set { currentMatch.TournamentId = value; }
-		}
-
 		public int? ResultPointsPlayer1
 		{
 			get { return currentMatch.ResultPointsPlayer1; }
@@ -167,21 +173,51 @@ namespace WuHu.Terminal.ViewModels
 		public PlayerVM Team1Player1
 		{
 			get { return team1Player1; }
+			set
+			{
+				currentMatch.Team1Player1 = value.ID;
+				team1Player1 = value;
+			}
 		}
 
 		public PlayerVM Team1Player2
 		{
 			get { return team1Player2; }
+			set
+			{
+				currentMatch.Team1Player2 = value.ID;
+				team1Player2 = value;
+			}
 		}
 
 		public PlayerVM Team2Player1
 		{
 			get { return team2Player1; }
+			set
+			{
+				currentMatch.Team2Player1 = value.ID;
+				team2Player1 = value;
+			}
 		}
 
 		public PlayerVM Team2Player2
 		{
 			get { return team2Player2; }
+			set
+			{
+				currentMatch.Team2Player2 = value.ID;
+				team2Player2 = value;
+			}
+		}
+
+		public TournamentVM Tournament
+		{
+			get { return tournament; }
+			set
+			{
+				currentMatch.TournamentId = value.ID;
+				tournament = value;
+			}
 		}
 	}
 }

@@ -119,7 +119,12 @@ namespace Wuhu.UnitTests
 
 			dao.Insert(new Statistic(player1, 10, new DateTime(2016, 11, 23)));
 
-			Assert.AreEqual(player1, dao.FindByDay(new DateTime(2016, 11, 23)).PlayerID);
+			IList<Statistic> list = dao.FindByDay(new DateTime(2016, 11, 23));
+
+			foreach(Statistic s in list)
+			{
+				Assert.AreEqual(s.Timestamp, new DateTime(2016, 11, 23));
+			}
 		}
 
 		[TestMethod]

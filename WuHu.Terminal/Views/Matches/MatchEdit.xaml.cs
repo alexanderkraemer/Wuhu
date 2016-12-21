@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WuHu.Terminal.ViewModels;
 
 namespace WuHu.Terminal.Views.Matches
 {
@@ -23,15 +24,7 @@ namespace WuHu.Terminal.Views.Matches
 		public MatchEdit()
 		{
 			InitializeComponent();
-		}
-		public void SaveMatchButtonClick(object sender, object e)
-		{
-
-		}
-
-		public void CancelMatchButtonClick(object sender, object e)
-		{
-
+			this.DataContext = MatchListVM.getInstance().CurrentMatch;
 		}
 	}
 }

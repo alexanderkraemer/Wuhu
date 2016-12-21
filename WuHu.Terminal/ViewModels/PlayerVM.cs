@@ -18,18 +18,17 @@ namespace WuHu.Terminal.ViewModels
 		private const string BASE_URL = "http://localhost:42382/";
 		private ICommand _saveCommad;
 		private ICommand _cancelCommad;
+		private ICommand _createCommand;
 		public Player currentPlayer;
 
 		public PlayerVM()
 		{
-			
+			currentPlayer = new Player();
 		}
 
 		public PlayerVM(Player p)
 		{
-			currentPlayer = new Player(p.ID, p.isAdmin, p.FirstName, p.LastName,
-												p.Nickname, p.Skills, p.PhotoPath, p.Password, p.isMonday,
-												p.isTuesday, p.isWednesday, p.isThursday, p.isFriday, p.isSaturday);
+			currentPlayer = p;
 
 			ID = p.ID;
 			isAdmin = p.isAdmin;
@@ -38,12 +37,12 @@ namespace WuHu.Terminal.ViewModels
 			Nickname = p.Nickname;
 			Skills = p.Skills;
 			Password = p.Password;
-			isMonday = isMonday;
-			isTuesday = isTuesday;
-			isWednesday = isWednesday;
-			isThursday = isThursday;
-			isFriday = isFriday;
-			isSaturday = isSaturday;
+			isMonday = p.isMonday;
+			isTuesday = p.isTuesday;
+			isWednesday = p.isWednesday;
+			isThursday = p.isThursday;
+			isFriday = p.isFriday;
+			isSaturday = p.isSaturday;
 		}
 
 
@@ -59,6 +58,21 @@ namespace WuHu.Terminal.ViewModels
 					});
 				}
 				return _saveCommad;
+			}
+		}
+
+		public ICommand CreateCommand
+		{
+			get
+			{
+				if (_createCommand == null)
+				{
+					_createCommand = new RelayCommand(param =>
+					{
+						Create(currentPlayer);
+					});
+				}
+				return _createCommand;
 			}
 		}
 
@@ -87,7 +101,36 @@ namespace WuHu.Terminal.ViewModels
 			MainWindow.main.Content = new PlayerList();
 		}
 
+		private async void Create(Player currentPlayer)
+		{
+			currentPlayer.PhotoPath = "img/profiles/" + currentPlayer.Nickname + ".jpg";
 
+
+			isAdmin = currentPlayer.isAdmin;
+			FirstName = currentPlayer.FirstName;
+			LastName = currentPlayer.LastName;
+			Nickname = currentPlayer.Nickname;
+			Skills = currentPlayer.Skills;
+			Password = currentPlayer.Password;
+			PhotoPath = currentPlayer.PhotoPath;
+			isMonday = currentPlayer.isMonday;
+			isTuesday = currentPlayer.isTuesday;
+			isWednesday = currentPlayer.isWednesday;
+			isThursday = currentPlayer.isThursday;
+			isFriday = currentPlayer.isFriday;
+			isSaturday = currentPlayer.isSaturday;
+
+			PlayerListVM.getInstance().Players.Add(new PlayerVM(currentPlayer));
+
+			HttpClient client = new HttpClient();
+
+			string json = JsonConvert.SerializeObject(currentPlayer);
+
+			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/players/", httpContent);
+			Debug.WriteLine(response.Content);
+			MainWindow.main.Content = new PlayerList();
+		}
 
 		public void Update(Player player)
 		{
@@ -97,7 +140,7 @@ namespace WuHu.Terminal.ViewModels
 
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			client.PutAsync(BASE_URL + "api/players/" + currentPlayer.ID, httpContent);
-			Debug.WriteLine("updatecommmand");
+			
 			MainWindow.main.Content = new PlayerList();
 		}
 

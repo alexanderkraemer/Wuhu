@@ -41,9 +41,9 @@ namespace WuHu.Terminal.Views.Player
 			this.player = player;
 		}
 
-		public void DeletePlayerButtonClick(object sender, object e)
+		public void CreatePlayerButtonClick(object sender, object e)
 		{
-			
+			MainWindow.main.Content = new PlayerCreate();
 		}
 
 		private void EditPlayerButtonClick(object sender, RoutedEventArgs e)

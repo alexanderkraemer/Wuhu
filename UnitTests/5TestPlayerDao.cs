@@ -25,36 +25,51 @@ namespace WuHu.UnitTests
 			Assert.IsNotNull(database);
 		}
 
-		public Player GeneratePlayer()
+		private bool RandomBool()
+		{
+			Random rand = new Random();
+			double randNumb = rand.NextDouble();
+			if (randNumb > 0.5)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		private Player GeneratePlayer()
 		{
 			Random rFirst;
 			Random rLast;
 
 			rFirst = new Random();
-			rLast = new Random(rFirst.Next());
+			rLast = new Random();
 			string nickname;
 
+			// 33 firstnames
 			string[] _firstNames = new string[] { "Adam", "Alex", "Aaron", "Ben", "Carl", "Dan",
-				"David", "Edward", "Fred", "Frank", "George", "Hal", "Hank", "Ike", "John", "Jack",
-				"Joe", "Larry", "Monte", "Matthew", "Mark", "Nathan", "Otto", "Paul", "Peter", "Roger",
-				"Roger", "Steve", "Thomas", "Tim", "Ty", "Victor", "Walter" };
+					 "David", "Edward", "Fred", "Frank", "George", "Hal", "Hank", "Ike", "John", "Jack",
+					 "Joe", "Larry", "Monte", "Matthew", "Mark", "Nathan", "Otto", "Paul", "Peter", "Roger",
+					 "Roger", "Steve", "Thomas", "Tim", "Ty", "Victor", "Walter" };
 
+			// 150 lastnames
 			string[] _lastNames = new string[] { "Anderson", "Ashwoon", "Aikin", "Bateman", "Bongard",
-				"Bowers", "Boyd", "Cannon", "Cast", "Deitz", "Dewalt", "Ebner", "Frick", "Hancock", "Haworth",
-				"Hesch", "Hoffman", "Kassing", "Knutson", "Lawless", "Lawicki", "Mccord", "McCormack", "Miller",
-				"Myers", "Nugent", "Ortiz", "Orwig", "Ory", "Paiser", "Pak", "Pettigrew", "Quinn", "Quizoz",
-				"Ramachandran", "Resnick", "Sagar", "Schickowski", "Schiebel", "Sellon", "Severson", "Shaffer",
-				"Solberg", "Soloman", "Sonderling", "Soukup", "Soulis", "Stahl", "Sweeney", "Tandy", "Trebil",
-				"Trusela", "Trussel", "Turco", "Uddin", "Uflan", "Ulrich", "Upson", "Vader", "Vail", "Valente",
-				"Van Zandt", "Vanderpoel", "Ventotla", "Vogal", "Wagle", "Wagner", "Wakefield", "Weinstein", "Weiss",
-				"Woo", "Yang", "Yates", "Yocum", "Zeaser", "Zeller", "Ziegler", "Bauer", "Baxster", "Casal", "Cataldi",
-				"Caswell", "Celedon", "Chambers", "Chapman", "Christensen", "Darnell", "Davidson", "Davis", "DeLorenzo",
-				"Dinkins", "Doran", "Dugelman", "Dugan", "Duffman", "Eastman", "Ferro", "Ferry", "Fletcher", "Fietzer",
-				"Hylan", "Hydinger", "Illingsworth", "Ingram", "Irwin", "Jagtap", "Jenson", "Johnson", "Johnsen", "Jones",
-				"Jurgenson", "Kalleg", "Kaskel", "Keller", "Leisinger", "LePage", "Lewis", "Linde", "Lulloff", "Maki",
-				"Martin", "McGinnis", "Mills", "Moody", "Moore", "Napier", "Nelson", "Norquist", "Nuttle", "Olson",
-				"Ostrander", "Reamer", "Reardon", "Reyes", "Rice", "Ripka", "Roberts", "Rogers", "Root", "Sandstrom",
-				"Sawyer", "Schlicht", "Schmitt", "Schwager", "Schutz", "Schuster", "Tapia", "Thompson", "Tiernan", "Tisler" };
+					 "Bowers", "Boyd", "Cannon", "Cast", "Deitz", "Dewalt", "Ebner", "Frick", "Hancock", "Haworth",
+					 "Hesch", "Hoffman", "Kassing", "Knutson", "Lawless", "Lawicki", "Mccord", "McCormack", "Miller",
+					 "Myers", "Nugent", "Ortiz", "Orwig", "Ory", "Paiser", "Pak", "Pettigrew", "Quinn", "Quizoz",
+					 "Ramachandran", "Resnick", "Sagar", "Schickowski", "Schiebel", "Sellon", "Severson", "Shaffer",
+					 "Solberg", "Soloman", "Sonderling", "Soukup", "Soulis", "Stahl", "Sweeney", "Tandy", "Trebil",
+					 "Trusela", "Trussel", "Turco", "Uddin", "Uflan", "Ulrich", "Upson", "Vader", "Vail", "Valente",
+					 "Van Zandt", "Vanderpoel", "Ventotla", "Vogal", "Wagle", "Wagner", "Wakefield", "Weinstein", "Weiss",
+					 "Woo", "Yang", "Yates", "Yocum", "Zeaser", "Zeller", "Ziegler", "Bauer", "Baxster", "Casal", "Cataldi",
+					 "Caswell", "Celedon", "Chambers", "Chapman", "Christensen", "Darnell", "Davidson", "Davis", "DeLorenzo",
+					 "Dinkins", "Doran", "Dugelman", "Dugan", "Duffman", "Eastman", "Ferro", "Ferry", "Fletcher", "Fietzer",
+					 "Hylan", "Hydinger", "Illingsworth", "Ingram", "Irwin", "Jagtap", "Jenson", "Johnson", "Johnsen", "Jones",
+					 "Jurgenson", "Kalleg", "Kaskel", "Keller", "Leisinger", "LePage", "Lewis", "Linde", "Lulloff", "Maki",
+					 "Martin", "McGinnis", "Mills", "Moody", "Moore", "Napier", "Nelson", "Norquist", "Nuttle", "Olson",
+					 "Ostrander", "Reamer", "Reardon", "Reyes", "Rice", "Ripka", "Roberts", "Rogers", "Root", "Sandstrom",
+					 "Sawyer", "Schlicht", "Schmitt", "Schwager", "Schutz", "Schuster", "Tapia", "Thompson", "Tiernan", "Tisler" };
 
 			string firstname = _firstNames[rFirst.Next(_firstNames.Length)];
 			string lastname = _lastNames[rLast.Next(_lastNames.Length)];
@@ -71,7 +86,7 @@ namespace WuHu.UnitTests
 			while (pd.FindByNickname(nickname) != null)
 			{
 				rFirst = new Random();
-				rLast = new Random(rFirst.Next());
+				rLast = new Random();
 
 				firstname = _firstNames[rFirst.Next(_firstNames.Length)];
 				lastname = _lastNames[rLast.Next(_lastNames.Length)];
@@ -85,20 +100,21 @@ namespace WuHu.UnitTests
 				nickname = sb.ToString();
 			}
 
-			RoleDao rd = new RoleDao(database);
-			Role re = null;
-			foreach(Role r in rd.FindAll())
-			{
-				re = r;
-				break;
-			}
 
-			int role_id = re.ID;
+			bool role_id = RandomBool();
+			bool isAdmin = RandomBool();
+			bool isMonday = RandomBool();
+			bool isTuesday = RandomBool();
+			bool isWednesday = RandomBool();
+			bool isThursday = RandomBool();
+			bool isFriday = RandomBool();
+			bool isSaturday = RandomBool();
 			int skills = 1;
 			string password = "myPassword";
 			string photopath = "userpic.png";
 
-			return new Player(role_id, firstname, lastname, nickname, skills, photopath, password);
+			return new Player(isAdmin, firstname, lastname, nickname, skills, photopath, password, isMonday,
+				isTuesday, isWednesday, isThursday, isFriday, isSaturday);
 		}
 
 		[TestMethod]
@@ -114,40 +130,7 @@ namespace WuHu.UnitTests
 			return ret;
 		}
 
-		[TestMethod]
-		public void CheckIfTestDataIsValid()
-		{
-			int id = InsertTestPlayers();
-			PlayerDao pd = new PlayerDao(database);
-			Player p = pd.FindById(id);
-
-			RoleDao rd = new RoleDao(database);
-			Role re = null;
-			foreach (Role r in rd.FindAll())
-			{
-				re = r;
-				break;
-			}
-
-
-			Assert.AreEqual(p.Password, "myPassword");
-			Assert.AreEqual(p.PhotoPath, "userpic.png");
-			Assert.AreEqual(p.RoleID, re.ID);
-			Assert.AreEqual(p.Skills, 1);
-
-			string firstname = p.FirstName;
-			string lastname = p.LastName;
-
-			StringBuilder sb = new StringBuilder();
-			sb.Append(firstname[0]);
-			sb.Append(firstname[1]);
-			sb.Append(lastname[0]);
-			sb.Append(lastname[1]);
-			string nickname = sb.ToString();
-
-			Assert.AreEqual(p.Nickname, nickname);
-			
-		}
+		
 
 		[TestMethod]
 		public void CheckUpdate()
@@ -168,16 +151,10 @@ namespace WuHu.UnitTests
 		[TestMethod]
 		public void CheckDeleteById()
 		{
-			RoleDao rd = new RoleDao(database);
-			Role re = null;
-			foreach (Role r in rd.FindAll())
-			{
-				re = r;
-				break;
-			}
-
 			PlayerDao pd = new PlayerDao(database);
-			Player player = new Player(re.ID, "Alexander", "Krämer", "Alex", 100, "myPic.png", "password");
+			Player player = new Player(true, "Alexander", "Krämer", "checkDeleteById", 234, "asdf", "pw", true,
+				false, true, false, true, false);
+
 			int lastInsertedId = pd.Insert(player);
 
 			Assert.AreNotEqual(0, lastInsertedId);

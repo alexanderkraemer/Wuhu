@@ -41,10 +41,19 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpPost]
 		[Route("")]
-		public int Insert(Tournament team)
+		public HttpResponseMessage Insert([FromBody]Tournament team)
 		{
 			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
-			return TournamentDao.Insert(team);
+			int id = TournamentDao.Insert(team);
+			if (id == -1)
+			{
+				return new HttpResponseMessage(HttpStatusCode.Conflict);
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Created);
+			}
+
 		}
 		
 		[HttpDelete]

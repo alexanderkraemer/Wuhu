@@ -11,13 +11,13 @@ using WuHu.Domain;
 
 namespace WuHu.Terminal.ViewModels
 {
-	public class TournamentListVM
+	public class TournamentListVM : INotifyPropertyChanged
 	{
 		private const string BASE_URL = "http://localhost:42382/";
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private static TournamentListVM instance;
-		public ObservableCollection<TournamentVM> Teams { get; private set; }
+		public ObservableCollection<TournamentVM> Tournaments { get; private set; }
 		private PlayerListVM pvm;
 
 		public static TournamentListVM getInstance()
@@ -32,7 +32,7 @@ namespace WuHu.Terminal.ViewModels
 		private TournamentListVM(PlayerListVM vm)
 		{
 			pvm = vm;
-			Teams = new ObservableCollection<TournamentVM>();
+			Tournaments = new ObservableCollection<TournamentVM>();
 			LoadTournaments();
 		}
 
@@ -42,25 +42,25 @@ namespace WuHu.Terminal.ViewModels
 			HttpClient client = new HttpClient();
 			json = await client.GetStringAsync(BASE_URL + "api/tournaments");
 
-			ObservableCollection<Tournament> teams = JsonConvert.DeserializeObject<ObservableCollection<Tournament>>(json);
-			Teams.Clear();
-			foreach (var t in teams)
+			ObservableCollection<Tournament> tournaments = JsonConvert.DeserializeObject<ObservableCollection<Tournament>>(json);
+			Tournaments.Clear();
+			foreach (var t in tournaments)
 			{
-				Teams.Add(new TournamentVM(t));
+				Tournaments.Add(new TournamentVM(t));
 			}
-			return teams;
+			return tournaments;
 		}
 
-		private TournamentVM currentTeam;
-		public TournamentVM CurrentTeam
+		private TournamentVM currentTournament;
+		public TournamentVM CurrentTournament
 		{
-			get { return currentTeam; }
+			get { return currentTournament; }
 			set
 			{
-				if (value != currentTeam)
+				if (value != currentTournament)
 				{
-					currentTeam = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentTeam)));
+					currentTournament = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentTournament)));
 				}
 			}
 		}

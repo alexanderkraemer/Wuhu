@@ -78,14 +78,17 @@
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Player\PlayerCreate.xaml.cs">
+      <DependentUpon>PlayerCreate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Player\PlayerEdit.xaml.cs">
       <DependentUpon>PlayerEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Player\PlayerList.xaml.cs">
       <DependentUpon>PlayerList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tournaments\TournamentEdit.xaml.cs">
-      <DependentUpon>TournamentEdit.xaml</DependentUpon>
+    <Compile Include="Views\Tournaments\TournamentCreate.xaml.cs">
+      <DependentUpon>TournamentCreate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tournaments\TournamentList.xaml.cs">
       <DependentUpon>TournamentList.xaml</DependentUpon>
@@ -114,6 +117,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Player\PlayerCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Player\PlayerEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,7 +129,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tournaments\TournamentEdit.xaml">
+    <Page Include="Views\Tournaments\TournamentCreate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

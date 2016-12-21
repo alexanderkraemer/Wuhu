@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -16,17 +17,18 @@ namespace WuHu.Terminal.ViewModels
 	public class TournamentVM
 	{
 		private const string BASE_URL = "http://localhost:42382/";
-		private ICommand _saveCommad;
+		private ICommand _createCommad;
 		private ICommand _cancelCommad;
 		private Tournament currentTournament;
-		private PlayerVM p1;
-		private PlayerVM p2;
 
-		private ObservableCollection<PlayerVM> playerList;
-		
+
+		public TournamentVM()
+		{
+			currentTournament = new Tournament();
+		}
+
 		public TournamentVM(Tournament t)
 		{
-			playerList = new ObservableCollection<PlayerVM>();
 			currentTournament = new Tournament(t.ID, t.Name, t.Timestamp);
 			
 			ID = t.ID;
@@ -38,25 +40,29 @@ namespace WuHu.Terminal.ViewModels
 		{
 			get
 			{
-				if (_saveCommad == null)
+				if (_createCommad == null)
 				{
-					_saveCommad = new RelayCommand(param =>
+					_createCommad = new RelayCommand(param =>
 					{
-						Update(currentTournament);
+						Create(currentTournament);
 					});
 				}
-				return _saveCommad;
+				return _createCommad;
 			}
 		}
 
-		private void Update(Tournament team)
+		private async void Create(Tournament currentTournament)
 		{
-			HttpClient client = new HttpClient();
+			TournamentListVM.getInstance().Tournaments.Add(new TournamentVM(currentTournament));
 
-			string json = JsonConvert.SerializeObject(team);
+			HttpClient client = new HttpClient();
+			string json = JsonConvert.SerializeObject(currentTournament);
 
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-			client.PutAsync(BASE_URL + "api/tournaments/" + currentTournament.ID, httpContent);
+			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/tournaments/", httpContent);
+		
+			Debug.WriteLine(response.Content);
+
 			MainWindow.main.Content = new TournamentList();
 		}
 

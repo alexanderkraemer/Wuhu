@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -25,6 +26,13 @@ namespace WuHu.WebAPI.Controllers
 			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
 			return PlayerDao.FindAll();
+		}
+
+		[HttpGet]
+		[Route("img/{nickname}")]
+		public Image GetImage(string nickname)
+		{
+			return BLPlayer.GetImageByNickname(nickname);
 		}
 
 		[HttpGet]
@@ -58,11 +66,20 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpPost]
 		[Route("")]
-		public int Insert(Player player)
+		public HttpResponseMessage Insert([FromBody]Player player)
 		{
 			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-			return PlayerDao.Insert(player);
+			int id = PlayerDao.Insert(player);
+			if(id == -1)
+			{
+				return new HttpResponseMessage(HttpStatusCode.Conflict);
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Created);
+			}
+			
 		}
 		
 		[HttpGet]

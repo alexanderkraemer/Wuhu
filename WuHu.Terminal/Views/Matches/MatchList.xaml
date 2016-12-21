@@ -12,7 +12,7 @@
 			<ColumnDefinition Width="2*" />
 			<ColumnDefinition Width="5*" />
 		</Grid.ColumnDefinitions>
-		<ListBox SelectedIndex="0" ItemsSource="{Binding Path=Matches}"  SelectedItem="{Binding CurrentMatch}">
+		<ListBox Grid.Row="1" SelectedIndex="0" ItemsSource="{Binding Path=Matches}"  SelectedItem="{Binding CurrentMatch}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Vertical">
@@ -73,8 +73,8 @@
 					<ColumnDefinition Width="2*" />
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
-				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Timestamp:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Timestamp}"></TextBlock>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Tournament:</Label>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Tournament.Name}"></TextBlock>
 			</Grid>
 			<Grid Grid.Row="3" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>

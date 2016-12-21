@@ -12,18 +12,25 @@
 			<ColumnDefinition Width="2*" />
 			<ColumnDefinition Width="5*" />
 		</Grid.ColumnDefinitions>
-		<ListBox Grid.Column="0" ItemsSource="{Binding Teams}" SelectedItem="{Binding CurrentTeam}">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<TextBlock FontSize="10pt">
+		<Grid Grid.Column="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="25" />
+				<RowDefinition Height="1*"/>
+			</Grid.RowDefinitions>
+			<Button Grid.Row="0" Click="CreateTournamentButtonClick">Create Tournament</Button>
+			<ListBox Grid.Row="1" ItemsSource="{Binding Tournaments}" SelectedItem="{Binding CurrentTournament}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock FontSize="10pt">
 						<TextBlock VerticalAlignment="Center" Text="{Binding Name}"></TextBlock>	
 					</TextBlock>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
-		<Grid Grid.Column="1" DataContext="{Binding CurrentTeam}">
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Grid>
+		
+		<Grid Grid.Column="1" DataContext="{Binding CurrentTournament}">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="1*" />
 				<RowDefinition Height="1*" />
 				<RowDefinition Height="1*" />
 				<RowDefinition Height="7*" />
@@ -33,29 +40,16 @@
 					<ColumnDefinition Width="2*" />
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
-				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Spieler 1:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Player1.FullName }"></TextBlock>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Name:</Label>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Name }"></TextBlock>
 			</Grid>
 			<Grid Grid.Row="1" VerticalAlignment="Center">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="2*" />
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
-				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Spieler 2:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Player2.FullName}"></TextBlock>
-			</Grid>
-			<Grid Grid.Row="2" VerticalAlignment="Center">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="2*" />
-					<ColumnDefinition Width="4*" />
-				</Grid.ColumnDefinitions>
-				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Name:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Name}"></TextBlock>
-			</Grid>
-			<Grid Grid.Row="4" >
-				<StackPanel VerticalAlignment="Top">
-					<Button Grid.Row="0" Margin="5 40 5 5"  Click="EditTeamButtonClick">Edit</Button>
-				</StackPanel>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Timestamp:</Label>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Timestamp}"></TextBlock>
 			</Grid>
 		</Grid>
 	</Grid>

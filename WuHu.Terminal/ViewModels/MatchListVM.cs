@@ -11,13 +11,13 @@ using WuHu.Domain;
 
 namespace WuHu.Terminal.ViewModels
 {
-	class MatchListVM
+	class MatchListVM : INotifyPropertyChanged
 	{
 		private const string BASE_URL = "http://localhost:42382/";
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private static MatchListVM instance;
-		public ObservableCollection<MatchVM> Matches { get; private set; }
+		public ObservableCollection<MatchVM> Matches { get; set; }
 
 		public static MatchListVM getInstance()
 		{

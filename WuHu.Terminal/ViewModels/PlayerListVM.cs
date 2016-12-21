@@ -18,7 +18,7 @@ namespace WuHu.Terminal.ViewModels
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private static PlayerListVM instance;
-		public ObservableCollection<PlayerVM> Players { get; private set; }
+		public ObservableCollection<PlayerVM> Players { get; set; }
 
 		public static PlayerListVM getInstance()
 		{
@@ -35,7 +35,7 @@ namespace WuHu.Terminal.ViewModels
 			LoadPlayer();
 		}
 
-		public async Task<ObservableCollection<Player>> LoadPlayer()
+		public async void LoadPlayer()
 		{
 			this.Players.Clear();
 
@@ -49,7 +49,6 @@ namespace WuHu.Terminal.ViewModels
 			{
 				Players.Add(new PlayerVM(p));
 			}
-			return players;
 		}
 	
 		private PlayerVM currentPlayer;

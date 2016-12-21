@@ -28,14 +28,15 @@ namespace WuHu.UnitTests
 		[TestMethod]
 		public void TestMatchContructor()
 		{
-			Match m = new Match(1, 2, 3, new DateTime(2016, 11, 23), 4, 5);
+			Match m = new Match(1, 2, 3, 4, 1, 1, 1);
 
-			Assert.AreEqual(1, m.ID);
-			Assert.AreEqual(2, m.Team1ID);
-			Assert.AreEqual(3, m.Team2ID);
-			Assert.AreEqual(new DateTime(2016, 11, 23), m.Timestamp);
-			Assert.AreEqual(4, m.ResultPointsPlayer1);
-			Assert.AreEqual(5, m.ResultPointsPlayer2);
+			Assert.AreEqual(1, m.Team1Player1);
+			Assert.AreEqual(2, m.Team1Player2);
+			Assert.AreEqual(3, m.Team2Player1);
+			Assert.AreEqual(4, m.Team2Player2);
+			Assert.AreEqual(1, m.TournamentId);
+			Assert.AreEqual(1, m.ResultPointsPlayer1);
+			Assert.AreEqual(1, m.ResultPointsPlayer2);
 		}
 
 		[TestMethod]

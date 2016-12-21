@@ -27,9 +27,9 @@ namespace WuHu.Terminal.Views.Tournaments
 			this.DataContext = TournamentListVM.getInstance();
 		}
 
-		public void EditTeamButtonClick(object sender, object e)
+		public void CreateTournamentButtonClick(object sender, object e)
 		{
-			MainWindow.main.Content = new TournamentEdit();
+			MainWindow.main.Content = new TournamentCreate();
 		}
 	}
 }

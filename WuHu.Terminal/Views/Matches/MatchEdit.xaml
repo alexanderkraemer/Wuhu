@@ -70,8 +70,7 @@
 			<ComboBox Grid.Column="1" 
 						 Margin="5 0 0 0" 
 						 ItemsSource="{Binding Path=Tournaments}" 
-						 SelectedValue="{Binding Path=TournamentId}" 
-						 SelectedValuePath="ID" 
+						 SelectedValue="{Binding Path=Tournament}" 
 						 DisplayMemberPath="Name"/>
 		</Grid>
 		<Grid Grid.Row="3" Margin="10" VerticalAlignment="Center">

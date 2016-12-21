@@ -11,11 +11,15 @@
 			<ColumnDefinition Width="1*" />
 			<ColumnDefinition Width="2*" />
 		</Grid.ColumnDefinitions>
-		<Grid Grid.Column="0">
-			<Border BorderThickness="2" BorderBrush="Black">
-				<TextBlock>Agenda</TextBlock>
-			</Border>
-		</Grid>
+		<ListBox Grid.Column="0" ItemsSource="{Binding RankList}" SelectedItem="{Binding CurrentPlayer}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock FontSize="10pt">
+				<TextBlock VerticalAlignment="Center" Text="{Binding FullName}"></TextBlock>	
+			</TextBlock>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
 
 		<Grid Grid.Column="1">
 			<Grid.RowDefinitions>
@@ -24,7 +28,41 @@
 			</Grid.RowDefinitions>
 
 			<Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
-				<TextBlock>Ranking</TextBlock>
+				<ListBox Grid.Row="1" SelectedIndex="0" ItemsSource="{Binding Path=AgendaList}"  SelectedItem="{Binding CurrentMatch}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<StackPanel Orientation="Vertical" Margin="0 0 40 0">
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="{Binding Team1Player1.FullName, Mode=OneWay}"></TextBlock>
+										<TextBlock Text=" - "></TextBlock>
+										<TextBlock Text="{Binding Team1Player2.FullName, Mode=OneWay}"></TextBlock>
+									</StackPanel>
+									<TextBlock Text=" vs. "></TextBlock>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="{Binding Team2Player1.FullName, Mode=OneWay}"></TextBlock>
+										<TextBlock Text=" - "></TextBlock>
+										<TextBlock Text="{Binding Team2Player2.FullName, Mode=OneWay}"></TextBlock>
+									</StackPanel>
+								</StackPanel>
+								
+								<StackPanel Orientation="Vertical">
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="{Binding ResultPointsPlayer1, Mode=OneWay}"></TextBlock>
+										<TextBlock Text=" -- "></TextBlock>
+										<TextBlock Text="{Binding Tournament.Name, Mode=OneWay}"></TextBlock>
+									</StackPanel>
+									<TextBlock Text=" "></TextBlock>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="{Binding ResultPointsPlayer2, Mode=OneWay}"></TextBlock>
+										<TextBlock Text=" -- "></TextBlock>
+										<TextBlock Text="{Binding Tournament.Timestamp, Mode=OneWay}"></TextBlock>
+									</StackPanel>
+								</StackPanel>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
 			</Border>
 			<Border Grid.Row="1" BorderThickness="2" BorderBrush="Black">
 				<TextBlock>Statistics</TextBlock>

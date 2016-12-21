@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\HomeVM.cs" />
     <Compile Include="ViewModels\MatchListVM.cs" />
     <Compile Include="ViewModels\MatchVM.cs" />
     <Compile Include="ViewModels\PlayerListVM.cs" />

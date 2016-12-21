@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WuHu.Terminal.Views.Tournaments"
+				 xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 	<Grid>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="1*" />
 			<RowDefinition Height="1*" />
 			<RowDefinition Height="1*" />
 			<RowDefinition Height="7*" />
@@ -27,9 +29,12 @@
 				<ColumnDefinition Width="4*" />
 			</Grid.ColumnDefinitions>
 			<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Timestamp:</Label>
-			<DatePicker Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Timestamp}"></DatePicker>
+			<DatePicker Grid.Column="1" FontSize="12" Margin="10" SelectedDate="{Binding Timestamp, Mode=OneWayToSource, TargetNullValue={x:Static sys:DateTime.Now}}" ></DatePicker>
 		</Grid>
-		<Grid Grid.Row="2" >
+		<Grid Grid.Row="2" VerticalAlignment="Center">
+			<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center" Content="{Binding Notification}"></Label>
+		</Grid>
+		<Grid Grid.Row="3" >
 			<StackPanel VerticalAlignment="Top">
 				<Button Grid.Row="0" Margin="5 40 5 5" Command="{Binding SaveCommand}">Save</Button>
 				<Button Grid.Row="0" Margin="5" Command="{Binding CancelCommand}">Cancel</Button>

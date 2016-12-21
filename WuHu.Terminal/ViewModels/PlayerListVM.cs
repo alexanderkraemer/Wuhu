@@ -35,20 +35,19 @@ namespace WuHu.Terminal.ViewModels
 			LoadPlayer();
 		}
 
-		public async void LoadPlayer()
+		public async Task<ObservableCollection<Player>> LoadPlayer()
 		{
-			this.Players.Clear();
-
 			string json;
 			HttpClient client = new HttpClient();
 			json = await client.GetStringAsync(BASE_URL + "api/players");
 			
 			ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(json);
-
+			this.Players.Clear();
 			foreach (var p in players)
 			{
 				Players.Add(new PlayerVM(p));
 			}
+			return players;
 		}
 	
 		private PlayerVM currentPlayer;

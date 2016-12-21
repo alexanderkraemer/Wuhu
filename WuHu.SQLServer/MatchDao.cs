@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using WuHu.Common;
 using WuHu.Domain;
@@ -15,7 +16,7 @@ namespace WuHu.SQLServer
 	{
         private const string SQL_FIND_BY_ID = "SELECT * FROM matches WHERE id=@Id ORDER BY id";
         private const string SQL_FIND_ALL = "SELECT * FROM matches";
-        private const string SQL_UPDATE = "UPDATE matches SET team1_p1ID=@team1_p1ID, team1_p2ID=@team1_p2ID, team2_p1ID=@team2_p1ID, team2_p2ID=@team2_p2ID, tournamentId=@tournamentId, results_points_p2=@results_points_p2 WHERE Id=@Id";
+        private const string SQL_UPDATE = "UPDATE matches SET team1_p1ID=@team1_p1ID, team1_p2ID=@team1_p2ID, team2_p1ID=@team2_p1ID, team2_p2ID=@team2_p2ID, tournamentId=@tournamentId, results_points_p1=@results_points_p1, results_points_p2=@results_points_p2 WHERE Id=@Id";
         private const string SQL_UPDATE_NULL = "UPDATE matches SET team1_p1ID=@team1_p1ID, team1_p2ID=@team1_p2ID, team2_p1ID=@team2_p1ID, team2_p2ID=@team2_p2ID, tournamentId=@tournamentId WHERE Id=@Id";
         private const string SQL_INSERT_NULL = "INSERT INTO matches (team1_p1ID, team1_p2ID, team2_p1ID, team2_p2ID, tournamentId) OUTPUT Inserted.id VALUES (@team1_p1ID, @team1_p2ID, @team2_p1ID, @team2_p2ID, @tournamentId)";
         private const string SQL_INSERT = "INSERT INTO matches (team1_p1ID, team1_p2ID, team2_p1ID, team2_p2ID, tournamentId, results_points_p1, results_points_p2) OUTPUT Inserted.Id VALUES (@team1_p1ID, @team1_p2ID, @team2_p1ID, @team2_p2ID, @tournamentId, @results_points_p1, @results_points_p2)";
@@ -64,10 +65,10 @@ namespace WuHu.SQLServer
             else
             {
                 command = database.CreateCommand(SQL_UPDATE);
-                database.DefineParameter(command, "@results_points_p1", DbType.String, results_points_p1);
-                database.DefineParameter(command, "@results_points_p2", DbType.String, results_points_p2);
+                database.DefineParameter(command, "@results_points_p1", DbType.Int32, results_points_p1);
+                database.DefineParameter(command, "@results_points_p2", DbType.Int32, results_points_p2);
             }
-            database.DefineParameter(command, "@Id", DbType.String, id);
+            database.DefineParameter(command, "@Id", DbType.Int32, id);
 
 			database.DefineParameter(command, "@team1_p1ID", DbType.Int32, team1_p1ID);
 			database.DefineParameter(command, "@team2_p1ID", DbType.Int32, team2_p1ID);
@@ -88,8 +89,8 @@ namespace WuHu.SQLServer
             else
             {
                 command = database.CreateCommand(SQL_UPDATE);
-                database.DefineParameter(command, "@results_points_p1", DbType.String, results_points_p1);
-                database.DefineParameter(command, "@results_points_p2", DbType.String, results_points_p2);
+                database.DefineParameter(command, "@results_points_p1", DbType.Int32, results_points_p1);
+                database.DefineParameter(command, "@results_points_p2", DbType.Int32, results_points_p2);
             }
 			database.DefineParameter(command, "@team1_p1ID", DbType.Int32, team1_p1ID);
 			database.DefineParameter(command, "@team2_p1ID", DbType.Int32, team2_p1ID);

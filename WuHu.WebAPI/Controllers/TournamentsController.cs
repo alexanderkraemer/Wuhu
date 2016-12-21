@@ -30,6 +30,14 @@ namespace WuHu.WebAPI.Controllers
 			return TournamentDao.FindById(id);
 		}
 
+		[HttpGet]
+		[Route("day/{day}")]
+		public Tournament FindByDay(DateTime day)
+		{
+			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
+			return TournamentDao.FindByDay(day);
+		}
+
 		[HttpPut]
 		[Route("{id}")]
 		public void Update([FromBody]Tournament team, int id)

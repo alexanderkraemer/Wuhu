@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -14,13 +15,15 @@ using WuHu.Terminal.Views.Tournaments;
 
 namespace WuHu.Terminal.ViewModels
 {
-	public class TournamentVM
+	public class TournamentVM : INotifyPropertyChanged
 	{
 		private const string BASE_URL = "http://localhost:42382/";
 		private ICommand _createCommad;
 		private ICommand _cancelCommad;
+		private string _notification;
 		private Tournament currentTournament;
 
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		public TournamentVM()
 		{
@@ -44,7 +47,18 @@ namespace WuHu.Terminal.ViewModels
 				{
 					_createCommad = new RelayCommand(param =>
 					{
-						Create(currentTournament);
+						int list = TournamentListVM.getInstance().Tournaments.Count(p =>
+						{
+							return p.Timestamp == currentTournament.Timestamp;
+						});
+						if (list > 0)
+						{
+							Notification = "Es gibt bereits ein Tournament an diesem Tag!";
+						}
+						else
+						{
+							Create(currentTournament);
+						}
 					});
 				}
 				return _createCommad;
@@ -86,8 +100,8 @@ namespace WuHu.Terminal.ViewModels
 			HttpClient client = new HttpClient();
 			string json = await client.GetStringAsync(BASE_URL + "api/tournaments/" + currentTournament.ID);
 
-			Tournament team = JsonConvert.DeserializeObject<Tournament>(json);
-			currentTournament = team;
+			Tournament tournament = JsonConvert.DeserializeObject<Tournament>(json);
+			currentTournament = tournament;
 			MainWindow.main.Content = new TournamentList();
 		}
 
@@ -105,6 +119,19 @@ namespace WuHu.Terminal.ViewModels
 		{
 			get { return currentTournament.Timestamp; }
 			set { currentTournament.Timestamp = value; }
+		}
+
+		public string Notification
+		{
+			get { return _notification; }
+			set
+			{
+				if (value != _notification)
+				{
+					_notification = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Notification)));
+				}
+			}
 		}
 	}
 }

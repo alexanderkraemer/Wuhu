@@ -17,7 +17,7 @@ namespace WuHu.Terminal.ViewModels
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private static HomeVM instance;
-		public ObservableCollection<PlayerVM> RankList { get; set; }
+		public ObservableCollection<Tuple<int, PlayerVM>> RankList { get; set; }
 		public ObservableCollection<MatchVM> AgendaList { get; set; }
 
 		public static HomeVM getInstance()
@@ -31,7 +31,7 @@ namespace WuHu.Terminal.ViewModels
 
 		private HomeVM()
 		{
-			RankList = new ObservableCollection<PlayerVM>();
+			RankList = new ObservableCollection<Tuple<int, PlayerVM>>();
 			AgendaList = new ObservableCollection<MatchVM>();
 			
 			LoadRanks();
@@ -58,7 +58,9 @@ namespace WuHu.Terminal.ViewModels
 
 			listMatchIEn = list.Where(m =>
 			{
-				return m.Tournament.Timestamp >= DateTime.Today;
+				return m.Tournament.Timestamp >= DateTime.Today 
+				&& m.ResultPointsPlayer1 == null 
+				&& m.ResultPointsPlayer2 == null;
 			});
 
 			foreach(MatchVM m in listMatchIEn)
@@ -80,34 +82,23 @@ namespace WuHu.Terminal.ViewModels
 			ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(json);
 			var tlvm = PlayerListVM.getInstance();
 			await tlvm.LoadPlayer();
+			
 			foreach (var p in players)
 			{
 				list.Add(new PlayerVM(p));
 			}
 
-			listRankIEn = list.OrderBy(m => m.Skills);
-			
+			listRankIEn = list.OrderByDescending(m => m.Skills);
 
+			int count = 0;
 			foreach (PlayerVM p in listRankIEn)
 			{
-				RankList.Add(p);
+				RankList.Add(Tuple.Create(++count, p));
 			}
-		}
 
-		private PlayerVM currentPlayer;
-		public PlayerVM CurrentPlayer
-		{
-			get { return currentPlayer; }
-			set
-			{
-				if (value != currentPlayer)
-				{
-					currentPlayer = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentPlayer)));
-				}
-			}
+			
 		}
-
+		
 		private MatchVM currentMatch;
 		public MatchVM CurrentMatch
 		{

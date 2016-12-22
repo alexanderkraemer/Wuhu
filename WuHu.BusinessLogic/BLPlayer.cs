@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Resources;
+using WuHu.Common;
 using WuHu.Domain;
+using WuHu.SQLServer;
 
 namespace WuHu.BusinessLogic
 {
@@ -42,6 +44,20 @@ namespace WuHu.BusinessLogic
 					break;
 			}
 			return list;
+		}
+
+		public static bool Authenticate(Tuple<string, string> obj)
+		{
+			IDatabase database = DalFactory.CreateDatabase();
+			IPlayerDao dao = DalFactory.CreatePlayerDao(database);
+
+			Player p = dao.FindByNickname(obj.Item1);
+			if(p == null)
+			{
+				return false;
+			}
+
+			return BLAuthentication.Verify(obj.Item2, p.Password);
 		}
 	}
 }

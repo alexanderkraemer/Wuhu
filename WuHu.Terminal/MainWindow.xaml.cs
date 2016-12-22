@@ -45,26 +45,47 @@ namespace WuHu.Terminal
 		public void NavHomeButton(object sender, object e)
 		{
 			ChangeButtonColor(HomeButton);
-
 			MainWindow.main.Content = new Home();
 		}
 
 		public void NavPlayerButton(object sender, object e)
 		{
 			ChangeButtonColor(PlayerButton);
-			MainWindow.main.Content = new PlayerList();
+			if (Authentication.getInstance().isAuthenticated)
+			{
+				MainWindow.main.Content = new PlayerList();
+			}
+			else
+			{
+				MainWindow.main.Content = new Login();
+			}
+			
 		}
 
 		public void NavMatchesButton(object sender, object e)
 		{
 			ChangeButtonColor(MatchesButton);
-			MainWindow.main.Content = new MatchList();
+			if (Authentication.getInstance().isAuthenticated)
+			{
+				MainWindow.main.Content = new MatchList();
+			}
+			else
+			{
+				MainWindow.main.Content = new Login();
+			}
 		}
 
 		public void NavTournamentsButton(object sender, object e)
 		{
 			ChangeButtonColor(TournamentsButton);
-			MainWindow.main.Content = new TournamentList();
+			if (Authentication.getInstance().isAuthenticated)
+			{
+				MainWindow.main.Content = new TournamentList();
+			}
+			else
+			{
+				MainWindow.main.Content = new Login();
+			}
 		}
 	}
 }

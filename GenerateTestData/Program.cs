@@ -247,8 +247,7 @@ namespace WuHu.GenerateTestData
 		public static void Insert(IDatabase database)
 		{
 			InsertData id = new InsertData(database);
-			id.InsertPlayer(100
-				);
+			id.InsertPlayer(100);
 			Console.WriteLine("inserted player...");
 			id.InsertTournaments();
 			Console.WriteLine("inserted tournaments...");

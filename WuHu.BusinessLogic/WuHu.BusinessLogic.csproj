@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLAuthentication.cs" />
     <Compile Include="BLPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -55,9 +56,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WuHu.Common\WuHu.Common.csproj">
+      <Project>{0A9ECFC0-B340-41B8-B94D-302BDBB6162D}</Project>
+      <Name>WuHu.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WuHu.Domain\WuHu.Domain.csproj">
       <Project>{5834D772-3DCF-44C3-88D9-9D76732BC033}</Project>
       <Name>WuHu.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WuHu.SQLServer\WuHu.SQLServer.csproj">
+      <Project>{B4787157-AED5-4E2A-964D-107E7919C067}</Project>
+      <Name>WuHu.SQLServer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

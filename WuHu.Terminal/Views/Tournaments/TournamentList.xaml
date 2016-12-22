@@ -29,27 +29,105 @@
 			</ListBox>
 		</Grid>
 		
-		<Grid Grid.Column="1" DataContext="{Binding CurrentTournament}">
+		<Grid Grid.Column="1">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="1*" />
-				<RowDefinition Height="1*" />
+				<RowDefinition Height="2*" />
 				<RowDefinition Height="7*" />
 			</Grid.RowDefinitions>
-			<Grid Grid.Row="0" VerticalAlignment="Center">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="2*" />
-					<ColumnDefinition Width="4*" />
-				</Grid.ColumnDefinitions>
-				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Name:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Name }"></TextBlock>
-			</Grid>
-			<Grid Grid.Row="1" VerticalAlignment="Center">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="2*" />
-					<ColumnDefinition Width="4*" />
-				</Grid.ColumnDefinitions>
-				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Timestamp:</Label>
-				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Timestamp}"></TextBlock>
+			<Border Grid.Row="0" BorderBrush="Black" BorderThickness="0 0 0 2">
+				<Grid Grid.Row="0" DataContext="{Binding CurrentTournament}">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="1*" />
+						</Grid.RowDefinitions>
+						<Grid Grid.Row="0" VerticalAlignment="Center">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="2*" />
+								<ColumnDefinition Width="4*" />
+							</Grid.ColumnDefinitions>
+							<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Name:</Label>
+							<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Name }"></TextBlock>
+						</Grid>
+						<Grid Grid.Row="1" VerticalAlignment="Center">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="2*" />
+								<ColumnDefinition Width="4*" />
+							</Grid.ColumnDefinitions>
+							<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Timestamp:</Label>
+							<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Timestamp}"></TextBlock>
+						</Grid>
+					</Grid>
+				
+			</Border>
+			
+			<Grid Grid.Row="1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="0.5*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="6*" />
+				</Grid.RowDefinitions>
+
+				<StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Vertical">
+					<Label >Generate new Matches for this Tournament:</Label>
+				</StackPanel> 
+				<Grid Grid.Row="1" Margin="10" VerticalAlignment="Center">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="3*" />
+						<ColumnDefinition Width="4*" />
+					</Grid.ColumnDefinitions>
+					<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Add Player who can participate: </Label>
+					<Grid Grid.Column="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*" />
+							<ColumnDefinition Width="1*" />
+						</Grid.ColumnDefinitions>
+						<ComboBox Grid.Column="0" 
+							 Margin="0 0 5 0" 
+							 ItemsSource="{Binding Path=Players}" 
+							 SelectedValue="{Binding Path=CurrentPlayer}" 
+							 DisplayMemberPath="FullName"/>
+						<Button Grid.Column="1" Command="{Binding AddPlayerCommand}">Add Player</Button>
+					</Grid>
+				</Grid>
+
+				<Grid Grid.Row="2">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="2*" />
+						<ColumnDefinition Width="4*" />
+					</Grid.ColumnDefinitions>
+					<Grid Grid.Column="0">
+						<ListBox Name="activePlayerList" Grid.Row="1" ItemsSource="{Binding chosenPlayers}">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock FontSize="10pt">
+										<TextBlock VerticalAlignment="Center" Text="{Binding FullName}"></TextBlock>	
+									</TextBlock>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+					</Grid>
+					<Grid Grid.Column="1">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="4*" />
+							<RowDefinition Height="1*" />
+						</Grid.RowDefinitions>
+						<Grid Grid.Row="0">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="8*" />
+								<RowDefinition Height="1*" />
+							</Grid.RowDefinitions>
+							<Label Grid.Row="1">Number of Matches that should be generated.</Label>
+						</Grid>
+						<Grid Grid.Row="1">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+							</Grid.ColumnDefinitions>
+							<TextBox Margin="16" Text="{Binding NumberOfPlayers, Mode=OneWayToSource}" />
+							<Button Margin="16" Grid.Column="1" Command="{Binding GenerateMatchesButton}">Generate Matches</Button>
+						</Grid>
+					</Grid>
+				</Grid>
 			</Grid>
 		</Grid>
 	</Grid>

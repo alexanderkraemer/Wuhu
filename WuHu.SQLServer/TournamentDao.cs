@@ -14,13 +14,13 @@ namespace WuHu.SQLServer
 {
 	public class TournamentDao : ITournamentDao
 	{
-		private const string SQL_FIND_BY_ID = "SELECT * FROM tournament WHERE id=@Id ORDER BY id";
-		private const string SQL_FIND_BY_DAY = "SELECT * FROM tournament WHERE timestamp=@Timestamp ORDER BY id";
-		private const string SQL_FIND_ALL = "SELECT * FROM tournament ORDER BY id";
-		private const string SQL_UPDATE = "UPDATE tournament SET name=@name, timestamp=@timestamp WHERE Id=@Id";
-		private const string SQL_INSERT = "INSERT INTO tournament (name, timestamp) OUTPUT Inserted.id VALUES (@name, @timestamp)";
-		private const string SQL_DELETE_BY_ID = "DELETE FROM tournament WHERE id=@Id";
-		private const string SQL_DELETE_ALL = "DELETE FROM tournament WHERE 1=1";
+		private const string SQL_FIND_BY_ID = "SELECT * FROM tournaments WHERE id=@Id ORDER BY id";
+		private const string SQL_FIND_BY_DAY = "SELECT * FROM tournaments WHERE timestamp=@Timestamp ORDER BY id";
+		private const string SQL_FIND_ALL = "SELECT * FROM tournaments ORDER BY id";
+		private const string SQL_UPDATE = "UPDATE tournaments SET name=@name, timestamp=@timestamp WHERE Id=@Id";
+		private const string SQL_INSERT = "INSERT INTO tournaments (name, timestamp) OUTPUT Inserted.Id VALUES (@name, @timestamp)";
+		private const string SQL_DELETE_BY_ID = "DELETE FROM tournaments WHERE id=@Id";
+		private const string SQL_DELETE_ALL = "DELETE FROM tournaments WHERE 1=1";
 
 
 		private IDatabase database;

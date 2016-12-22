@@ -69,9 +69,10 @@ namespace WuHu.WebAPI.Controllers
 		public HttpResponseMessage Insert([FromBody]Player player)
 		{
 			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			player.Password = BLAuthentication.Hash(player.Password);
 
 			int id = PlayerDao.Insert(player);
-			if(id == -1)
+			if (id == -1)
 			{
 				return new HttpResponseMessage(HttpStatusCode.Conflict);
 			}
@@ -79,9 +80,26 @@ namespace WuHu.WebAPI.Controllers
 			{
 				return new HttpResponseMessage(HttpStatusCode.Created);
 			}
-			
+
 		}
-		
+
+		[HttpPost]
+		[Route("auth")]
+		public HttpResponseMessage Authenticate([FromBody]Tuple<string, string> obj)
+		{
+			bool isAuthenticated = BLPlayer.Authenticate(obj);
+
+			if (!isAuthenticated)
+			{
+				return new HttpResponseMessage(HttpStatusCode.Conflict);
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.OK);
+			}
+
+		}
+
 		[HttpGet]
 		[Route("nickname/{nickname}")]
 		public Player FindByNickname(string nickname)

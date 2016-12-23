@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLAuthentication.cs" />
+    <Compile Include="BLMatch.cs" />
     <Compile Include="BLPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WuHu.Terminal.ViewModels;
 using WuHu.Terminal.Views;
 using WuHu.Terminal.Views.Matches;
 using WuHu.Terminal.Views.Player;
@@ -23,14 +24,15 @@ namespace WuHu.Terminal
 			main = MainFrame;
 
 			main.Content = new Home();
+			HomeButton.Background = Brushes.SteelBlue;
 		}
 
 		private void ChangeButtonColor(Button btn)
 		{
 			Button[] array = { HomeButton, PlayerButton, MatchesButton, TournamentsButton };
-			foreach(Button b in array)
+			foreach (Button b in array)
 			{
-				if(b == btn)
+				if (b == btn)
 				{
 					b.Background = Brushes.SteelBlue;
 				}
@@ -39,7 +41,7 @@ namespace WuHu.Terminal
 					b.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFDDDDDD"));
 				}
 			}
-			
+
 		}
 
 		public void NavHomeButton(object sender, object e)
@@ -51,41 +53,19 @@ namespace WuHu.Terminal
 		public void NavPlayerButton(object sender, object e)
 		{
 			ChangeButtonColor(PlayerButton);
-			if (Authentication.getInstance().isAuthenticated)
-			{
-				MainWindow.main.Content = new PlayerList();
-			}
-			else
-			{
-				MainWindow.main.Content = new Login();
-			}
-			
+			Authentication.CheckIfLoggedIn(new PlayerList());
 		}
 
 		public void NavMatchesButton(object sender, object e)
 		{
 			ChangeButtonColor(MatchesButton);
-			if (Authentication.getInstance().isAuthenticated)
-			{
-				MainWindow.main.Content = new MatchList();
-			}
-			else
-			{
-				MainWindow.main.Content = new Login();
-			}
+			Authentication.CheckIfLoggedIn(new MatchList());
 		}
 
 		public void NavTournamentsButton(object sender, object e)
 		{
 			ChangeButtonColor(TournamentsButton);
-			if (Authentication.getInstance().isAuthenticated)
-			{
-				MainWindow.main.Content = new TournamentList();
-			}
-			else
-			{
-				MainWindow.main.Content = new Login();
-			}
+			Authentication.CheckIfLoggedIn(new TournamentList());
 		}
 	}
 }

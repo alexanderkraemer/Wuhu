@@ -46,18 +46,21 @@ namespace WuHu.BusinessLogic
 			return list;
 		}
 
-		public static bool Authenticate(Tuple<string, string> obj)
+		public static bool Authenticate(AuthObj obj)
 		{
 			IDatabase database = DalFactory.CreateDatabase();
 			IPlayerDao dao = DalFactory.CreatePlayerDao(database);
 
-			Player p = dao.FindByNickname(obj.Item1);
+			string nickname = obj.Nickname;
+			string password = obj.HashedPassword;
+
+			Player p = dao.FindByNickname(nickname);
 			if(p == null)
 			{
 				return false;
 			}
 
-			return BLAuthentication.Verify(obj.Item2, p.Password);
+			return BLAuthentication.Verify(password, p.Password);
 		}
 	}
 }

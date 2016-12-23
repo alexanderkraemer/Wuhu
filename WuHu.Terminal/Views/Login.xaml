@@ -5,43 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WuHu.Terminal.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+             d:DesignHeight="484" d:DesignWidth="858">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="2*" />
 			<RowDefinition Height="1*" />
 			<RowDefinition Height="1*" />
 			<RowDefinition Height="1*" />
-			<RowDefinition Height="2*" />
+			<RowDefinition Height="1*" />
 		</Grid.RowDefinitions>
-		<Grid Grid.Row="1">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
-				<ColumnDefinition Width="2*"/>
-				<ColumnDefinition Width="1*"/>
-			</Grid.ColumnDefinitions>
-			<Label VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1">Username:</Label>
-			<TextBox Grid.Column="2" Margin="10" Text="{Binding Username, Mode=OneWayToSource}"/>
-		</Grid>
-		<Grid Grid.Row="2">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
-				<ColumnDefinition Width="2*"/>
-				<ColumnDefinition Width="1*"/>
-			</Grid.ColumnDefinitions>
-			<Label VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1">Password:</Label>
-			<PasswordBox Name="login_password" Grid.Column="2" Margin="10"/>
-		</Grid>
-		<Grid Grid.Row="3">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
-				<ColumnDefinition Width="2*"/>
-				<ColumnDefinition Width="1*"/>
-			</Grid.ColumnDefinitions>
-			<Button Grid.Column="2" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=login_password}" Margin="10">Login!</Button>
-		</Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto"/>
+			<ColumnDefinition Width="1*"/>
+		</Grid.ColumnDefinitions>
+		<Label Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">Nickname or Password is wrong!</Label>
+		
+		<Label Grid.Column="0" Grid.Row="1">Nickname:</Label>
+		<TextBox Grid.Column="1" Grid.Row="1" Margin="10" Text="{Binding Nickname}"/>
+		
+		<Label Grid.Column="0" Grid.Row="2">Password:</Label>
+		<PasswordBox Name="login_password" Grid.Column="1" Grid.Row="2" Margin="10"/>
+
+		<Button Grid.Column="1" Grid.Row="3" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=login_password}" Margin="10">Login!</Button>
 	</Grid>
 </UserControl>

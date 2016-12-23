@@ -18,7 +18,7 @@ namespace WuHu.Terminal.ViewModels
 		public event PropertyChangedEventHandler PropertyChanged;
 		private static MatchListVM instance;
 		public ObservableCollection<MatchVM> Matches { get; set; }
-
+		
 		public static MatchListVM getInstance()
 		{
 			if (instance == null)

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syncfusion.Chart.MVVM.WPF</name>
+    </assembly>
+    <members>
+        <member name="T:Syncfusion.ChartMVVMWPFAssembly">
+            <summary>
+            Represents ChartWPFAssembly
+            </summary>
+        </member>
+        <member name="F:Syncfusion.ChartMVVMWPFAssembly.Name">
+            <summary>
+            Initializes Name
+            </summary>
+        </member>
+        <member name="F:Syncfusion.ChartMVVMWPFAssembly.Assembly">
+            <summary>
+            Initializes Assembly
+            </summary>
+        </member>
+        <member name="F:Syncfusion.ChartMVVMWPFAssembly.RootNamespace">
+            <summary>
+            Initializes RootNamespace
+            </summary>
+        </member>
+        <member name="M:Syncfusion.ChartMVVMWPFAssembly.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Syncfusion.ChartWPFAssembly"/> class.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.ChartMVVMWPFAssembly.AssemblyResolver(System.Object,System.ResolveEventArgs)">
+            <summary>
+            Assemblies the resolver.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ResolveEventArgs"/> instance containing the event data.</param>
+            <returns>The Assembly</returns>
+        </member>
+        <member name="T:Syncfusion.AssemblyInfo">
+            <summary>
+            Represents AssemblyInfo
+            </summary>
+        </member>
+    </members>
+</doc>

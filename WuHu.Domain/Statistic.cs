@@ -1,19 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WuHu.Domain
 {
-	[Serializable]
+	[DataContract]
 	public class Statistic
 	{
-		public int ID { get; }
+		[DataMember]
+		public int ID { get; set; }
+		[DataMember]
 		public int PlayerID { get; set; }
+		[DataMember]
 		public int Skill { get; set; }
+		[DataMember]
 		public DateTime Timestamp { get; set; }
 
+		public Statistic()
+		{
+
+		}
 
 		public Statistic(int ID, int PlayerID, int Skill, DateTime Timestamp)
 		{

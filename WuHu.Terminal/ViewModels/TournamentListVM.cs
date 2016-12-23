@@ -25,6 +25,18 @@ namespace WuHu.Terminal.ViewModels
 		public ObservableCollection<PlayerVM> originalPlayers { get; private set; }
 		public ObservableCollection<PlayerVM> chosenPlayers { get; private set; }
 		private PlayerListVM pvm;
+		public bool isAdmin
+		{
+			get
+			{
+				if (Authentication.isAuthenticated)
+				{
+					return Authentication.getLoggedInUser.isAdmin;
+				}
+				return false;
+			}
+		}
+
 		private ICommand _addPlayerCommand;
 		private ICommand _activePlayerClickedCommand;
 		private ICommand _generateMatchesCommand;

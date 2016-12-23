@@ -11,7 +11,7 @@ namespace WuHu.Terminal.Views
 		public Login()
 		{
 			InitializeComponent();
-			this.DataContext = new LoginVM();
+			this.DataContext = LoginVM.getInstance();
 		}
 	}
 }

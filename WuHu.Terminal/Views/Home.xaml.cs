@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Syncfusion.Windows.Chart;
+using System.Windows.Controls;
 using WuHu.Terminal.ViewModels;
 
 namespace WuHu.Terminal.Views

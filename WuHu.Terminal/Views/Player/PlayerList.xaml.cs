@@ -48,7 +48,10 @@ namespace WuHu.Terminal.Views.Player
 
 		private void EditPlayerButtonClick(object sender, RoutedEventArgs e)
 		{
-			MainWindow.main.Content = new PlayerEdit();
+			if(Authentication.getLoggedInUser.isAdmin)
+			{
+				MainWindow.main.Content = new PlayerEdit();
+			}
 		}
 	}
 }

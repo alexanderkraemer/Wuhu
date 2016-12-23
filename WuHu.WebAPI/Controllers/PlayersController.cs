@@ -85,7 +85,7 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpPost]
 		[Route("auth")]
-		public HttpResponseMessage Authenticate([FromBody]Tuple<string, string> obj)
+		public HttpResponseMessage Authenticate([FromBody]AuthObj obj)
 		{
 			bool isAuthenticated = BLPlayer.Authenticate(obj);
 

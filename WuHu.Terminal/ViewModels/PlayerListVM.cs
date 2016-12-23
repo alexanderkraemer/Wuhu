@@ -29,6 +29,18 @@ namespace WuHu.Terminal.ViewModels
 			return instance;
 		}
 
+		public bool isCurrentAdmin
+		{
+			get
+			{
+				if (Authentication.isAuthenticated)
+				{
+					return Authentication.getLoggedInUser.isAdmin;
+				}
+				return false;
+			}
+		}
+
 		private PlayerListVM()
 		{
 			Players = new ObservableCollection<PlayerVM>();

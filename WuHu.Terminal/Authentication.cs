@@ -5,7 +5,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using WuHu.Domain;
+using WuHu.Terminal.ViewModels;
+using WuHu.Terminal.Views;
 
 namespace WuHu.Terminal
 {
@@ -13,8 +16,27 @@ namespace WuHu.Terminal
 	{
 		private static Authentication instance;
 		private const string BASE_URL = "http://localhost:42382/";
-		private Player player;
-		public bool isAuthenticated;
+		private static PlayerVM player;
+		public static bool isAuthenticated;
+		private static UserControl currentTab;
+
+		public static void CheckIfLoggedIn(UserControl page)
+		{
+			currentTab = page;
+			if (isAuthenticated)
+			{
+				MainWindow.main.Content = page;
+			}
+			else
+			{
+				MainWindow.main.Content = new Login();
+			}
+		}
+
+		public static PlayerVM getLoggedInUser
+		{
+			get { return player; }
+		}
 
 		public static Authentication getInstance()
 		{
@@ -30,10 +52,21 @@ namespace WuHu.Terminal
 			isAuthenticated = false;
 		}
 
+		public static void GetPlayerData(string nickname)
+		{
+			foreach(Tuple<int, PlayerVM> t in HomeVM.getInstance().RankList)
+			{
+				if(t.Item2.Nickname == nickname)
+				{
+					player = t.Item2;
+				}
+			}
+		}
+
 		public async void Authenticate(string nickname, string password)
 		{
 			HttpClient client = new HttpClient();
-			Tuple<string, string> obj = Tuple.Create(nickname, password);
+			AuthObj obj = new AuthObj(nickname, password);
 			string json = JsonConvert.SerializeObject(obj);
 
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -42,8 +75,13 @@ namespace WuHu.Terminal
 			if(response.IsSuccessStatusCode)
 			{
 				isAuthenticated = true;
+				GetPlayerData(nickname);
+				CheckIfLoggedIn(currentTab);
 			}
-			isAuthenticated = false;
+			else
+			{
+				isAuthenticated = false;
+			}
 		}
 	}
 }

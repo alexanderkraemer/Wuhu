@@ -30,6 +30,17 @@ namespace WuHu.Terminal.ViewModels
 
 		private ObservableCollection<TournamentVM> tournamentList;
 
+		public bool isAdmin
+		{
+			get
+			{
+				if (Authentication.isAuthenticated)
+				{
+					return Authentication.getLoggedInUser.isAdmin;
+				}
+				return false;
+			}
+		}
 		public ObservableCollection<TournamentVM> Tournaments
 		{
 			get { return tournamentList; }

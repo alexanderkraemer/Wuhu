@@ -45,6 +45,17 @@ namespace WuHu.Terminal.ViewModels
 			isSaturday = p.isSaturday;
 		}
 
+		public bool isCurrentAdmin
+		{
+			get
+			{
+				if (Authentication.isAuthenticated)
+				{
+					return Authentication.getLoggedInUser.isAdmin;
+				}
+				return false;
+			}
+		}
 
 		public ICommand SaveCommand
 		{

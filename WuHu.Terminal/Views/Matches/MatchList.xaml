@@ -94,7 +94,7 @@
 			</Grid>
 			<Grid Grid.Row="5" VerticalAlignment="Top">
 				<StackPanel>
-					<Button Grid.Row="0" Margin="5 40 5 5"  Click="EditMatchButtonClick">Edit</Button>
+					<Button Grid.Row="0" Margin="5 40 5 5"  Click="EditMatchButtonClick"  IsEnabled="{Binding isAdmin, Mode=OneWay}">Edit</Button>
 				</StackPanel>
 			</Grid>
 		</Grid>

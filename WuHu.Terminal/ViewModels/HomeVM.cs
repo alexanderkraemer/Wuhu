@@ -19,7 +19,8 @@ namespace WuHu.Terminal.ViewModels
 		private static HomeVM instance;
 		public ObservableCollection<Tuple<int, PlayerVM>> RankList { get; set; }
 		public ObservableCollection<MatchVM> AgendaList { get; set; }
-
+		public ObservableCollection<StatisticVM> StatisticList { get; set; }
+		public new ObservableCollection<StatisticVM> list;
 		public static HomeVM getInstance()
 		{
 			if (instance == null)
@@ -33,9 +34,10 @@ namespace WuHu.Terminal.ViewModels
 		{
 			RankList = new ObservableCollection<Tuple<int, PlayerVM>>();
 			AgendaList = new ObservableCollection<MatchVM>();
-			
+			StatisticList = new ObservableCollection<StatisticVM>();
 			LoadRanks();
 			LoadAgenda();
+			LoadStatistics();
 		}
 
 		private async void LoadAgenda()
@@ -82,7 +84,7 @@ namespace WuHu.Terminal.ViewModels
 			ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(json);
 			var tlvm = PlayerListVM.getInstance();
 			await tlvm.LoadPlayer();
-			
+
 			foreach (var p in players)
 			{
 				list.Add(new PlayerVM(p));
@@ -95,10 +97,34 @@ namespace WuHu.Terminal.ViewModels
 			{
 				RankList.Add(Tuple.Create(++count, p));
 			}
-
-			
 		}
-		
+
+		private async void LoadStatistics()
+		{
+			var list = new ObservableCollection<StatisticVM>();
+
+			string json;
+			HttpClient client = new HttpClient();
+			 
+			json = await client.GetStringAsync(BASE_URL + "api/statistics/player/101");
+
+			ObservableCollection<Statistic> statistics = JsonConvert.DeserializeObject<ObservableCollection<Statistic>>(json);
+
+			foreach (var s in statistics)
+			{
+				list.Add(new StatisticVM(s));
+			}
+
+			//StatisticList = list.Where(m => { return m.Timestamp > DateTime.Today.AddDays(-30); });
+			foreach(StatisticVM s in list)
+			{
+				StatisticList.Add(s);
+			}
+
+			//StatisticList = new ObservableCollection<ObservableCollection<StatisticVM>>();
+			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StatisticList)));
+		}
+
 		private MatchVM currentMatch;
 		public MatchVM CurrentMatch
 		{

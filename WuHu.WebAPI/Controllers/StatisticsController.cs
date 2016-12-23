@@ -32,7 +32,7 @@ namespace WuHu.WebAPI.Controllers
 		}
 
 		[HttpGet]
-		[Route("{id}")]
+		[Route("player/{player_id}")]
 		public IEnumerable<Statistic> FindByPlayer(int player_id)
 		{
 			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
@@ -40,7 +40,7 @@ namespace WuHu.WebAPI.Controllers
 		}
 
 		[HttpGet]
-		[Route("{id}")]
+		[Route("day/{timestamp}")]
 		public IEnumerable<Statistic> FindByTimestamp(DateTime timestamp)
 		{
 			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);

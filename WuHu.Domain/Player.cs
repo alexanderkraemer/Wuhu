@@ -8,6 +8,21 @@ using System.Threading.Tasks;
 namespace WuHu.Domain
 {
 	[DataContract]
+	public class AuthObj
+	{
+		public AuthObj(string nickname, string password)
+		{
+			Nickname = nickname;
+			HashedPassword = password;
+		}
+
+		[DataMember]
+		public string Nickname { get; set; }
+		[DataMember]
+		public string HashedPassword { get; set; }
+	}
+
+	[DataContract]
 	public class Player
 	{
 		[DataMember]

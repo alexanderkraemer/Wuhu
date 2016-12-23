@@ -5,6 +5,7 @@ using System.Configuration;
 using WuHu.SQLServer;
 using WuHu.Domain;
 using System.Collections.Generic;
+using WuHu.InitDatabase;
 
 namespace WuHu.UnitTests
 {
@@ -15,6 +16,11 @@ namespace WuHu.UnitTests
 		private static IDatabase database;
 		private static ITournamentDao dao;
 
+		public TestTournamentDao()
+		{
+
+		}
+
 		[ClassInitialize()]
 		public static void Initialize(TestContext context)
 		{
@@ -24,9 +30,15 @@ namespace WuHu.UnitTests
 
 			Assert.IsNotNull(database);
 		}
+		[TestMethod]
+		public void InitDB()
+		{
+			DatabaseReset.Clear(database);
+			DatabaseReset.Insert(database);
+		}
 
 		[TestMethod]
-		public int InsertTournaments(string teamname = "Testteam")
+		public int InsertTournaments(string teamname = "Testtournament")
 		{
 			Random rand = new Random();
 

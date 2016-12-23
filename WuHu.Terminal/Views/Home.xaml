@@ -13,15 +13,23 @@
 			<ColumnDefinition Width="1*" />
 			<ColumnDefinition Width="2*" />
 		</Grid.ColumnDefinitions>
-		<ListBox Grid.Column="0" ItemsSource="{Binding RankList}">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<StackPanel Orientation="Horizontal">
-						<TextBlock>
+		<Grid Grid.Column="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="25" />
+				<RowDefinition Height="25" />
+				<RowDefinition Height="1*"/>
+			</Grid.RowDefinitions>
+			<Button Grid.Row="0" Command="{Binding LoadRanksCommand, Mode=OneWay}">Refresh Ranks</Button>
+			<Button Grid.Row="1" Command="{Binding LoadMatchesCommand, Mode=OneWay}">Refresh Matches</Button>
+			<ListBox Grid.Row="2" ItemsSource="{Binding Path=RankList}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock>
 							<Run Text="{Binding Item1, Mode=OneWay}" />
 							<Run Text=". " />
-						</TextBlock>
-						<TextBlock>
+							</TextBlock>
+							<TextBlock>
 							<TextBlock VerticalAlignment="Center">
 								<Run Text="{Binding Item2.FullName, Mode=OneWay}" />
 								<Run Text="(" />
@@ -29,11 +37,11 @@
 								<Run Text=")" />
 							</TextBlock>	
 						</TextBlock>
-					</StackPanel>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
-
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Grid>
 		<Grid Grid.Column="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="3*" />

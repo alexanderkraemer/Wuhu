@@ -45,6 +45,13 @@ namespace WuHu.Terminal.ViewModels
 			isSaturday = p.isSaturday;
 		}
 
+		public Player Convert(PlayerVM p)
+		{
+			return new Player(p.ID, p.isAdmin, p.FirstName, p.LastName,
+			p.Nickname, p.Skills, p.PhotoPath, p.Password, p.isMonday,
+			p.isTuesday, p.isWednesday, p.isThursday, p.isFriday, p.isSaturday);
+		}
+
 		public bool isCurrentAdmin
 		{
 			get

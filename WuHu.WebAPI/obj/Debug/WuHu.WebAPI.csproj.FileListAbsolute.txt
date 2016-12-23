@@ -28,10 +28,8 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.WebHost.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Common.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Domain.dll
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Common.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Domain.pdb
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.Web.xml
@@ -145,3 +143,5 @@ C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Http.WebHost.xml
 C:\programmieren\Wuhu\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.csprojResolveAssemblyReference.cache
 C:\programmieren\Wuhu\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.dll
 C:\programmieren\Wuhu\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.pdb

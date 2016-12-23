@@ -12,7 +12,6 @@ namespace WuHu.WebAPI.Controllers
 	 [RoutePrefix("api/statistics")]
     public class StatisticsController : ApiController
     {
-
 		private IDatabase database = DalFactory.CreateDatabase();
 
 		[HttpGet]

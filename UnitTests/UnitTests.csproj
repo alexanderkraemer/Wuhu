@@ -72,6 +72,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InitDatabase\InitDatabase.csproj">
+      <Project>{df452363-c535-4368-b025-1deff1bc6294}</Project>
+      <Name>InitDatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WuHu.Common\WuHu.Common.csproj">
       <Project>{0a9ecfc0-b340-41b8-b94d-302bdbb6162d}</Project>
       <Name>WuHu.Common</Name>

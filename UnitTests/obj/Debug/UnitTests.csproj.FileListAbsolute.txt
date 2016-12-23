@@ -63,3 +63,5 @@ C:\programmieren\Wuhu\UnitTests\obj\Debug\UnitTests.pdb
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\NDbUnit.Core.dll
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\NDbUnit.SqlClient.dll
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\NDbUnit.SqlClient.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\InitDatabase.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\bin\Debug\InitDatabase.pdb

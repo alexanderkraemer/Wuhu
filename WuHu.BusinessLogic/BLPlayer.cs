@@ -5,19 +5,11 @@ using System.Linq;
 using System.Resources;
 using WuHu.Common;
 using WuHu.Domain;
-using WuHu.SQLServer;
 
 namespace WuHu.BusinessLogic
 {
 	public class BLPlayer
 	{
-		public static Bitmap GetImageByNickname(string nickname)
-		{
-			
-			Bitmap myImage = new Bitmap("asdf");
-			return myImage; 
-		}
-
 		public static IEnumerable<Player> GetPlayerByDay(DateTime date, IEnumerable<Player> playerlist)
 		{
 			IEnumerable<Player> list = new List<Player>();

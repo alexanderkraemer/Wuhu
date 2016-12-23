@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using WuHu.Domain;
 
 namespace WuHu.Terminal.ViewModels
@@ -20,7 +21,7 @@ namespace WuHu.Terminal.ViewModels
 		public ObservableCollection<Tuple<int, PlayerVM>> RankList { get; set; }
 		public ObservableCollection<MatchVM> AgendaList { get; set; }
 		public ObservableCollection<StatisticVM> StatisticList { get; set; }
-		public new ObservableCollection<StatisticVM> list;
+		public ObservableCollection<StatisticVM> list;
 		public static HomeVM getInstance()
 		{
 			if (instance == null)
@@ -75,7 +76,7 @@ namespace WuHu.Terminal.ViewModels
 		{
 			var list = new ObservableCollection<PlayerVM>();
 			IEnumerable<PlayerVM> listRankIEn;
-			AgendaList.Clear();
+			RankList.Clear();
 
 			string json;
 			HttpClient client = new HttpClient();
@@ -123,6 +124,40 @@ namespace WuHu.Terminal.ViewModels
 
 			//StatisticList = new ObservableCollection<ObservableCollection<StatisticVM>>();
 			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StatisticList)));
+		}
+
+		ICommand _loadRanks;
+		public ICommand LoadRanksCommand
+		{
+			get
+			{
+				if (_loadRanks == null)
+				{
+					_loadRanks = new RelayCommand(param =>
+					{
+						LoadRanks();
+						PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RankList)));
+					});
+				}
+				return _loadRanks;
+			}
+		}
+
+		ICommand _loadMatches;
+		public ICommand LoadMatchesCommand
+		{
+			get
+			{
+				if (_loadMatches == null)
+				{
+					_loadMatches = new RelayCommand(param =>
+					{
+						LoadAgenda();
+						PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AgendaList)));
+					});
+				}
+				return _loadMatches;
+			}
 		}
 
 		private MatchVM currentMatch;

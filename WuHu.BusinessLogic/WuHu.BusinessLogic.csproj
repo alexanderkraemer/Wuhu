@@ -65,10 +65,6 @@
       <Project>{5834D772-3DCF-44C3-88D9-9D76732BC033}</Project>
       <Name>WuHu.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WuHu.SQLServer\WuHu.SQLServer.csproj">
-      <Project>{B4787157-AED5-4E2A-964D-107E7919C067}</Project>
-      <Name>WuHu.SQLServer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="photo.jpg" />

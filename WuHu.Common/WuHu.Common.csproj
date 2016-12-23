@@ -57,13 +57,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WuHu.Domain\WuHu.Domain.csproj">
-      <Project>{5834D772-3DCF-44C3-88D9-9D76732BC033}</Project>
-      <Name>WuHu.Domain</Name>
-    </ProjectReference>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <ProjectReference Include="..\WuHu.Domain\WuHu.Domain.csproj">
+      <Project>{5834d772-3dcf-44c3-88d9-9d76732bc033}</Project>
+      <Name>WuHu.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

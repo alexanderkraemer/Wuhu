@@ -1,16 +1,18 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Xml.Linq;
 using WuHu.BusinessLogic;
 using WuHu.Common;
 using WuHu.Domain;
-using WuHu.SQLServer;
 
 namespace WuHu.WebAPI.Controllers
 {
@@ -28,11 +30,25 @@ namespace WuHu.WebAPI.Controllers
 			return PlayerDao.FindAll();
 		}
 
+
+		[Route("image/{playerId}")]
 		[HttpGet]
-		[Route("img/{nickname}")]
-		public Image GetImage(string nickname)
+		public HttpResponseMessage GetImage(int playerId)
 		{
-			return BLPlayer.GetImageByNickname(nickname);
+			IPlayerDao playerDAO = DalFactory.CreatePlayerDao(database);
+			Player player = playerDAO.FindById(playerId);
+
+			if (player == null) throw new Exception();
+
+			string absolutePath = ConfigurationManager.AppSettings["ImageFolder"].ToString() + "\\" + player.PhotoPath;
+			if (!File.Exists(absolutePath)) throw new Exception();
+
+			HttpResponseMessage response = new HttpResponseMessage();
+			Byte[] b = (File.ReadAllBytes(absolutePath));
+			response.Content = new ByteArrayContent(b);
+			response.Content.LoadIntoBufferAsync(b.Length).Wait();
+			response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+			return response;
 		}
 
 		[HttpGet]

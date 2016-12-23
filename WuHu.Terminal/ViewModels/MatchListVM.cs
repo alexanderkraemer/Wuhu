@@ -25,13 +25,13 @@ namespace WuHu.Terminal.ViewModels
 			{
 				instance = new MatchListVM();
 			}
+			instance.LoadMatches();
 			return instance;
 		}
 
 		private MatchListVM()
 		{
 			Matches = new ObservableCollection<MatchVM>();
-			LoadMatches();
 		}
 
 		private async void LoadMatches()

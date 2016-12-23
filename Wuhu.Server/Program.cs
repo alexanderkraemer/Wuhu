@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WuHu.Common;
-using WuHu.Domain;
-using WuHu.SQLServer;
 
 namespace Wuhu.Server
 {

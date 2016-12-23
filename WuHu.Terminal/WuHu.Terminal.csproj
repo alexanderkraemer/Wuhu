@@ -219,21 +219,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WuHu.Common\WuHu.Common.csproj">
-      <Project>{0a9ecfc0-b340-41b8-b94d-302bdbb6162d}</Project>
-      <Name>WuHu.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WuHu.Domain\WuHu.Domain.csproj">
       <Project>{5834d772-3dcf-44c3-88d9-9d76732bc033}</Project>
       <Name>WuHu.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wuhu.Server\Wuhu.Server.csproj">
-      <Project>{e1a388d1-f08e-4a14-a7b0-d153c0256758}</Project>
-      <Name>Wuhu.Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WuHu.SQLServer\WuHu.SQLServer.csproj">
-      <Project>{b4787157-aed5-4e2a-964d-107e7919c067}</Project>
-      <Name>WuHu.SQLServer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

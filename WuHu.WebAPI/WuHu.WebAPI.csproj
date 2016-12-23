@@ -154,7 +154,7 @@
       <Name>WuHu.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\WuHu.SQLServer\WuHu.SQLServer.csproj">
-      <Project>{B4787157-AED5-4E2A-964D-107E7919C067}</Project>
+      <Project>{b4787157-aed5-4e2a-964d-107e7919c067}</Project>
       <Name>WuHu.SQLServer</Name>
     </ProjectReference>
   </ItemGroup>

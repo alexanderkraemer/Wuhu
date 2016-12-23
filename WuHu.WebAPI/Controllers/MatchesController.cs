@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WuHu.BusinessLogic;
 using WuHu.Common;
 using WuHu.Domain;
 
@@ -44,6 +46,19 @@ namespace WuHu.WebAPI.Controllers
 		{
 			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 			return MatchDao.Insert(team);
+		}
+
+		[HttpPost]
+		[Route("generate")]
+		public ObservableCollection<Match> GenerateMatches([FromBody]MatchGenerate MatchObj)
+		{
+			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+			ObservableCollection<Match> matchList;
+			matchList = BLMatch.GenerateMatches(MatchObj.NumberOfMatches, MatchObj.chosenPlayers, MatchObj.tournamentId);
+			if(BLMatch.insertMatches(matchList))
+				return matchList;
+
+			return null;
 		}
 
 		[HttpDelete]

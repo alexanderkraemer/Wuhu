@@ -1,0 +1,10 @@
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\InitDatabase.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\InitDatabase.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.Common.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.Domain.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.SQLServer.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.Common.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.Domain.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.SQLServer.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.pdb

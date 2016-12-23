@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -7,6 +8,24 @@ using System.Threading.Tasks;
 
 namespace WuHu.Domain
 {
+	[DataContract]
+	public class MatchGenerate
+	{
+		public MatchGenerate(ObservableCollection<Player> chosenPlayers, int NumberOfMatches, int tournamentId)
+		{
+			this.chosenPlayers = chosenPlayers;
+			this.NumberOfMatches = NumberOfMatches;
+			this.tournamentId = tournamentId;
+		}
+
+		[DataMember]
+		public ObservableCollection<Player> chosenPlayers { get; set; }
+		[DataMember]
+		public int NumberOfMatches { get; set; }
+		[DataMember]
+		public int tournamentId { get; set; }
+	}
+
 	[DataContract]
 	public class Match
 	{

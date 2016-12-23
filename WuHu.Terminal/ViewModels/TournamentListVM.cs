@@ -56,17 +56,21 @@ namespace WuHu.Terminal.ViewModels
 			Tournaments = new ObservableCollection<TournamentVM>();
 			Players = new ObservableCollection<PlayerVM>();
 			originalPlayers = new ObservableCollection<PlayerVM>();
+			
 			LoadTournaments();
 			chosenPlayers = new ObservableCollection<PlayerVM>();
 			Task<ObservableCollection<Player>> task = PlayerListVM.getInstance().LoadPlayer();
-			task.ContinueWith(param =>
+			App.Current.Dispatcher.Invoke(() =>
 			{
-				foreach (PlayerVM p in PlayerListVM.getInstance().Players)
+				task.ContinueWith(param =>
 				{
-					Players.Add(p);
-					originalPlayers.Add(p);
-				}
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Players)));
+					foreach (PlayerVM p in PlayerListVM.getInstance().Players)
+					{
+						Players.Add(p);
+						originalPlayers.Add(p);
+					}
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Players)));
+				});
 			});
 		}
 	
@@ -100,27 +104,31 @@ namespace WuHu.Terminal.ViewModels
 					{
 						Players.Add(p);
 					}
-
-					var playList = Players.Where(p =>
+					IEnumerable<PlayerVM> playList = new List<PlayerVM>();
+					if (currentTournament != null)
 					{
-						switch (currentTournament.Timestamp.DayOfWeek)
+						playList = Players.Where(p =>
 						{
-							case DayOfWeek.Monday:
-								return p.isMonday;
-							case DayOfWeek.Tuesday:
-								return p.isTuesday;
-							case DayOfWeek.Wednesday:
-								return p.isWednesday;
-							case DayOfWeek.Thursday:
-								return p.isThursday;
-							case DayOfWeek.Friday:
-								return p.isFriday;
-							case DayOfWeek.Saturday:
-								return p.isSaturday;
-							default:
-								return false;
-						}
-					});
+							switch (currentTournament.Timestamp.DayOfWeek)
+							{
+								case DayOfWeek.Monday:
+									return p.isMonday;
+								case DayOfWeek.Tuesday:
+									return p.isTuesday;
+								case DayOfWeek.Wednesday:
+									return p.isWednesday;
+								case DayOfWeek.Thursday:
+									return p.isThursday;
+								case DayOfWeek.Friday:
+									return p.isFriday;
+								case DayOfWeek.Saturday:
+									return p.isSaturday;
+								default:
+									return false;
+							}
+						});
+					}
+					
 					chosenPlayers.Clear();
 					foreach (PlayerVM p in playList)
 					{
@@ -151,15 +159,15 @@ namespace WuHu.Terminal.ViewModels
 			}
 		}
 
-		private string numberOfPlayers;
-		public string NumberOfPlayers
+		private string numberOfMatches;
+		public string NumberOfMatches
 		{
-			get { return numberOfPlayers; }
+			get { return numberOfMatches; }
 			set
 			{
-				if (value != numberOfPlayers)
+				if (value != numberOfMatches)
 				{
-					numberOfPlayers = value;
+					numberOfMatches = value;
 				}
 			}
 		}
@@ -209,15 +217,36 @@ namespace WuHu.Terminal.ViewModels
 				{
 					_generateMatchesCommand = new RelayCommand(param =>
 					{
+						var list = new ObservableCollection<Player>();
+						foreach(PlayerVM p in chosenPlayers)
+						{
+							list.Add(p.Convert(p));
+						}
+						int a;
+						int.TryParse(NumberOfMatches, out a);
+						MatchGenerate m = new MatchGenerate(list, a, CurrentTournament.ID);
+						CreateMatches(m);
 						// do shit nao!!!!
 						// chosenPlayers
 						// NumberOfPlayers
 						// currentTournament
 						Debug.WriteLine("sent matches to server");
+						//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof()));
 					});
 				}
 				return _generateMatchesCommand;
 			}
+		}
+
+		private async void CreateMatches(MatchGenerate matchObj)
+		{
+			HttpClient client = new HttpClient();
+			string json = JsonConvert.SerializeObject(matchObj);
+
+			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/matches/generate", httpContent);
+
+			Debug.WriteLine(response.Content);
 		}
 	}
 }

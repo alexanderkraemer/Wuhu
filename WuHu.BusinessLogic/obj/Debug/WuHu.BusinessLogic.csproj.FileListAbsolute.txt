@@ -23,6 +23,4 @@ C:\programmieren\Wuhu\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.csprojReso
 C:\programmieren\Wuhu\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.dll
 C:\programmieren\Wuhu\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.Common.dll
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.SQLServer.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.Common.pdb
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.SQLServer.pdb

@@ -46,12 +46,12 @@ namespace WuHu.Terminal.ViewModels
 		private bool isAuthenticated;
 		public bool IsAuthenticated
 		{
-			get { return IsAuthenticated; }
+			get { return isAuthenticated; }
 			set
 			{
-				if (value != IsAuthenticated)
+				if (value != isAuthenticated)
 				{
-					IsAuthenticated = value;
+					isAuthenticated = value;
 				}
 			}
 		}

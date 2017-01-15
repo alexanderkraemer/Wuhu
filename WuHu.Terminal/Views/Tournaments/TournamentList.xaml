@@ -4,9 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WuHu.Terminal.Views.Tournaments"
+				 xmlns:converter="clr-namespace:WuHu.Terminal.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="360" d:DesignWidth="640">
-
+	<UserControl.Resources>
+		<converter:DateTimeConverter x:Key="DateConverter" />
+	</UserControl.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="2*" />
@@ -54,7 +57,7 @@
 								<ColumnDefinition Width="4*" />
 							</Grid.ColumnDefinitions>
 							<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Timestamp:</Label>
-							<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Timestamp}"></TextBlock>
+						<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Timestamp, Converter={StaticResource DateConverter}}"></TextBlock>
 						</Grid>
 					</Grid>
 				

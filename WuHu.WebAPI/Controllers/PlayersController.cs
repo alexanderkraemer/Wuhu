@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FluentScheduler;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Web.Hosting;
 using System.Web.Http;
 using System.Xml.Linq;
 using WuHu.BusinessLogic;

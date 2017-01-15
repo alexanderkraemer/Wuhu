@@ -22,6 +22,8 @@ namespace WuHu.Terminal.ViewModels
 		private static TournamentListVM instance;
 		public ObservableCollection<TournamentVM> Tournaments { get; private set; }
 		public ObservableCollection<PlayerVM> Players { get; private set; }
+		private bool isLocked = false;
+		private bool isEditing = false;
 		public ObservableCollection<PlayerVM> originalPlayers { get; private set; }
 		public ObservableCollection<PlayerVM> chosenPlayers { get; private set; }
 		private PlayerListVM pvm;
@@ -35,6 +37,21 @@ namespace WuHu.Terminal.ViewModels
 				}
 				return false;
 			}
+		}
+
+		public bool IsLocked
+		{
+			get { return isLocked; }
+			set
+			{
+				isLocked = value;
+			}
+		}
+
+		public bool IsEditing
+		{
+			get { return isEditing; }
+			set { isEditing = value; }
 		}
 
 		private ICommand _addPlayerCommand;
@@ -52,6 +69,7 @@ namespace WuHu.Terminal.ViewModels
 
 		private TournamentListVM()
 		{
+			
 			pvm = PlayerListVM.getInstance();
 			Tournaments = new ObservableCollection<TournamentVM>();
 			Players = new ObservableCollection<PlayerVM>();
@@ -59,12 +77,13 @@ namespace WuHu.Terminal.ViewModels
 			
 			LoadTournaments();
 			chosenPlayers = new ObservableCollection<PlayerVM>();
-			Task<ObservableCollection<Player>> task = PlayerListVM.getInstance().LoadPlayer();
+			Task<ObservableCollection<Player>> task = pvm.LoadPlayer();
+			
 			App.Current.Dispatcher.Invoke(() =>
 			{
 				task.ContinueWith(param =>
 				{
-					foreach (PlayerVM p in PlayerListVM.getInstance().Players)
+					foreach (PlayerVM p in pvm.Players)
 					{
 						Players.Add(p);
 						originalPlayers.Add(p);
@@ -72,6 +91,7 @@ namespace WuHu.Terminal.ViewModels
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Players)));
 				});
 			});
+			
 		}
 	
 		public async Task<ObservableCollection<Tournament>> LoadTournaments()
@@ -187,6 +207,9 @@ namespace WuHu.Terminal.ViewModels
 					{
 						chosenPlayers.Add(CurrentPlayer);
 						Players.Remove(CurrentPlayer);
+					}, a =>
+					{
+						return !IsLocked || isEditing;
 					});
 				}
 				return _addPlayerCommand;
@@ -203,6 +226,9 @@ namespace WuHu.Terminal.ViewModels
 					{
 						chosenPlayers.Remove((PlayerVM)param);
 						Players.Add((PlayerVM)param);
+					}, a =>
+					{
+						return !IsLocked || isEditing;
 					});
 				}
 				return _activePlayerClickedCommand;
@@ -232,9 +258,52 @@ namespace WuHu.Terminal.ViewModels
 						// currentTournament
 						Debug.WriteLine("sent matches to server");
 						//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof()));
+					}, a =>
+					{
+						return !IsLocked || isEditing;
 					});
 				}
 				return _generateMatchesCommand;
+			}
+		}
+
+		public async void LockTournament()
+		{
+			HttpClient client = new HttpClient();
+
+			string json = JsonConvert.SerializeObject(true);
+
+			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/tournaments/lock", httpContent);
+			if (response.IsSuccessStatusCode)
+			{
+				IsLocked = true;
+				isEditing = true;
+			}
+			else
+			{
+				IsLocked = true;
+				isEditing = false;
+			}
+		}
+
+		public async void UnlockTournament()
+		{
+			HttpClient client = new HttpClient();
+
+			string json = JsonConvert.SerializeObject(false);
+
+			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/tournaments/unlock", httpContent);
+			if (response.IsSuccessStatusCode)
+			{
+				IsLocked = false;
+				isEditing = false;
+			}
+			else
+			{
+				IsLocked = true;
+				isEditing = false;
 			}
 		}
 

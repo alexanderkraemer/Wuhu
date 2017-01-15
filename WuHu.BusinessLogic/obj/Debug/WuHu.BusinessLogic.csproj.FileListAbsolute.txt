@@ -24,3 +24,13 @@ C:\programmieren\Wuhu\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.dll
 C:\programmieren\Wuhu\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.Common.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.Common.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.BusinessLogic.dll.config
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.BusinessLogic.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.BusinessLogic.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.Common.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.Domain.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.Common.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\bin\Debug\WuHu.Domain.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.csprojResolveAssemblyReference.cache
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.pdb

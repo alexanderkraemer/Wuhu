@@ -22,6 +22,8 @@ namespace Wuhu.Server
 		}
 		static void Main(string[] args)
 		{
+			PrintTitle("WuHu - nothing to do here...");
+			/*
 			PrintTitle("WuHu Server - Create Database");
 
 			IDatabase database = DalFactory.CreateDatabase();
@@ -31,6 +33,7 @@ namespace Wuhu.Server
 			Console.WriteLine("done.");
 			Console.WriteLine("press {Enter} to quit this program...");
 			Console.Read();
+			*/
 		}
 
 		public static void CreateDatabase(IDatabase database)

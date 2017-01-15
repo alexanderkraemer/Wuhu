@@ -20,10 +20,10 @@ namespace WuHu.Terminal
 		public MainWindow()
 		{
 			InitializeComponent();
-
+			
 			main = MainFrame;
 
-			main.Content = new Home();
+			main.Content = Home.getInstance();
 			HomeButton.Background = Brushes.SteelBlue;
 		}
 
@@ -46,24 +46,40 @@ namespace WuHu.Terminal
 
 		public void NavHomeButton(object sender, object e)
 		{
+			if (TournamentListVM.getInstance().IsEditing)
+			{
+				TournamentListVM.getInstance().UnlockTournament();
+			}
 			ChangeButtonColor(HomeButton);
-			MainWindow.main.Content = new Home();
+			MainWindow.main.Content = Home.getInstance();
 		}
 
 		public void NavPlayerButton(object sender, object e)
 		{
+			if (TournamentListVM.getInstance().IsEditing)
+			{
+				TournamentListVM.getInstance().UnlockTournament();
+			}
 			ChangeButtonColor(PlayerButton);
+			
 			Authentication.CheckIfLoggedIn(new PlayerList());
 		}
 
 		public void NavMatchesButton(object sender, object e)
 		{
+			if (TournamentListVM.getInstance().IsEditing)
+			{
+				TournamentListVM.getInstance().UnlockTournament();
+			}
+
 			ChangeButtonColor(MatchesButton);
 			Authentication.CheckIfLoggedIn(new MatchList());
 		}
 
 		public void NavTournamentsButton(object sender, object e)
 		{
+			TournamentListVM.getInstance().LockTournament();
+			
 			ChangeButtonColor(TournamentsButton);
 			Authentication.CheckIfLoggedIn(new TournamentList());
 		}

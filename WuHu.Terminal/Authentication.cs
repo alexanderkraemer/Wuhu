@@ -17,7 +17,7 @@ namespace WuHu.Terminal
 		private static Authentication instance;
 		private const string BASE_URL = "http://localhost:42382/";
 		private static PlayerVM player;
-		public static bool isAuthenticated;
+		public static bool isAuthenticated; // for dev
 		private static UserControl currentTab;
 
 		public static void CheckIfLoggedIn(UserControl page)

@@ -16,10 +16,22 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpGet]
 		[Route("")]
-		public IEnumerable<Statistic> GetAll()
+		public List<Serialize> GetAll()
 		{
 			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
-			return StatisticDao.FindAll();
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+
+			var retList = new List<Serialize> ();
+
+			foreach (Player p in PlayerDao.FindAll())
+			{
+				
+				var list = StatisticDao.FindAll().Where(s => { return s.PlayerID == p.ID; }).ToList();
+				
+				retList.Add(new Serialize(p, list));
+			}
+
+			return retList;
 		}
 
 		[HttpGet]
@@ -69,5 +81,17 @@ namespace WuHu.WebAPI.Controllers
 			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
 			return StatisticDao.DeleteById(id);
 		}
+	}
+
+	public class Serialize
+	{
+		public Serialize(Player p, List<Statistic> l)
+		{
+			player = p;
+			statList = l;
+		}
+
+		public Player player { get; set; }
+		public List<Statistic> statList { get; set; }
 	}
 }

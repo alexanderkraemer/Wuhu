@@ -21,7 +21,7 @@ namespace WuHu.WebAPI.Controllers
 			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
 			return TournamentDao.FindAll();
 		}
-
+		
 		[HttpGet]
 		[Route("{id}")]
 		public Tournament FindById(int id)
@@ -70,6 +70,32 @@ namespace WuHu.WebAPI.Controllers
 		{
 			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
 			return TournamentDao.DeleteById(id);
+		}
+
+		[HttpPost]
+		[Route("lock")]
+		public HttpResponseMessage Lock([FromBody]bool state)
+		{
+			if(BusinessLogic.BLTournaments.IsLocked)
+			{
+				return new HttpResponseMessage(HttpStatusCode.Conflict);
+			}
+			else
+			{
+				BusinessLogic.BLTournaments.IsLocked = true;
+				return new HttpResponseMessage(HttpStatusCode.OK);
+			}
+		}
+
+		[HttpPost]
+		[Route("unlock")]
+		public HttpResponseMessage Unlock([FromBody]bool state)
+		{
+			if (BusinessLogic.BLTournaments.IsLocked)
+			{
+				BusinessLogic.BLTournaments.IsLocked = false;
+			}
+			return new HttpResponseMessage(HttpStatusCode.OK);
 		}
 	}
 }

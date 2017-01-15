@@ -1,14 +1,18 @@
 ﻿using Newtonsoft.Json;
+using OxyPlot;
+using OxyPlot.Axes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WuHu.Domain;
+using WuHu.WebAPI.Controllers;
 
 namespace WuHu.Terminal.ViewModels
 {
@@ -20,8 +24,7 @@ namespace WuHu.Terminal.ViewModels
 		private static HomeVM instance;
 		public ObservableCollection<Tuple<int, PlayerVM>> RankList { get; set; }
 		public ObservableCollection<MatchVM> AgendaList { get; set; }
-		public ObservableCollection<StatisticVM> StatisticList { get; set; }
-		public ObservableCollection<StatisticVM> list;
+		public IEnumerable<Serialize> StatisticList { get; set; }
 		public static HomeVM getInstance()
 		{
 			if (instance == null)
@@ -35,7 +38,7 @@ namespace WuHu.Terminal.ViewModels
 		{
 			RankList = new ObservableCollection<Tuple<int, PlayerVM>>();
 			AgendaList = new ObservableCollection<MatchVM>();
-			StatisticList = new ObservableCollection<StatisticVM>();
+			StatisticList = new List<Serialize>();
 			LoadRanks();
 			LoadAgenda();
 			LoadStatistics();
@@ -70,6 +73,7 @@ namespace WuHu.Terminal.ViewModels
 			{
 				AgendaList.Add(m);
 			}
+			
 		}
 
 		private async void LoadRanks()
@@ -85,6 +89,7 @@ namespace WuHu.Terminal.ViewModels
 			ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(json);
 			var tlvm = PlayerListVM.getInstance();
 			await tlvm.LoadPlayer();
+			
 
 			foreach (var p in players)
 			{
@@ -102,28 +107,16 @@ namespace WuHu.Terminal.ViewModels
 
 		private async void LoadStatistics()
 		{
-			var list = new ObservableCollection<StatisticVM>();
-
 			string json;
 			HttpClient client = new HttpClient();
 			 
-			json = await client.GetStringAsync(BASE_URL + "api/statistics/player/101");
+			json = await client.GetStringAsync(BASE_URL + "api/statistics");
 
-			ObservableCollection<Statistic> statistics = JsonConvert.DeserializeObject<ObservableCollection<Statistic>>(json);
+			IEnumerable<Serialize> playerList = JsonConvert.DeserializeObject<List<Serialize>>(json);
 
-			foreach (var s in statistics)
-			{
-				list.Add(new StatisticVM(s));
-			}
-
-			//StatisticList = list.Where(m => { return m.Timestamp > DateTime.Today.AddDays(-30); });
-			foreach(StatisticVM s in list)
-			{
-				StatisticList.Add(s);
-			}
-
-			//StatisticList = new ObservableCollection<ObservableCollection<StatisticVM>>();
-			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StatisticList)));
+			StatisticList = playerList;
+			
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StatisticList)));
 		}
 
 		ICommand _loadRanks;

@@ -12,6 +12,7 @@ namespace WuHu.BusinessLogic
 	public class BLMatch
 	{
 		private static Random rand = new Random();
+		
 		public static ObservableCollection<Match> GenerateMatches(int numberOfMatchesToGenerate, ObservableCollection<Player> playerList, int tournamentId)
 		{
 			var retList = new ObservableCollection<Match>();

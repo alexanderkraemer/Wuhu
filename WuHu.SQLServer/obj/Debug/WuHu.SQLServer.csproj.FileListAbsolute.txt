@@ -1,13 +1,4 @@
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.csprojResolveAssemblyReference.cache
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.csprojResolveAssemblyReference.cache
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.SQLServer.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.SQLServer.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.Common.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.Domain.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.Common.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.Domain.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.pdb
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.SQLServer.dll
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.SQLServer.pdb
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.Common.dll
@@ -34,3 +25,12 @@ C:\programmieren\Wuhu\WuHu.SQLServer\bin\Debug\WuHu.Domain.pdb
 C:\programmieren\Wuhu\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.csprojResolveAssemblyReference.cache
 C:\programmieren\Wuhu\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.dll
 C:\programmieren\Wuhu\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.SQLServer.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.SQLServer.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.Common.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.Domain.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.Common.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\bin\Debug\WuHu.Domain.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.csprojResolveAssemblyReference.cache
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.pdb

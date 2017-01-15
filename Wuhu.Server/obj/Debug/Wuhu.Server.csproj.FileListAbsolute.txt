@@ -1,17 +1,5 @@
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Wuhu.Server.exe.config
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Wuhu.Server.exe.config
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.csprojResolveAssemblyReference.cache
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.csprojResolveAssemblyReference.cache
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Wuhu.Server.exe
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Wuhu.Server.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.Common.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.Domain.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.Common.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.Domain.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.exe
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.SQLServer.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.SQLServer.pdb
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.exe
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.pdb
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Wuhu.Server.exe
@@ -25,9 +13,6 @@
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 \\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Wuhu.Server.exe.config
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.exe
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.pdb
@@ -56,3 +41,16 @@ C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.SQLServer.pdb
 C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 C:\programmieren\Wuhu\Wuhu.Server\obj\Debug\Wuhu.Server.csprojResolveAssemblyReference.cache
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Wuhu.Server.exe.config
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Wuhu.Server.exe
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Wuhu.Server.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.Common.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.Domain.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.Common.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\WuHu.Domain.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.csprojResolveAssemblyReference.cache
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.exe
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\Wuhu.Server\obj\Debug\Wuhu.Server.pdb

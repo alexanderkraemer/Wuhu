@@ -8,3 +8,15 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.SQLServer.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\InitDatabase.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\InitDatabase.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.Common.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.Domain.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.SQLServer.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.Common.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.Domain.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\bin\Debug\WuHu.SQLServer.pdb
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.csprojResolveAssemblyReference.cache
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.dll
+\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.csprojResolveAssemblyReference.cache

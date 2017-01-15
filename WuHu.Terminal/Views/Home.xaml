@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WuHu.Terminal.Views"
-				 xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
-				 xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
-             mc:Ignorable="d" 
+			    xmlns:converters="clr-namespace:WuHu.Terminal.Converters"
+				 xmlns:charts="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+				 mc:Ignorable="d" 
              d:DesignHeight="360" d:DesignWidth="640">
+	<UserControl.Resources>
+		<converters:DateTimeConverter x:Key="DateConverter" />
+	</UserControl.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="1*" />
@@ -98,7 +101,7 @@
 									<TextBlock Grid.Row="0" Text="{Binding Tournament.Name, Mode=OneWay}">
 									</TextBlock>
 									<TextBlock Grid.Row="1" Text=""></TextBlock>
-									<TextBlock Grid.Row="2" Text="{Binding Tournament.Timestamp, Mode=OneWay}"></TextBlock>
+									<TextBlock Grid.Row="2" Text="{Binding Tournament.Timestamp, Mode=OneWay, Converter={StaticResource DateConverter}}"></TextBlock>
 								</Grid>
 							</Grid>
 						</DataTemplate>
@@ -106,21 +109,7 @@
 				</ListBox>
 			</Grid>
 			<Border Grid.Row="1" BorderThickness="0 1 0 0" BorderBrush="AliceBlue">
-				<DVC:Chart Name="mcChart"
-           LegendTitle="Month Rating">
-					<DVC:Chart.Series>
-						<DVC:LineSeries Title=" Monthly Count"
-            IndependentValueBinding="{Binding StatisticList.Statistic}"
-            DependentValueBinding="{Binding StatisticList.Statistic.Skill}">
-						</DVC:LineSeries>
-					</DVC:Chart.Series>
-				</DVC:Chart>
-				<!--<sfchart:Chart>
-					<sfchart:ChartArea DataContext="{Binding Source=StatisticList}">
-						<sfchart:ChartSeries DataSource="{Binding StatisticList.Statistic}" IsIndexed="False"  
-													Name="series1"  Label="Series1" BindingPathsY="Skill" BindingPathX="Timestamp" Type="Line"/>
-					</sfchart:ChartArea>
-				</sfchart:Chart> -->
+				<charts:Chart Name="SkillChart" Margin="0" Padding="0"/>
 			</Border>
 		</Grid>
 	</Grid>

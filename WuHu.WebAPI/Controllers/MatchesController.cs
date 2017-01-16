@@ -76,7 +76,6 @@ namespace WuHu.WebAPI.Controllers
 				PlayerDao.Update(v1);
 				PlayerDao.Update(v2);
 			}
-			MatchDao.Update(match);
 		}
 
 		[HttpPost]

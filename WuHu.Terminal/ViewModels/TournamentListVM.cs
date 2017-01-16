@@ -78,10 +78,10 @@ namespace WuHu.Terminal.ViewModels
 			LoadTournaments();
 			chosenPlayers = new ObservableCollection<PlayerVM>();
 			Task<ObservableCollection<Player>> task = pvm.LoadPlayer();
-			
-			App.Current.Dispatcher.Invoke(() =>
+
+			task.ContinueWith(param =>
 			{
-				task.ContinueWith(param =>
+				App.Current.Dispatcher.Invoke(() =>
 				{
 					foreach (PlayerVM p in pvm.Players)
 					{
@@ -89,9 +89,9 @@ namespace WuHu.Terminal.ViewModels
 						originalPlayers.Add(p);
 					}
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Players)));
+
 				});
 			});
-			
 		}
 	
 		public async Task<ObservableCollection<Tournament>> LoadTournaments()

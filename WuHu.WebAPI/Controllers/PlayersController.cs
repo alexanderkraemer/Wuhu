@@ -15,9 +15,11 @@ using System.Xml.Linq;
 using WuHu.BusinessLogic;
 using WuHu.Common;
 using WuHu.Domain;
+using System.Web.Http.Cors;
 
 namespace WuHu.WebAPI.Controllers
 {
+	[EnableCors("*", " application/json", "*")]
 	[RoutePrefix("api/players")]
 	public class PlayersController : ApiController
 	{

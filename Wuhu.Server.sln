@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WuHu.BusinessLogic", "WuHu.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitDatabase", "InitDatabase\InitDatabase.csproj", "{DF452363-C535-4368-B025-1DEFF1BC6294}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WuHu.Web", "WuHu.Web\WuHu.Web.csproj", "{42E2A5D3-444C-4775-8667-A515872C6F71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WuHu.Web_old", "WuHu.Web\WuHu.Web_old.csproj", "{42E2A5D3-444C-4775-8667-A515872C6F71}"
 EndProject
 Global
 	GlobalSection(Performance) = preSolution

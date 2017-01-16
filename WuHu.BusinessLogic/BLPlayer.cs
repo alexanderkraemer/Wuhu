@@ -25,7 +25,7 @@ namespace WuHu.BusinessLogic
 
 			foreach (Player p in pList)
 			{
-				p.Skills = p.Skills / 100 * 98;
+				p.Skills = (int)(p.Skills *  0.98);
 				pDao.Update(p);
 			}
 		}

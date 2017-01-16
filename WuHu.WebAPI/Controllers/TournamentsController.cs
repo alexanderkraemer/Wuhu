@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WuHu.Common;
 using WuHu.Domain;
 
 namespace WuHu.WebAPI.Controllers
 {
+	[EnableCors("*", "*", "*")]
 	[RoutePrefix("api/tournaments")]
     public class TournamentsController : ApiController
     {

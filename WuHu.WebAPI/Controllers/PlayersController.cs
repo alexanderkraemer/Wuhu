@@ -19,7 +19,7 @@ using System.Web.Http.Cors;
 
 namespace WuHu.WebAPI.Controllers
 {
-	[EnableCors("*", " application/json", "*")]
+	[EnableCors("*", "*", "*")]
 	[RoutePrefix("api/players")]
 	public class PlayersController : ApiController
 	{

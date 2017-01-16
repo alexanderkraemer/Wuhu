@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WuHu.Common;
 using WuHu.Domain;
 
 namespace WuHu.WebAPI.Controllers
 {
-	 [RoutePrefix("api/statistics")]
+	[EnableCors("*", "*", "*")]
+	[RoutePrefix("api/statistics")]
     public class StatisticsController : ApiController
     {
 		private IDatabase database = DalFactory.CreateDatabase();

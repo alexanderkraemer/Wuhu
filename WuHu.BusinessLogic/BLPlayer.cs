@@ -18,8 +18,12 @@ namespace WuHu.BusinessLogic
 
 			List<Player> pList = pDao.FindAll().Where(p =>
 			{
-				DateTime maxdate = sDao.FindByPlayer(p.ID).Max(s => s.Timestamp);
-
+				var statList = sDao.FindByPlayer(p.ID);
+				if (!statList.Any())
+				{
+					return false;
+				}
+				var maxdate = statList.Max(s => s.Timestamp);
 				return DateTime.Now.AddDays(-60) < maxdate;
 			}).ToList();
 

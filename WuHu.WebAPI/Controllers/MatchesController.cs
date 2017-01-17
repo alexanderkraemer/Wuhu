@@ -23,7 +23,14 @@ namespace WuHu.WebAPI.Controllers
 		public IEnumerable<Match> GetAll()
 		{
 			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
-			return MatchDao.FindAll();
+			var list = MatchDao.FindAll();
+			List<Match> listMa = new List<Match>();
+
+			for(int i = 0; i < 50; ++i)
+			{
+				listMa.Add(list.ElementAt(i));
+			}
+			return listMa;
 		}
 
 		[HttpGet]

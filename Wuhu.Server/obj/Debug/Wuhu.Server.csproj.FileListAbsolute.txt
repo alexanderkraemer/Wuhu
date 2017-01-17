@@ -34,10 +34,8 @@ C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Wuhu.Server.pdb
 C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.Common.dll
 C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.Domain.dll
-C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.SQLServer.dll
 C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.Common.pdb
 C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.Domain.pdb
-C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\WuHu.SQLServer.pdb
 C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 C:\programmieren\Wuhu\Wuhu.Server\obj\Debug\Wuhu.Server.csprojResolveAssemblyReference.cache

@@ -34,3 +34,5 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.csprojResolveAssemblyReference.cache
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.dll
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.pdb
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.Common.pdb

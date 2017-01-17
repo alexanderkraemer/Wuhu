@@ -20,3 +20,14 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.dll
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\InitDatabase\obj\Debug\InitDatabase.csprojResolveAssemblyReference.cache
+C:\programmieren\Wuhu\InitDatabase\bin\Debug\InitDatabase.dll
+C:\programmieren\Wuhu\InitDatabase\bin\Debug\InitDatabase.pdb
+C:\programmieren\Wuhu\InitDatabase\bin\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\InitDatabase\bin\Debug\WuHu.Domain.dll
+C:\programmieren\Wuhu\InitDatabase\bin\Debug\WuHu.SQLServer.dll
+C:\programmieren\Wuhu\InitDatabase\bin\Debug\WuHu.Common.pdb
+C:\programmieren\Wuhu\InitDatabase\bin\Debug\WuHu.Domain.pdb
+C:\programmieren\Wuhu\InitDatabase\bin\Debug\WuHu.SQLServer.pdb
+C:\programmieren\Wuhu\InitDatabase\obj\Debug\InitDatabase.csprojResolveAssemblyReference.cache
+C:\programmieren\Wuhu\InitDatabase\obj\Debug\InitDatabase.dll
+C:\programmieren\Wuhu\InitDatabase\obj\Debug\InitDatabase.pdb

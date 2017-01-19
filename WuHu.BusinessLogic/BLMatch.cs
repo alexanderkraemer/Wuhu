@@ -101,7 +101,7 @@ namespace WuHu.BusinessLogic
 			{
 				p4 = orderedByDistancelist.ElementAt(NextIndex(rand.NextDouble(), maxIndex));
 			}
-			return new Match(p1.ID, p2.ID, p3.ID, p4.ID, tournamentId);
+			return new Match(p1.ID, p2.ID, p3.ID, p4.ID, tournamentId, false);
 		}
 
 		private static int NextIndex(double randDouble, int maxIndex)

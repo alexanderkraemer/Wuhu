@@ -94,19 +94,16 @@ namespace WuHu.SQLServer
 			}
 		}
 
-		public Tournament FindByDay(DateTime day)
+		public IList<Tournament> FindByDay(DateTime day)
 		{
 			using (DbCommand command = CreateFindByDayCommand(day))
 			using (IDataReader reader = database.ExecuteReader(command))
 			{
-				if (reader.Read())
-				{
-					return new Tournament((int)reader["id"], (string)reader["name"], (DateTime)reader["timestamp"]);
-				}
-				else
-				{
-					return null;
-				}
+				List<Tournament> list = new List<Tournament>();
+				while(reader.Read())
+					list.Add(new Tournament((int)reader["id"], (string)reader["name"], (DateTime)reader["timestamp"]));
+
+				return list;
 			}
 		}
 

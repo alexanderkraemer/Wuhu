@@ -45,13 +45,15 @@ namespace WuHu.Domain
 		public int? ResultPointsPlayer1 { get; set; }
 		[DataMember]
 		public int? ResultPointsPlayer2 { get; set; }
+		[DataMember]
+		public bool Finished { get; set; }
 
 		public Match()
 		{
 
 		}
 
-		public Match(int ID, int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int TournamentId)
+		public Match(int ID, int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int TournamentId, bool Finished)
 		{
 			this.ID = ID;
 			this.Team1Player1 = Team1Player1;
@@ -61,10 +63,11 @@ namespace WuHu.Domain
 			this.TournamentId = TournamentId;
 			this.ResultPointsPlayer1 = null;
 			this.ResultPointsPlayer2 = null;
+			this.Finished = Finished;
 		}
 
 		public Match(int ID, int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int TournamentId,
-				int? ResultPointsPlayer1, int? ResultPointsPlayer2)
+				int? ResultPointsPlayer1, int? ResultPointsPlayer2, bool Finished)
 		{
 			this.ID = ID;
 			this.Team1Player1 = Team1Player1;
@@ -74,10 +77,11 @@ namespace WuHu.Domain
 			this.TournamentId = TournamentId;
 			this.ResultPointsPlayer1 = ResultPointsPlayer1;
 			this.ResultPointsPlayer2 = ResultPointsPlayer2;
+			this.Finished = Finished;
 		}
 
 		public Match(int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int TournamentId,
-				int? ResultPointsPlayer1, int? ResultPointsPlayer2)
+				int? ResultPointsPlayer1, int? ResultPointsPlayer2, bool Finished)
 		{
 			this.Team1Player1 = Team1Player1;
 			this.Team1Player2 = Team1Player2;
@@ -86,9 +90,10 @@ namespace WuHu.Domain
 			this.TournamentId = TournamentId;
 			this.ResultPointsPlayer1 = ResultPointsPlayer1;
 			this.ResultPointsPlayer2 = ResultPointsPlayer2;
+			this.Finished = Finished;
 		}
 
-		public Match(int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int TournamentId)
+		public Match(int Team1Player1, int Team1Player2, int Team2Player1, int Team2Player2, int TournamentId, bool Finished)
 		{
 			this.Team1Player1 = Team1Player1;
 			this.Team1Player2 = Team1Player2;
@@ -97,6 +102,7 @@ namespace WuHu.Domain
 			this.TournamentId = TournamentId;
 			this.ResultPointsPlayer1 = null;
 			this.ResultPointsPlayer2 = null;
+			this.Finished = Finished;
 		}
 	}
 }

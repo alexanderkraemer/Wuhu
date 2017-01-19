@@ -38,6 +38,7 @@
 				<RowDefinition Height="1*" />
 				<RowDefinition Height="1*" />
 				<RowDefinition Height="1*" />
+				<RowDefinition Height="1*" />
 				<RowDefinition Height="5*" />
 			</Grid.RowDefinitions>
 			<Grid Grid.Row="0" VerticalAlignment="Center">
@@ -92,7 +93,15 @@
 				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Result Team 2:</Label>
 				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding ResultPointsPlayer2}"></TextBlock>
 			</Grid>
-			<Grid Grid.Row="5" VerticalAlignment="Top">
+			<Grid Grid.Row="5" VerticalAlignment="Center">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="2*" />
+					<ColumnDefinition Width="4*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" FontSize="12" VerticalAlignment="Center">Game ended:</Label>
+				<TextBlock Grid.Column="1" FontSize="12" Margin="10" Text="{Binding Finished}"></TextBlock>
+			</Grid>
+			<Grid Grid.Row="6" VerticalAlignment="Top">
 				<StackPanel>
 					<Button Grid.Row="0" Margin="5 40 5 5"  Click="EditMatchButtonClick"  IsEnabled="{Binding isAdmin, Mode=OneWay}">Edit</Button>
 				</StackPanel>

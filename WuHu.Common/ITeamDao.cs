@@ -7,7 +7,7 @@ namespace WuHu.Common
 	public interface ITournamentDao
 	{
 		Tournament FindById(int id);
-		Tournament FindByDay(DateTime day);
+		IList<Tournament> FindByDay(DateTime day);
 		IList<Tournament> FindAll();
 		bool DeleteById(int id);
 		bool DeleteAll();

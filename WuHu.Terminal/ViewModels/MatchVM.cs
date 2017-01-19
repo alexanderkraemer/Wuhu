@@ -26,8 +26,6 @@ namespace WuHu.Terminal.ViewModels
 		private PlayerVM team2Player2;
 		private TournamentVM tournament;
 
-		private TournamentListVM tListInstance;
-
 		private ObservableCollection<PlayerVM> playerList;
 
 		private ObservableCollection<TournamentVM> tournamentList;
@@ -63,15 +61,7 @@ namespace WuHu.Terminal.ViewModels
 			{
 				playerList.Add(p);
 			}
-			TournamentListVM tlvm;
-			if (tListInstance == null)
-			{
-				tlvm = TournamentListVM.getInstance();
-			}
-			else
-			{
-				tlvm = tListInstance;
-			}
+			var tlvm = TournamentListVM.getInstance();
 
 			tournamentList = new ObservableCollection<TournamentVM>(tlvm.
 				Tournaments.Where(tourn => tourn.Timestamp >= DateTime.Today || tourn.ID == m.TournamentId));
@@ -84,6 +74,7 @@ namespace WuHu.Terminal.ViewModels
 			Team1Player2.ID = m.Team1Player2;
 			Team2Player1.ID = m.Team2Player1;
 			Team2Player2.ID = m.Team2Player2;
+			Finished = m.Finished;
 			Tournament.ID = m.TournamentId;
 			ResultPointsPlayer1 = m.ResultPointsPlayer1;
 			ResultPointsPlayer2 = m.ResultPointsPlayer2;
@@ -92,17 +83,8 @@ namespace WuHu.Terminal.ViewModels
 		private async void getData(Match m)
 		{
 			PlayerListVM plvm = PlayerListVM.getInstance();
-			TournamentListVM tlvm;
-			
-			if (tListInstance == null)
-			{
-				tlvm = TournamentListVM.getInstance();
-			}
-			else
-			{
-				tlvm = tListInstance;
-			}
-			
+			var tlvm = TournamentListVM.getInstance();
+
 
 			tournament = tlvm.Tournaments.Where(t =>
 			{
@@ -200,6 +182,12 @@ namespace WuHu.Terminal.ViewModels
 		{
 			get { return currentMatch.ResultPointsPlayer2; }
 			set { currentMatch.ResultPointsPlayer2 = value; }
+		}
+
+		public bool Finished
+		{
+			get { return currentMatch.Finished; }
+			set { currentMatch.Finished = value; }
 		}
 
 		public PlayerVM Team1Player1

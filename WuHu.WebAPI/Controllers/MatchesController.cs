@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WuHu.BusinessLogic;
@@ -12,6 +13,21 @@ using WuHu.Domain;
 
 namespace WuHu.WebAPI.Controllers
 {
+	[DataContract]
+	public class MatchPaginateClass
+	{
+		public MatchPaginateClass(int nr, IEnumerable<Match> m)
+		{
+			this.numberOfMatches = nr;
+			this.matchList = m;
+		}
+
+		[DataMember]
+		private int numberOfMatches;
+		[DataMember]
+		private IEnumerable<Match> matchList;
+	}
+
 	[EnableCors("*", "*", "*")]
 	[RoutePrefix("api/matches")]
 	public class MatchesController : ApiController
@@ -20,17 +36,27 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpGet]
 		[Route("")]
-		public IEnumerable<Match> GetAll()
+		public MatchPaginateClass GetAll()
 		{
 			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 			var list = MatchDao.FindAll();
-			List<Match> listMa = new List<Match>();
+			
+			MatchPaginateClass mpc = new MatchPaginateClass(list.Count, list);
+			return mpc;
+		}
 
-			for(int i = 0; i < 50; ++i)
-			{
-				listMa.Add(list.ElementAt(i));
-			}
-			return listMa;
+		[HttpGet]
+		[Route("page/{page}/{numberPerPage}")]
+		public MatchPaginateClass GetAllByPage(int page, int numberPerPage)
+		{
+			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+			var list = MatchDao.FindAll();
+			var remain = list.Count - (page - 1) * numberPerPage;
+			var count = remain >= numberPerPage ? numberPerPage : remain;
+
+			var newlist = list.ToList().GetRange(((page - 1) * numberPerPage), count);
+			MatchPaginateClass mpc = new MatchPaginateClass(list.Count, newlist);
+			return mpc;
 		}
 
 		[HttpGet]
@@ -48,16 +74,14 @@ namespace WuHu.WebAPI.Controllers
 			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-			Player w1;
-			Player w2;
-			Player v1;
-			Player v2;
 
-			Match m = MatchDao.FindById(match.ID);
-
-			if(match.ResultPointsPlayer1 != null && match.ResultPointsPlayer2 != null 
-					&& (match.ResultPointsPlayer1 < 10 || match.ResultPointsPlayer2 < 10))
+			if (match.Finished)
 			{
+				Player w1;
+				Player w2;
+				Player v1;
+				Player v2;
+
 				if (match.ResultPointsPlayer1 == 10)
 				{
 					w1 = PlayerDao.FindById(match.Team1Player1);
@@ -72,7 +96,6 @@ namespace WuHu.WebAPI.Controllers
 					v1 = PlayerDao.FindById(match.Team1Player1);
 					v2 = PlayerDao.FindById(match.Team1Player2);
 				}
-				
 				BLPlayer.UpdateElo(w1, w2, v1, v2);
 
 				BLStatistic.Insert(w1.ID, w1.Skills);
@@ -85,6 +108,7 @@ namespace WuHu.WebAPI.Controllers
 				PlayerDao.Update(v1);
 				PlayerDao.Update(v2);
 			}
+			MatchDao.Update(match);
 		}
 
 		[HttpPost]
@@ -102,7 +126,7 @@ namespace WuHu.WebAPI.Controllers
 			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 			ObservableCollection<Match> matchList;
 			matchList = BLMatch.GenerateMatches(MatchObj.NumberOfMatches, MatchObj.chosenPlayers, MatchObj.tournamentId);
-			if(BLMatch.insertMatches(matchList))
+			if (BLMatch.insertMatches(matchList))
 				return matchList;
 
 			return null;

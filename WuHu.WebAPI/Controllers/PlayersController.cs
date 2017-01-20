@@ -25,7 +25,7 @@ namespace WuHu.WebAPI.Controllers
 		[Route("")]
 		public HttpResponseMessage GetAll()
 		{
-			if(Authentication.getInstance().isAuthenticateWithHeader(Request))
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 				return Request.CreateResponse<IList<Player>>(HttpStatusCode.OK, PlayerDao.FindAll());
@@ -34,6 +34,14 @@ namespace WuHu.WebAPI.Controllers
 			{
 				return Request.CreateResponse(HttpStatusCode.Forbidden);
 			}
+		}
+
+		[HttpGet]
+		[Route("ranks")]
+		public HttpResponseMessage GetRanks()
+		{
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			return Request.CreateResponse<IList<Player>>(PlayerDao.FindAll());
 		}
 
 

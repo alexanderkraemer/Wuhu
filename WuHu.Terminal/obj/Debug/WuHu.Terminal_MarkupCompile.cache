@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\
+C:\programmieren\Wuhu\WuHu.Terminal\obj\Debug\
 WuHu.Terminal
 none
 false
 DEBUG;TRACE
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\App.xaml
+C:\programmieren\Wuhu\WuHu.Terminal\App.xaml
 10690793452
 
 261941443510
-83-679045136
+831836750759
 MainWindow.xaml;Views\Login.xaml;Views\Matches\MatchEdit.xaml;Views\Matches\MatchList.xaml;Views\Home.xaml;Views\Player\PlayerCreate.xaml;Views\Player\PlayerEdit.xaml;Views\Player\PlayerList.xaml;Views\Tournaments\TournamentCreate.xaml;Views\Tournaments\TournamentList.xaml;
 
 False

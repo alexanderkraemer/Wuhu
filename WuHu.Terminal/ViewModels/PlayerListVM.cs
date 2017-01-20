@@ -51,7 +51,7 @@ namespace WuHu.Terminal.ViewModels
 		{
 			string json;
 			HttpClient client = new HttpClient();
-			json = await client.GetStringAsync(BASE_URL + "api/players");
+			json = await client.GetStringAsync(BASE_URL + "api/players/ranks");
 			
 			ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(json);
 			this.Players.Clear();

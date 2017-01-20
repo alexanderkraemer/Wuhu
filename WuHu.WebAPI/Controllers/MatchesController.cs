@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WuHu.BusinessLogic;
 using WuHu.Common;
 using WuHu.Domain;
@@ -41,13 +42,31 @@ namespace WuHu.WebAPI.Controllers
 				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 				var list = MatchDao.FindAll();
 
-				MatchPaginateClass mpc = new MatchPaginateClass(list.Count, list);
-				return Request.CreateResponse<MatchPaginateClass>(HttpStatusCode.OK, mpc);
+				// MatchPaginateClass mpc = new MatchPaginateClass(list.Count, list);
+				return Request.CreateResponse<IList<Match>>(HttpStatusCode.OK, list);
 			}
 			else
 			{
 				return Request.CreateResponse(HttpStatusCode.Forbidden);
 			}
+		}
+
+		[HttpGet]
+		[Route("agenda")]
+		public HttpResponseMessage GetAgenda()
+		{
+			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+			var list = MatchDao.FindAll();
+
+			var listMatchIEn = list.Where(m =>
+			{
+				ITournamentDao to = DalFactory.CreateTournamentDao(database);
+				var t = to.FindById(m.TournamentId);
+				return !m.Finished && t.Timestamp >= DateTime.Today;
+			});
+
+			// MatchPaginateClass mpc = new MatchPaginateClass(list.Count, list);
+			return Request.CreateResponse<IEnumerable<Match>>(HttpStatusCode.OK, listMatchIEn);
 		}
 
 		[HttpGet]

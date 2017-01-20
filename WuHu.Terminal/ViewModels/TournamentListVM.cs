@@ -98,6 +98,9 @@ namespace WuHu.Terminal.ViewModels
 		{
 			string json;
 			HttpClient client = new HttpClient();
+
+			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue
+				("Authorization", Authentication.token.Token.Token);
 			json = await client.GetStringAsync(BASE_URL + "api/tournaments");
 
 			ObservableCollection<Tournament> tournaments = JsonConvert.DeserializeObject<ObservableCollection<Tournament>>(json);
@@ -272,7 +275,8 @@ namespace WuHu.Terminal.ViewModels
 			HttpClient client = new HttpClient();
 
 			string json = JsonConvert.SerializeObject(true);
-
+			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue
+				("Authorization", Authentication.token.Token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/tournaments/lock", httpContent);
 			if (response.IsSuccessStatusCode)
@@ -292,7 +296,8 @@ namespace WuHu.Terminal.ViewModels
 			HttpClient client = new HttpClient();
 
 			string json = JsonConvert.SerializeObject(false);
-
+			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue
+				("Authorization", Authentication.token.Token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/tournaments/unlock", httpContent);
 			if (response.IsSuccessStatusCode)
@@ -311,7 +316,8 @@ namespace WuHu.Terminal.ViewModels
 		{
 			HttpClient client = new HttpClient();
 			string json = JsonConvert.SerializeObject(matchObj);
-
+			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue
+				("Authorization", Authentication.token.Token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/matches/generate", httpContent);
 

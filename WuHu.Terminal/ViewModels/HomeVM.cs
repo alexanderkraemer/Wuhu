@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -52,8 +53,9 @@ namespace WuHu.Terminal.ViewModels
 
 			string json;
 			HttpClient client = new HttpClient();
-			json = await client.GetStringAsync(BASE_URL + "api/matches");
-
+			json = await client.GetStringAsync(BASE_URL + "api/matches/agenda");
+			var val = Newtonsoft.Json.JsonConvert.SerializeObject(Authentication.token.Token.Token);
+			new HttpRequestMessage().Headers.Add("Authorization", val);
 			ObservableCollection<Match> matches = JsonConvert.DeserializeObject<ObservableCollection<Match>>(json);
 			var tlvm = TournamentListVM.getInstance();
 			await tlvm.LoadTournaments();
@@ -84,8 +86,8 @@ namespace WuHu.Terminal.ViewModels
 
 			string json;
 			HttpClient client = new HttpClient();
-			json = await client.GetStringAsync(BASE_URL + "api/players");
-
+			json = await client.GetStringAsync(BASE_URL + "api/players/ranks");
+			
 			ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(json);
 			var tlvm = PlayerListVM.getInstance();
 			await tlvm.LoadPlayer();
@@ -109,7 +111,7 @@ namespace WuHu.Terminal.ViewModels
 		{
 			string json;
 			HttpClient client = new HttpClient();
-			 
+
 			json = await client.GetStringAsync(BASE_URL + "api/statistics");
 
 			IEnumerable<Serialize> playerList = JsonConvert.DeserializeObject<List<Serialize>>(json);

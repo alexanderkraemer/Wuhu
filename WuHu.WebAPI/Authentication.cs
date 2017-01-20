@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.Serialization;
 using System.Web;
 
@@ -40,6 +41,7 @@ namespace WuHu.WebAPI
 		}
 
 		private static Random random = new Random();
+
 		private static string RandomString(int length)
 		{
 			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -66,8 +68,6 @@ namespace WuHu.WebAPI
 
 		public bool isAuthenticateWithHeader(HttpRequestMessage obj)
 		{
-			System.Net.Http.Headers.HttpRequestHeaders headers = obj.Headers;
-
 			var header = obj.Headers;
 			TokenComb token = new TokenComb();
 			if (header.Contains("Authorization"))
@@ -75,6 +75,18 @@ namespace WuHu.WebAPI
 				string json = header.GetValues("Authorization").First();
 
 				token = Newtonsoft.Json.JsonConvert.DeserializeObject<TokenComb>(json);
+				/*if (tokenObj is TokenComb)
+				{
+					token = (TokenComb)tokenObj;
+				}
+				else if (tokenObj is string)
+				{
+					var o = new TokenComb();
+					o.Token = TokenObj;
+					o.Nickname = 
+					token = n;
+				}
+				*/
 			}
 			foreach (var o in TokenList)
 			{

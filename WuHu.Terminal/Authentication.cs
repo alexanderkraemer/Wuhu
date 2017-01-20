@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using WuHu.Domain;
 using WuHu.Terminal.ViewModels;
 using WuHu.Terminal.Views;
+using WuHu.WebAPI.Controllers;
 
 namespace WuHu.Terminal
 {
@@ -17,6 +18,7 @@ namespace WuHu.Terminal
 		private static Authentication instance;
 		private const string BASE_URL = "http://localhost:42382/";
 		private static PlayerVM player;
+		public static ResponseObject token;
 		public static bool isAuthenticated; // for dev
 		private static UserControl currentTab;
 
@@ -74,6 +76,8 @@ namespace WuHu.Terminal
 
 			if(response.IsSuccessStatusCode)
 			{
+				string val = await response.Content.ReadAsStringAsync();
+				token = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseObject>(val);
 				isAuthenticated = true;
 				GetPlayerData(nickname);
 				CheckIfLoggedIn(currentTab);

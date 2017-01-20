@@ -10,7 +10,6 @@ using WuHu.Domain;
 
 namespace WuHu.WebAPI.Controllers
 {
-	[EnableCors("*", "*", "*")]
 	[RoutePrefix("api/statistics")]
     public class StatisticsController : ApiController
     {
@@ -20,27 +19,27 @@ namespace WuHu.WebAPI.Controllers
 		[Route("")]
 		public HttpResponseMessage GetAll()
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
+			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+
+			var retList = new List<Serialize>();
+
+			foreach (Player p in PlayerDao.FindAll())
 			{
-				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
-				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-				var retList = new List<Serialize>();
+				var list = StatisticDao.FindAll().Where(s => { return s.PlayerID == p.ID; }).ToList();
 
-				foreach (Player p in PlayerDao.FindAll())
-				{
-
-					var list = StatisticDao.FindAll().Where(s => { return s.PlayerID == p.ID; }).ToList();
-
-					retList.Add(new Serialize(p, list));
-				}
-
-				return Request.CreateResponse<List<Serialize>>(HttpStatusCode.OK, retList);
+				retList.Add(new Serialize(p, list));
 			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+
+			return Request.CreateResponse<List<Serialize>>(HttpStatusCode.OK, retList);
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpGet]

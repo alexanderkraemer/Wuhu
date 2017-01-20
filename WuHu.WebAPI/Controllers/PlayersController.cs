@@ -9,10 +9,10 @@ using System.Web.Http;
 using WuHu.BusinessLogic;
 using WuHu.Common;
 using WuHu.Domain;
-using System.Web.Http.Cors;
 using System.Web;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Runtime.Serialization;
 
 namespace WuHu.WebAPI.Controllers
 {
@@ -23,11 +23,17 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpGet]
 		[Route("")]
-		public IEnumerable<Player> GetAll()
+		public HttpResponseMessage GetAll()
 		{
-			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-
-			return PlayerDao.FindAll();
+			if(Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+				return Request.CreateResponse<IList<Player>>(HttpStatusCode.Created, PlayerDao.FindAll());
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 
@@ -46,14 +52,14 @@ namespace WuHu.WebAPI.Controllers
 
 			if (!File.Exists(absolutePath + player.PhotoPath) || player == null)
 			{
-				b = (File.ReadAllBytes(absolutePath + "default.png")); 
+				b = (File.ReadAllBytes(absolutePath + "default.png"));
 			}
 			else
 			{
 				absolutePath = absolutePath + player.PhotoPath;
-				 b = (File.ReadAllBytes(absolutePath));
+				b = (File.ReadAllBytes(absolutePath));
 			}
-			
+
 			response.Content = new ByteArrayContent(b);
 			response.Content.LoadIntoBufferAsync(b.Length).Wait();
 			response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
@@ -62,56 +68,82 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpGet]
 		[Route("byday/{day}")]
-		public IEnumerable<Player> GetPlayerByDay (DateTime day)
+		public HttpResponseMessage GetPlayerByDay (DateTime day)
 		{
-			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-			return BLPlayer.GetPlayerByDay(day, PlayerDao.FindAll());
+				return Request.CreateResponse<IEnumerable<Player>>(HttpStatusCode.OK,
+					BLPlayer.GetPlayerByDay(day, PlayerDao.FindAll()));
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpGet]
 		[Route("{id}")]
-		public Player FindById(int id)
+		public HttpResponseMessage FindById(int id)
 		{
-			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-			return PlayerDao.FindById(id);
+				return Request.CreateResponse<Player>(HttpStatusCode.OK,
+					PlayerDao.FindById(id));
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpPut]
 		[Route("{playerId}")]
 		public void Update([FromBody]Player player, int playerId)
 		{
-			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-			Player p = new Player(playerId, player.isAdmin, player.FirstName, player.LastName,
-				player.Nickname, player.Skills, player.PhotoPath, player.Password, player.isMonday,
-				player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday);
-			PlayerDao.Update(p);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+				Player p = new Player(playerId, player.isAdmin, player.FirstName, player.LastName,
+					player.Nickname, player.Skills, player.PhotoPath, player.Password, player.isMonday,
+					player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday);
+				PlayerDao.Update(p);
+			}
 		}
 
 		[HttpPost]
 		[Route("")]
 		public HttpResponseMessage Insert([FromBody]Player player)
 		{
-			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-			player.Password = BLAuthentication.Hash(player.Password);
-
-			int id = PlayerDao.Insert(player);
-			if (id == -1)
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
-				return new HttpResponseMessage(HttpStatusCode.Conflict);
+				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+				player.Password = BLAuthentication.Hash(player.Password);
+
+				int id = PlayerDao.Insert(player);
+				if (id == -1)
+				{
+					return new HttpResponseMessage(HttpStatusCode.Conflict);
+				}
+				else
+				{
+					return new HttpResponseMessage(HttpStatusCode.Created);
+				}
 			}
 			else
 			{
-				return new HttpResponseMessage(HttpStatusCode.Created);
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
 			}
-
 		}
 
 		[HttpPost]
 		[Route("auth")]
 		public HttpResponseMessage Authenticate([FromBody]AuthObj obj)
 		{
+
 			bool isAuthenticated = BLPlayer.Authenticate(obj);
 
 			if (!isAuthenticated)
@@ -120,32 +152,51 @@ namespace WuHu.WebAPI.Controllers
 			}
 			else
 			{
-				return new HttpResponseMessage(HttpStatusCode.OK);
-			}
+				IDatabase db = DalFactory.CreateDatabase();
+				IPlayerDao dao = DalFactory.CreatePlayerDao(db);
 
+
+
+				var player = dao.FindByNickname(obj.Nickname);
+
+				var token = Authentication.getInstance().newAuthentication(obj.Nickname);
+
+				ResponseObject r = new ResponseObject(token, player);
+
+				return Request.CreateResponse<ResponseObject>(HttpStatusCode.Created, r);
+				//return new HttpResponseMessage(HttpStatusCode.OK);
+			}
 		}
 
 		[HttpPost]
 		[Route("photo/{nickname}")]
 		public HttpResponseMessage uploadPhoto(string nickname)
 		{
-			var httpRequest = HttpContext.Current.Request;
-			if (httpRequest.Files.Count < 1)
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
-				return Request.CreateResponse(HttpStatusCode.BadRequest);
-			}
+				var httpRequest = HttpContext.Current.Request;
+				if (httpRequest.Files.Count < 1)
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest);
+				}
 
-			foreach (string file in httpRequest.Files)
+				foreach (string file in httpRequest.Files)
+				{
+					var postedFile = httpRequest.Files[file];
+					string absolutePath = ConfigurationManager.AppSettings["ImageFolder"].ToString() + "\\";
+
+					var filePath = HttpContext.Current.Server.MapPath(absolutePath + nickname);
+					postedFile.SaveAs(filePath);
+					// NOTE: To store in memory use postedFile.InputStream
+				}
+
+				return Request.CreateResponse(HttpStatusCode.Created);
+			}
+			else
 			{
-				var postedFile = httpRequest.Files[file];
-				string absolutePath = ConfigurationManager.AppSettings["ImageFolder"].ToString() + "\\";
-
-				var filePath = HttpContext.Current.Server.MapPath(absolutePath + nickname);
-				postedFile.SaveAs(filePath);
-				// NOTE: To store in memory use postedFile.InputStream
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
 			}
-
-			return Request.CreateResponse(HttpStatusCode.Created);
+			
 		}
 
 /*
@@ -170,20 +221,51 @@ namespace WuHu.WebAPI.Controllers
 */
 		[HttpGet]
 		[Route("nickname/{nickname}")]
-		public Player FindByNickname(string nickname)
+		public HttpResponseMessage FindByNickname(string nickname)
 		{
-			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-			return PlayerDao.FindByNickname(nickname);
+				return Request.CreateResponse<Player>(HttpStatusCode.OK,
+					PlayerDao.FindByNickname(nickname));
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpDelete]
 		[Route("{id}")]
-		public bool DeleteById(int id)
+		public HttpResponseMessage DeleteById(int id)
 		{
-			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-			return PlayerDao.DeleteById(id);
+				return Request.CreateResponse<bool>(HttpStatusCode.OK,
+					PlayerDao.DeleteById(id));
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			}
 		}
+	}
+
+	[DataContract]
+	public class ResponseObject
+	{
+		public ResponseObject(TokenComb token, Player player)
+		{
+			Token = token;
+			Player = player;
+		}
+
+		[DataMember]
+		public TokenComb Token { get; set; }
+		[DataMember]
+		public Player Player { get; set; }
 	}
 }

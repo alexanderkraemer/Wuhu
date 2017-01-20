@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using WuHu.BusinessLogic;
 using WuHu.Common;
 using WuHu.Domain;
@@ -28,7 +27,6 @@ namespace WuHu.WebAPI.Controllers
 		private IEnumerable<Match> matchList;
 	}
 
-	[EnableCors("*", "*", "*")]
 	[RoutePrefix("api/matches")]
 	public class MatchesController : ApiController
 	{

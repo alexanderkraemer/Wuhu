@@ -61,15 +61,15 @@ namespace WuHu.WebAPI.Controllers
 		[Route("player/{player_id}")]
 		public HttpResponseMessage FindByPlayer(int player_id)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
 				return Request.CreateResponse<IList<Statistic>>(HttpStatusCode.OK, StatisticDao.FindByPlayer(player_id));
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpGet]

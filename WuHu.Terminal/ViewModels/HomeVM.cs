@@ -54,8 +54,8 @@ namespace WuHu.Terminal.ViewModels
 			string json;
 			HttpClient client = new HttpClient();
 			json = await client.GetStringAsync(BASE_URL + "api/matches/agenda");
-			var val = Newtonsoft.Json.JsonConvert.SerializeObject(Authentication.token.Token.Token);
-			new HttpRequestMessage().Headers.Add("Authorization", val);
+			
+
 			ObservableCollection<Match> matches = JsonConvert.DeserializeObject<ObservableCollection<Match>>(json);
 			var tlvm = TournamentListVM.getInstance();
 			await tlvm.LoadTournaments();

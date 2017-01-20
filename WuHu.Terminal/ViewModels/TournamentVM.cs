@@ -71,8 +71,7 @@ namespace WuHu.Terminal.ViewModels
 
 			HttpClient client = new HttpClient();
 			string json = JsonConvert.SerializeObject(currentTournament);
-			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue
-				("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/tournaments/", httpContent);
 		
@@ -99,9 +98,9 @@ namespace WuHu.Terminal.ViewModels
 		private async void Cancel()
 		{
 			HttpClient client = new HttpClient();
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			string json = await client.GetStringAsync(BASE_URL + "api/tournaments/" + currentTournament.ID);
-			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue
-				("Authorization", Authentication.token.Token.Token);
+
 			Tournament tournament = JsonConvert.DeserializeObject<Tournament>(json);
 			currentTournament = tournament;
 			MainWindow.main.Content = new TournamentList();

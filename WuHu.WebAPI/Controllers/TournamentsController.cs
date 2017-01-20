@@ -65,14 +65,24 @@ namespace WuHu.WebAPI.Controllers
 		
 		[HttpPut]
 		[Route("{id}")]
-		public void Update([FromBody]Tournament team, int id)
+		public HttpResponseMessage Update([FromBody]Tournament team, int id)
 		{
 			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
 				ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
 				Tournament t = new Tournament(id, team.Name, team.Timestamp);
-				TournamentDao.Update(t);
+				var tx = TournamentDao.FindByDay(t.Timestamp);
+				if (tx.Count > 1 && tx.Any(x => x.ID == t.ID))
+				{
+					return Request.CreateResponse<bool>(HttpStatusCode.Conflict, false);
+				}
+				else
+				{
+					TournamentDao.Update(t);
+					return Request.CreateResponse<bool>(HttpStatusCode.OK, true);
+				}
 			}
+			return new HttpResponseMessage(HttpStatusCode.Forbidden);
 		}
 
 		[HttpPost]

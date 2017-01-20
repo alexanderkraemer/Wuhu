@@ -69,28 +69,14 @@ namespace WuHu.WebAPI
 		public bool isAuthenticateWithHeader(HttpRequestMessage obj)
 		{
 			var header = obj.Headers;
-			TokenComb token = new TokenComb();
+			string token ="";
 			if (header.Contains("Authorization"))
 			{
-				string json = header.GetValues("Authorization").First();
-
-				token = Newtonsoft.Json.JsonConvert.DeserializeObject<TokenComb>(json);
-				/*if (tokenObj is TokenComb)
-				{
-					token = (TokenComb)tokenObj;
-				}
-				else if (tokenObj is string)
-				{
-					var o = new TokenComb();
-					o.Token = TokenObj;
-					o.Nickname = 
-					token = n;
-				}
-				*/
+				token = header.GetValues("Authorization").First();
 			}
 			foreach (var o in TokenList)
 			{
-				if (o.Token.Nickname == token.Nickname && o.Token.Token == token.Token)
+				if (o.Token.Token == token)
 				{
 					if (o.ValidUntil >= DateTime.Now)
 					{

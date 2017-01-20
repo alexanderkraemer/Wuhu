@@ -113,8 +113,7 @@ namespace WuHu.Terminal.ViewModels
 		{
 			HttpClient client = new HttpClient();
 			string json = await client.GetStringAsync(BASE_URL + "api/players/" + currentPlayer.ID);
-			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue
-				("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
 			Player player = JsonConvert.DeserializeObject<Player>(json);
 			currentPlayer = player;
 			MainWindow.main.Content = new PlayerList();
@@ -142,8 +141,7 @@ namespace WuHu.Terminal.ViewModels
 			PlayerListVM.getInstance().Players.Add(new PlayerVM(currentPlayer));
 
 			HttpClient client = new HttpClient();
-			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue
-				("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
 			string json = JsonConvert.SerializeObject(currentPlayer);
 
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -157,8 +155,7 @@ namespace WuHu.Terminal.ViewModels
 			HttpClient client = new HttpClient();
 
 			string json = JsonConvert.SerializeObject(player);
-			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue
-				("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			client.PutAsync(BASE_URL + "api/players/" + currentPlayer.ID, httpContent);
 			

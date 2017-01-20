@@ -25,15 +25,15 @@ namespace WuHu.WebAPI.Controllers
 		[Route("")]
 		public HttpResponseMessage GetAll()
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 				return Request.CreateResponse<IList<Player>>(HttpStatusCode.OK, PlayerDao.FindAll());
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpGet]
@@ -95,17 +95,17 @@ namespace WuHu.WebAPI.Controllers
 		[Route("{id}")]
 		public HttpResponseMessage FindById(int id)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
 				return Request.CreateResponse<Player>(HttpStatusCode.OK,
 					PlayerDao.FindById(id));
-			}
-			else
-			{
-				return new HttpResponseMessage(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpPut]
@@ -169,7 +169,7 @@ namespace WuHu.WebAPI.Controllers
 
 				var token = Authentication.getInstance().newAuthentication(obj.Nickname);
 
-				ResponseObject r = new ResponseObject(token, player);
+				ResponseObject r = new ResponseObject(token.Token, player);
 
 				return Request.CreateResponse<ResponseObject>(HttpStatusCode.Created, r);
 				//return new HttpResponseMessage(HttpStatusCode.OK);
@@ -265,14 +265,14 @@ namespace WuHu.WebAPI.Controllers
 	[DataContract]
 	public class ResponseObject
 	{
-		public ResponseObject(TokenComb token, Player player)
+		public ResponseObject(string token, Player player)
 		{
 			Token = token;
 			Player = player;
 		}
 
 		[DataMember]
-		public TokenComb Token { get; set; }
+		public string Token { get; set; }
 		[DataMember]
 		public Player Player { get; set; }
 	}

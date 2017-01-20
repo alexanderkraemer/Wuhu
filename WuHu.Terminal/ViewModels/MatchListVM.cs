@@ -44,15 +44,7 @@ namespace WuHu.Terminal.ViewModels
 			string json;
 			HttpClient client = new HttpClient();
 			
-			TokenComb token = new TokenComb();
-			token.Nickname = Authentication.getLoggedInUser.Nickname;
-			token.Token = Authentication.token.Token.Token;
-
-			var val = Newtonsoft.Json.JsonConvert.SerializeObject(token);
-			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-			client.DefaultRequestHeaders.Add("Authorization", val);
-
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
 			json = await client.GetStringAsync(BASE_URL + "api/matches");
 
 		

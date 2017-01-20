@@ -1,4 +1,0 @@
-C:\programmieren\Wuhu\Wuhu.Server\bin\Debug\Wuhu.Server.exe.config
-C:\programmieren\Wuhu\Wuhu.Server\obj\Debug\Wuhu.Server.exe
-C:\programmieren\Wuhu\Wuhu.Server\obj\Debug\Wuhu.Server.pdb
-C:\programmieren\Wuhu\Wuhu.Server\obj\Debug\Wuhu.Test.csprojResolveAssemblyReference.cache

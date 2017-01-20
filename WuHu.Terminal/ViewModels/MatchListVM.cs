@@ -44,7 +44,7 @@ namespace WuHu.Terminal.ViewModels
 			string json;
 			HttpClient client = new HttpClient();
 			
-			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			json = await client.GetStringAsync(BASE_URL + "api/matches");
 
 		

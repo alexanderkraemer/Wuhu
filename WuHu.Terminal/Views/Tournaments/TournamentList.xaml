@@ -20,7 +20,7 @@
 				<RowDefinition Height="25" />
 				<RowDefinition Height="1*"/>
 			</Grid.RowDefinitions>
-			<Button Grid.Row="0" Click="CreateTournamentButtonClick" IsEnabled="{Binding isAdmin, Mode=OneWay}">Create Tournament</Button>
+			<Button Grid.Row="0" Click="CreateTournamentButtonClick">Create Tournament</Button>
 			<ListBox Grid.Row="1" ItemsSource="{Binding Tournaments}" SelectedItem="{Binding CurrentTournament}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
@@ -89,7 +89,7 @@
 							 ItemsSource="{Binding Path=Players}" 
 							 SelectedValue="{Binding Path=CurrentPlayer}" 
 							 DisplayMemberPath="FullName" IsEnabled="{Binding isAdmin, Mode=OneWay}"/>
-						<Button Grid.Column="1" Command="{Binding AddPlayerCommand}" IsEnabled="{Binding isAdmin, Mode=OneWay}">Add Player</Button>
+						<Button Grid.Column="1" Command="{Binding AddPlayerCommand}">Add Player</Button>
 					</Grid>
 				</Grid>
 
@@ -99,7 +99,7 @@
 						<ColumnDefinition Width="4*" />
 					</Grid.ColumnDefinitions>
 					<Grid Grid.Column="0">
-						<ListBox Name="activePlayerList" Grid.Row="1" ItemsSource="{Binding chosenPlayers}" IsEnabled="{Binding isAdmin, Mode=OneWay}">
+						<ListBox Name="activePlayerList" Grid.Row="1" ItemsSource="{Binding chosenPlayers}">
 							<ListBox.ItemTemplate>
 								<DataTemplate>
 									<TextBlock FontSize="10pt">
@@ -127,7 +127,7 @@
 								<ColumnDefinition Width="1*" />
 							</Grid.ColumnDefinitions>
 							<TextBox Margin="16" Text="{Binding NumberOfMatches, Mode=OneWayToSource}" IsEnabled="{Binding isAdmin, Mode=OneWay}" />
-							<Button Margin="16" Grid.Column="1" Command="{Binding GenerateMatchesButton}" IsEnabled="{Binding isAdmin, Mode=OneWay}">Generate Matches</Button>
+							<Button Margin="16" Grid.Column="1" Command="{Binding GenerateMatchesButton}">Generate Matches</Button>
 						</Grid>
 					</Grid>
 				</Grid>

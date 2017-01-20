@@ -33,7 +33,7 @@ namespace WuHu.SQLServer
 		protected DbCommand CreateFindByIdCommand(int id)
 		{
 			DbCommand findByIdCommand = database.CreateCommand(SQL_FIND_BY_ID);
-			database.DefineParameter(findByIdCommand, "@Id", DbType.UInt16, id);
+			database.DefineParameter(findByIdCommand, "@Id", DbType.UInt32, id);
 			return findByIdCommand;
 		}
 
@@ -52,7 +52,7 @@ namespace WuHu.SQLServer
 		protected DbCommand CreateUpdateCommand(int id, string name, DateTime timestamp)
 		{
 			DbCommand updateCommand = database.CreateCommand(SQL_UPDATE);
-			database.DefineParameter(updateCommand, "@Id", DbType.UInt16, id);
+			database.DefineParameter(updateCommand, "@Id", DbType.UInt32, id);
 			database.DefineParameter(updateCommand, "@timestamp", DbType.DateTime, timestamp);
 			database.DefineParameter(updateCommand, "@name", DbType.String, name);
 			return updateCommand;

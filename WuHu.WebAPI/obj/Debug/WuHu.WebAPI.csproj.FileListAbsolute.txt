@@ -199,8 +199,6 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.csprojResolveAssemblyReference.cache
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.dll
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.pdb
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Wuhu.Server.exe
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Wuhu.Server.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\FluentScheduler.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\FluentScheduler.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\FluentScheduler.xml

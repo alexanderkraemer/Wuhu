@@ -57,8 +57,8 @@ namespace WuHu.Terminal.ViewModels
 			
 
 			ObservableCollection<Match> matches = JsonConvert.DeserializeObject<ObservableCollection<Match>>(json);
-			var tlvm = TournamentListVM.getInstance();
-			await tlvm.LoadTournaments();
+			//await TournamentListVM.getInstance().LoadTournaments();
+			
 			foreach (var m in matches)
 			{
 				list.Add(new MatchVM(m));
@@ -75,7 +75,6 @@ namespace WuHu.Terminal.ViewModels
 			{
 				AgendaList.Add(m);
 			}
-			
 		}
 
 		private async void LoadRanks()
@@ -89,8 +88,8 @@ namespace WuHu.Terminal.ViewModels
 			json = await client.GetStringAsync(BASE_URL + "api/players/ranks");
 			
 			ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(json);
-			var tlvm = PlayerListVM.getInstance();
-			await tlvm.LoadPlayer();
+			//var tlvm = PlayerListVM.getInstance();
+			//await tlvm.LoadPlayer();
 			
 
 			foreach (var p in players)

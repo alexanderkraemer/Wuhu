@@ -103,7 +103,7 @@
 			</Grid>
 			<Grid Grid.Row="6" VerticalAlignment="Top">
 				<StackPanel>
-					<Button Grid.Row="0" Margin="5 40 5 5"  Click="EditMatchButtonClick"  IsEnabled="{Binding isAdmin, Mode=OneWay}">Edit</Button>
+					<Button Grid.Row="0" Margin="5 40 5 5"  Click="EditMatchButtonClick">Edit</Button>
 				</StackPanel>
 			</Grid>
 		</Grid>

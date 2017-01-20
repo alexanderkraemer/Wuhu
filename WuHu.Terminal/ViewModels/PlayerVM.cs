@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -36,6 +37,9 @@ namespace WuHu.Terminal.ViewModels
 			LastName = p.LastName;
 			Nickname = p.Nickname;
 			Skills = p.Skills;
+
+
+			PhotoPath = p.PhotoPath;
 			Password = p.Password;
 			isMonday = p.isMonday;
 			isTuesday = p.isTuesday;
@@ -113,7 +117,7 @@ namespace WuHu.Terminal.ViewModels
 		{
 			HttpClient client = new HttpClient();
 			string json = await client.GetStringAsync(BASE_URL + "api/players/" + currentPlayer.ID);
-			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			Player player = JsonConvert.DeserializeObject<Player>(json);
 			currentPlayer = player;
 			MainWindow.main.Content = new PlayerList();
@@ -141,7 +145,7 @@ namespace WuHu.Terminal.ViewModels
 			PlayerListVM.getInstance().Players.Add(new PlayerVM(currentPlayer));
 
 			HttpClient client = new HttpClient();
-			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			string json = JsonConvert.SerializeObject(currentPlayer);
 
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -155,7 +159,7 @@ namespace WuHu.Terminal.ViewModels
 			HttpClient client = new HttpClient();
 
 			string json = JsonConvert.SerializeObject(player);
-			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			client.PutAsync(BASE_URL + "api/players/" + currentPlayer.ID, httpContent);
 			

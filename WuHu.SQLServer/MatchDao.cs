@@ -89,7 +89,7 @@ namespace WuHu.SQLServer
             }
             else
             {
-                command = database.CreateCommand(SQL_UPDATE);
+                command = database.CreateCommand(SQL_INSERT);
                 database.DefineParameter(command, "@results_points_p1", DbType.Int32, results_points_p1);
                 database.DefineParameter(command, "@results_points_p2", DbType.Int32, results_points_p2);
             }

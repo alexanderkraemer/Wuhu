@@ -146,7 +146,7 @@ namespace WuHu.Terminal.ViewModels
 		{
 			HttpClient client = new HttpClient();
 			string json = await client.GetStringAsync(BASE_URL + "api/matches/" + currentMatch.ID);
-			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			Match match = JsonConvert.DeserializeObject<Match>(json);
 			currentMatch = match;
 			MainWindow.main.Content = new MatchList();
@@ -159,7 +159,7 @@ namespace WuHu.Terminal.ViewModels
 			HttpClient client = new HttpClient();
 
 			string json = JsonConvert.SerializeObject(match);
-			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			client.PutAsync(BASE_URL + "api/matches/" + currentMatch.ID, httpContent);
 			MainWindow.main.Content = new MatchList();

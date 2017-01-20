@@ -127,8 +127,8 @@ namespace WuHu.WebAPI.Controllers
 		[Route("lock")]
 		public HttpResponseMessage Lock([FromBody]bool state)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				if (BusinessLogic.BLTournaments.IsLocked)
 				{
 					return new HttpResponseMessage(HttpStatusCode.Conflict);
@@ -138,29 +138,29 @@ namespace WuHu.WebAPI.Controllers
 					BusinessLogic.BLTournaments.IsLocked = true;
 					return new HttpResponseMessage(HttpStatusCode.OK);
 				}
-			}
-			else
-			{
-				return new HttpResponseMessage(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			////	return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpPost]
 		[Route("unlock")]
 		public HttpResponseMessage Unlock([FromBody]bool state)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				if (BusinessLogic.BLTournaments.IsLocked)
 				{
 					BusinessLogic.BLTournaments.IsLocked = false;
 				}
 				return new HttpResponseMessage(HttpStatusCode.OK);
-			}
-			else
-			{
-				return new HttpResponseMessage(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			//}
 		}
 	}
 }

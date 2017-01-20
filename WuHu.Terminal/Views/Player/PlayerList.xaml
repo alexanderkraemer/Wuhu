@@ -17,7 +17,7 @@
 				<RowDefinition Height="25" />
 				<RowDefinition Height="1*"/>
 			</Grid.RowDefinitions>
-			<Button Grid.Row="0" Click="CreatePlayerButtonClick" IsEnabled="{Binding isCurrentAdmin, Mode=OneWay}">Create Player</Button>
+			<Button Grid.Row="0" Click="CreatePlayerButtonClick">Create Player</Button>
 			<ListBox Grid.Row="1" ItemsSource="{Binding Players}" SelectedItem="{Binding CurrentPlayer}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
@@ -40,11 +40,11 @@
 				</Grid.RowDefinitions>
 				<StackPanel Grid.Row="0">
 					<Border BorderThickness="1" BorderBrush="Black">
-						<Image Source="images/pic.jpg" />
+						<Image Source="{Binding Photopath}" />
 					</Border>
 				</StackPanel>
 				<StackPanel Grid.Row="1">
-					<Button Margin="5"  Click="EditPlayerButtonClick" IsEnabled="{Binding isCurrentAdmin }">Edit</Button>
+					<Button Margin="5"  Click="EditPlayerButtonClick">Edit</Button>
 				</StackPanel>
 			</Grid>
 			<Grid Grid.Column="1">

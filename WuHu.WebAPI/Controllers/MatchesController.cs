@@ -34,108 +34,154 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpGet]
 		[Route("")]
-		public MatchPaginateClass GetAll()
+		public HttpResponseMessage GetAll()
 		{
-			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
-			var list = MatchDao.FindAll();
-			
-			MatchPaginateClass mpc = new MatchPaginateClass(list.Count, list);
-			return mpc;
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+				var list = MatchDao.FindAll();
+
+				MatchPaginateClass mpc = new MatchPaginateClass(list.Count, list);
+				return Request.CreateResponse<MatchPaginateClass>(HttpStatusCode.OK, mpc);
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpGet]
 		[Route("page/{page}/{numberPerPage}")]
-		public MatchPaginateClass GetAllByPage(int page, int numberPerPage)
+		public HttpResponseMessage GetAllByPage(int page, int numberPerPage)
 		{
-			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
-			var list = MatchDao.FindAll();
-			var remain = list.Count - (page - 1) * numberPerPage;
-			var count = remain >= numberPerPage ? numberPerPage : remain;
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+				var list = MatchDao.FindAll();
+				var remain = list.Count - (page - 1) * numberPerPage;
+				var count = remain >= numberPerPage ? numberPerPage : remain;
 
-			var newlist = list.ToList().GetRange(((page - 1) * numberPerPage), count);
-			MatchPaginateClass mpc = new MatchPaginateClass(list.Count, newlist);
-			return mpc;
+				var newlist = list.ToList().GetRange(((page - 1) * numberPerPage), count);
+				MatchPaginateClass mpc = new MatchPaginateClass(list.Count, newlist);
+				return Request.CreateResponse<MatchPaginateClass>(HttpStatusCode.OK, mpc);
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpGet]
 		[Route("{id}")]
-		public Match FindById(int id)
+		public HttpResponseMessage FindById(int id)
 		{
-			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
-			return MatchDao.FindById(id);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+				return Request.CreateResponse<Match>(HttpStatusCode.OK, MatchDao.FindById(id));
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpPut]
 		[Route("{id}")]
 		public void Update(Match match)
 		{
-			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
-			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-
-
-			if (match.Finished)
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
-				Player w1;
-				Player w2;
-				Player v1;
-				Player v2;
+				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-				if (match.ResultPointsPlayer1 == 10)
+
+				if (match.Finished)
 				{
-					w1 = PlayerDao.FindById(match.Team1Player1);
-					w2 = PlayerDao.FindById(match.Team1Player2);
-					v1 = PlayerDao.FindById(match.Team2Player1);
-					v2 = PlayerDao.FindById(match.Team2Player2);
-				}
-				else
-				{
-					w1 = PlayerDao.FindById(match.Team2Player1);
-					w2 = PlayerDao.FindById(match.Team2Player2);
-					v1 = PlayerDao.FindById(match.Team1Player1);
-					v2 = PlayerDao.FindById(match.Team1Player2);
-				}
-				BLPlayer.UpdateElo(w1, w2, v1, v2);
+					Player w1;
+					Player w2;
+					Player v1;
+					Player v2;
 
-				BLStatistic.Insert(w1.ID, w1.Skills);
-				BLStatistic.Insert(w2.ID, w2.Skills);
-				BLStatistic.Insert(v1.ID, v1.Skills);
-				BLStatistic.Insert(v2.ID, v2.Skills);
+					if (match.ResultPointsPlayer1 == 10)
+					{
+						w1 = PlayerDao.FindById(match.Team1Player1);
+						w2 = PlayerDao.FindById(match.Team1Player2);
+						v1 = PlayerDao.FindById(match.Team2Player1);
+						v2 = PlayerDao.FindById(match.Team2Player2);
+					}
+					else
+					{
+						w1 = PlayerDao.FindById(match.Team2Player1);
+						w2 = PlayerDao.FindById(match.Team2Player2);
+						v1 = PlayerDao.FindById(match.Team1Player1);
+						v2 = PlayerDao.FindById(match.Team1Player2);
+					}
+					BLPlayer.UpdateElo(w1, w2, v1, v2);
 
-				PlayerDao.Update(w1);
-				PlayerDao.Update(w2);
-				PlayerDao.Update(v1);
-				PlayerDao.Update(v2);
+					BLStatistic.Insert(w1.ID, w1.Skills);
+					BLStatistic.Insert(w2.ID, w2.Skills);
+					BLStatistic.Insert(v1.ID, v1.Skills);
+					BLStatistic.Insert(v2.ID, v2.Skills);
+
+					PlayerDao.Update(w1);
+					PlayerDao.Update(w2);
+					PlayerDao.Update(v1);
+					PlayerDao.Update(v2);
+				}
+				MatchDao.Update(match);
 			}
-			MatchDao.Update(match);
 		}
 
 		[HttpPost]
 		[Route("")]
-		public int Insert(Match team)
+		public HttpResponseMessage Insert(Match team)
 		{
-			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
-			return MatchDao.Insert(team);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+				return Request.CreateResponse<int>(HttpStatusCode.OK, MatchDao.Insert(team));
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpPost]
 		[Route("generate")]
-		public ObservableCollection<Match> GenerateMatches([FromBody]MatchGenerate MatchObj)
+		public HttpResponseMessage GenerateMatches([FromBody]MatchGenerate MatchObj)
 		{
-			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
-			ObservableCollection<Match> matchList;
-			matchList = BLMatch.GenerateMatches(MatchObj.NumberOfMatches, MatchObj.chosenPlayers, MatchObj.tournamentId);
-			if (BLMatch.insertMatches(matchList))
-				return matchList;
-
-			return null;
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+				ObservableCollection<Match> matchList;
+				matchList = BLMatch.GenerateMatches(MatchObj.NumberOfMatches, MatchObj.chosenPlayers, MatchObj.tournamentId);
+				if (BLMatch.insertMatches(matchList))
+				{
+					return Request.CreateResponse<ObservableCollection<Match>>(HttpStatusCode.OK, matchList);
+				}
+				return Request.CreateResponse(HttpStatusCode.Conflict);
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpDelete]
 		[Route("{id}")]
-		public bool DeleteById(int id)
+		public HttpResponseMessage DeleteById(int id)
 		{
-			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
-			return MatchDao.DeleteById(id);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+				return Request.CreateResponse<bool>(HttpStatusCode.OK, MatchDao.DeleteById(id));
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 	}
 }

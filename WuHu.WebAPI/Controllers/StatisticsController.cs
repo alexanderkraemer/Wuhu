@@ -18,70 +18,115 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpGet]
 		[Route("")]
-		public List<Serialize> GetAll()
+		public HttpResponseMessage GetAll()
 		{
-			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
-			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-
-			var retList = new List<Serialize> ();
-
-			foreach (Player p in PlayerDao.FindAll())
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
-				
-				var list = StatisticDao.FindAll().Where(s => { return s.PlayerID == p.ID; }).ToList();
-				
-				retList.Add(new Serialize(p, list));
-			}
+				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
+				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-			return retList;
+				var retList = new List<Serialize>();
+
+				foreach (Player p in PlayerDao.FindAll())
+				{
+
+					var list = StatisticDao.FindAll().Where(s => { return s.PlayerID == p.ID; }).ToList();
+
+					retList.Add(new Serialize(p, list));
+				}
+
+				return Request.CreateResponse<List<Serialize>>(HttpStatusCode.OK, retList);
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpGet]
 		[Route("{id}")]
-		public Statistic FindById(int id)
+		public HttpResponseMessage FindById(int id)
 		{
-			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
-			return StatisticDao.FindById(id);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
+				return Request.CreateResponse<Statistic>(HttpStatusCode.OK, StatisticDao.FindById(id));
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpGet]
 		[Route("player/{player_id}")]
-		public IEnumerable<Statistic> FindByPlayer(int player_id)
+		public HttpResponseMessage FindByPlayer(int player_id)
 		{
-			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
-			return StatisticDao.FindByPlayer(player_id);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
+				return Request.CreateResponse<IList<Statistic>>(HttpStatusCode.OK, StatisticDao.FindByPlayer(player_id));
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpGet]
 		[Route("day/{timestamp}")]
-		public IEnumerable<Statistic> FindByTimestamp(DateTime timestamp)
+		public HttpResponseMessage FindByTimestamp(DateTime timestamp)
 		{
-			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
-			return StatisticDao.FindByDay(timestamp);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
+				return Request.CreateResponse<IList<Statistic>>(HttpStatusCode.OK, StatisticDao.FindByDay(timestamp));
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpPut]
 		[Route("{id}")]
 		public void Update(Statistic team)
 		{
-			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
-			StatisticDao.Update(team);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
+				StatisticDao.Update(team);
+			}
 		}
 
 		[HttpPost]
 		[Route("")]
-		public int Insert(Statistic team)
+		public HttpResponseMessage Insert(Statistic team)
 		{
-			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
-			return StatisticDao.Insert(team);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
+				return Request.CreateResponse<int>(HttpStatusCode.OK, StatisticDao.Insert(team));
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpDelete]
 		[Route("{id}")]
-		public bool DeleteById(int id)
+		public HttpResponseMessage DeleteById(int id)
 		{
-			IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
-			return StatisticDao.DeleteById(id);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
+				return Request.CreateResponse<bool>(HttpStatusCode.OK, StatisticDao.DeleteById(id));
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Forbidden);
+			}
 		}
 	}
 

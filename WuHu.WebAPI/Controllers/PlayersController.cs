@@ -28,7 +28,7 @@ namespace WuHu.WebAPI.Controllers
 			if(Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-				return Request.CreateResponse<IList<Player>>(HttpStatusCode.Created, PlayerDao.FindAll());
+				return Request.CreateResponse<IList<Player>>(HttpStatusCode.OK, PlayerDao.FindAll());
 			}
 			else
 			{

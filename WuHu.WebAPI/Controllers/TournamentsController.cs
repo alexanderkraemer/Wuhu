@@ -18,27 +18,48 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpGet]
 		[Route("")]
-		public IEnumerable<Tournament> GetAll()
+		public HttpResponseMessage GetAll()
 		{
-			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
-			return TournamentDao.FindAll();
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
+				return Request.CreateResponse<IEnumerable<Tournament>>(HttpStatusCode.OK, TournamentDao.FindAll());
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			}
 		}
 		
 		[HttpGet]
 		[Route("{id}")]
-		public Tournament FindById(int id)
+		public HttpResponseMessage FindById(int id)
 		{
-			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
-			return TournamentDao.FindById(id);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
+				return Request.CreateResponse<Tournament>(TournamentDao.FindById(id));
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpGet]
 		[Route("day/{day}")]
-		public IList<Tournament> FindByDay(DateTime day)
+		public HttpResponseMessage FindByDay(DateTime day)
 		{
-			//var time = UnixTimeStampToDateTime(day);
-			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
-			return TournamentDao.FindByDay(day);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				//var time = UnixTimeStampToDateTime(day);
+				ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
+				return Request.CreateResponse<IList<Tournament>>(TournamentDao.FindByDay(day));
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			}
 		}
 
 		
@@ -46,48 +67,71 @@ namespace WuHu.WebAPI.Controllers
 		[Route("{id}")]
 		public void Update([FromBody]Tournament team, int id)
 		{
-			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
-			Tournament t = new Tournament(id, team.Name, team.Timestamp);
-			TournamentDao.Update(t);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
+				Tournament t = new Tournament(id, team.Name, team.Timestamp);
+				TournamentDao.Update(t);
+			}
 		}
 
 		[HttpPost]
 		[Route("")]
 		public HttpResponseMessage Insert([FromBody]Tournament team)
 		{
-			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
-			int id = TournamentDao.Insert(team);
-			if (id == -1)
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
-				return new HttpResponseMessage(HttpStatusCode.Conflict);
+				ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
+				int id = TournamentDao.Insert(team);
+				if (id == -1)
+				{
+					return new HttpResponseMessage(HttpStatusCode.Conflict);
+				}
+				else
+				{
+					return new HttpResponseMessage(HttpStatusCode.Created);
+				}
 			}
 			else
 			{
-				return new HttpResponseMessage(HttpStatusCode.Created);
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
 			}
-
 		}
 		
 		[HttpDelete]
 		[Route("{id}")]
-		public bool DeleteById(int id)
+		public HttpResponseMessage DeleteById(int id)
 		{
-			ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
-			return TournamentDao.DeleteById(id);
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			{
+				ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
+				return Request.CreateResponse<bool>(TournamentDao.DeleteById(id));
+			}
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			}
 		}
 
 		[HttpPost]
 		[Route("lock")]
 		public HttpResponseMessage Lock([FromBody]bool state)
 		{
-			if(BusinessLogic.BLTournaments.IsLocked)
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
-				return new HttpResponseMessage(HttpStatusCode.Conflict);
+				if (BusinessLogic.BLTournaments.IsLocked)
+				{
+					return new HttpResponseMessage(HttpStatusCode.Conflict);
+				}
+				else
+				{
+					BusinessLogic.BLTournaments.IsLocked = true;
+					return new HttpResponseMessage(HttpStatusCode.OK);
+				}
 			}
 			else
 			{
-				BusinessLogic.BLTournaments.IsLocked = true;
-				return new HttpResponseMessage(HttpStatusCode.OK);
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
 			}
 		}
 
@@ -95,11 +139,18 @@ namespace WuHu.WebAPI.Controllers
 		[Route("unlock")]
 		public HttpResponseMessage Unlock([FromBody]bool state)
 		{
-			if (BusinessLogic.BLTournaments.IsLocked)
+			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			{
-				BusinessLogic.BLTournaments.IsLocked = false;
+				if (BusinessLogic.BLTournaments.IsLocked)
+				{
+					BusinessLogic.BLTournaments.IsLocked = false;
+				}
+				return new HttpResponseMessage(HttpStatusCode.OK);
 			}
-			return new HttpResponseMessage(HttpStatusCode.OK);
+			else
+			{
+				return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			}
 		}
 	}
 }

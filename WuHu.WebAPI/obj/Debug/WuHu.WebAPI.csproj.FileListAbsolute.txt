@@ -207,9 +207,8 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Cors.dll
 C:\programmieren\Wuhu\WuHu.WebAPI\bin\FluentScheduler.dll
 C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Http.Cors.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Wuhu.Server.exe
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Wuhu.Server.pdb
 C:\programmieren\Wuhu\WuHu.WebAPI\bin\FluentScheduler.pdb
 C:\programmieren\Wuhu\WuHu.WebAPI\bin\FluentScheduler.xml
 C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Http.Cors.xml
 C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Cors.dll
+C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.WebSockets.dll

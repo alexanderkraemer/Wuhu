@@ -186,3 +186,4 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.g.resources
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.Properties.Resources.resources
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Terminal\obj\Debug\WuHu.Terminal.csproj.GenerateResource.Cache
+C:\programmieren\Wuhu\WuHu.Terminal\bin\Debug\Microsoft.WebSockets.dll

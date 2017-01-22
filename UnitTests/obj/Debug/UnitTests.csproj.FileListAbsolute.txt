@@ -70,5 +70,5 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\obj\Debug\UnitTests.dll
 \\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\UnitTests\obj\Debug\UnitTests.pdb
-C:\programmieren\Wuhu\UnitTests\bin\Debug\InitDatabase.dll
-C:\programmieren\Wuhu\UnitTests\bin\Debug\InitDatabase.pdb
+C:\programmieren\Wuhu\UnitTests\bin\Debug\WuHu.BusinessLogic.dll
+C:\programmieren\Wuhu\UnitTests\bin\Debug\WuHu.BusinessLogic.pdb

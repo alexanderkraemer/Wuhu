@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WuHu.Common;
 using WuHu.Domain;
+using WuHu.SQLServer;
 
 namespace WuHu.BusinessLogic
 {
@@ -104,6 +105,24 @@ namespace WuHu.BusinessLogic
 			return new Match(p1.ID, p2.ID, p3.ID, p4.ID, tournamentId, false);
 		}
 
+		public static void IncrementValue(SocketObj obj)
+		{
+			var database = DalFactory.CreateDatabase();
+			var dao = DalFactory.CreateMatchDao(database);
+
+			Match match = dao.FindById(obj.match);
+			if (obj.team == 1)
+			{
+				match.ResultPointsPlayer1++;
+			}
+			else if (obj.team == 2)
+			{
+				match.ResultPointsPlayer2++;
+			}
+
+			dao.Update(match);
+		}
+
 		private static int NextIndex(double randDouble, int maxIndex)
 		{
 			int randomIndex = 0;
@@ -120,5 +139,12 @@ namespace WuHu.BusinessLogic
 			}
 			return randomIndex;
 		}
+	}
+
+	public class SocketObj
+	{
+		public int match;
+		public int team;
+		public int number;
 	}
 }

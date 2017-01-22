@@ -41,7 +41,10 @@ namespace WuHu.Terminal.ViewModels
 
 		public bool IsLocked
 		{
-			get { return isLocked; }
+			get
+			{
+				return isLocked;
+			}
 			set
 			{
 				isLocked = value;
@@ -99,7 +102,7 @@ namespace WuHu.Terminal.ViewModels
 			string json;
 			HttpClient client = new HttpClient();
 
-			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
+			//client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			json = await client.GetStringAsync(BASE_URL + "api/tournaments");
 
 			ObservableCollection<Tournament> tournaments = JsonConvert.DeserializeObject<ObservableCollection<Tournament>>(json);
@@ -262,7 +265,7 @@ namespace WuHu.Terminal.ViewModels
 						//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof()));
 					}, a =>
 					{
-						return !IsLocked || isEditing;
+						return !IsLocked || IsEditing;
 					});
 				}
 				return _generateMatchesCommand;
@@ -274,38 +277,37 @@ namespace WuHu.Terminal.ViewModels
 			HttpClient client = new HttpClient();
 
 			string json = JsonConvert.SerializeObject(true);
-			//client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
+			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/tournaments/lock", httpContent);
 			if (response.IsSuccessStatusCode)
 			{
 				IsLocked = true;
-				isEditing = true;
+				IsEditing = true;
 			}
 			else
 			{
 				IsLocked = true;
-				isEditing = false;
+				IsEditing = false;
 			}
 		}
 
 		public async void UnlockTournament()
 		{
 			HttpClient client = new HttpClient();
-
-			string json = JsonConvert.SerializeObject(false);
+			string json = JsonConvert.SerializeObject(true);
 			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/tournaments/unlock", httpContent);
 			if (response.IsSuccessStatusCode)
 			{
 				IsLocked = false;
-				isEditing = false;
+				IsEditing = false;
 			}
 			else
 			{
 				IsLocked = true;
-				isEditing = false;
+				IsEditing = false;
 			}
 		}
 

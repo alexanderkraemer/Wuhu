@@ -37,33 +37,33 @@ namespace WuHu.WebAPI.Controllers
 		[Route("")]
 		public HttpResponseMessage GetAll()
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 				var list = MatchDao.FindAll();
 
 				// MatchPaginateClass mpc = new MatchPaginateClass(list.Count, list);
 				return Request.CreateResponse<IList<Match>>(HttpStatusCode.OK, list);
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpGet]
-		[Route("agenda")]
+		[Route("list/agenda")]
 		public HttpResponseMessage GetAgenda()
 		{
 			IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
+			ITournamentDao to = DalFactory.CreateTournamentDao(database);
+
 			var list = MatchDao.FindAll();
 
 			var listMatchIEn = list.Where(m =>
 			{
-				ITournamentDao to = DalFactory.CreateTournamentDao(database);
-				var t = to.FindById(m.TournamentId);
-				return !m.Finished && t.Timestamp >= DateTime.Today;
-			});
+				return !m.Finished;
+			}).DefaultIfEmpty(null);
 
 			// MatchPaginateClass mpc = new MatchPaginateClass(list.Count, list);
 			return Request.CreateResponse<IEnumerable<Match>>(HttpStatusCode.OK, listMatchIEn);
@@ -122,7 +122,7 @@ namespace WuHu.WebAPI.Controllers
 					Player v1;
 					Player v2;
 
-					if (match.ResultPointsPlayer1 == 10)
+					if (match.ResultPointsPlayer1 > match.ResultPointsPlayer2)
 					{
 						w1 = PlayerDao.FindById(match.Team1Player1);
 						w2 = PlayerDao.FindById(match.Team1Player2);

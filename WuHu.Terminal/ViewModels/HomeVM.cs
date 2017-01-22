@@ -24,6 +24,7 @@ namespace WuHu.Terminal.ViewModels
 		public event PropertyChangedEventHandler PropertyChanged;
 		private static HomeVM instance;
 		public ObservableCollection<Tuple<int, PlayerVM>> RankList { get; set; }
+
 		public ObservableCollection<MatchVM> AgendaList { get; set; }
 		public IEnumerable<Serialize> StatisticList { get; set; }
 		public static HomeVM getInstance()
@@ -47,17 +48,18 @@ namespace WuHu.Terminal.ViewModels
 
 		private async void LoadAgenda()
 		{
+			ObservableCollection< MatchVM > agendaList = new ObservableCollection<MatchVM>();
 			var list = new ObservableCollection<MatchVM>();
 			IEnumerable<MatchVM> listMatchIEn;
-			AgendaList.Clear();
+			agendaList.Clear();
 
 			string json;
 			HttpClient client = new HttpClient();
-			json = await client.GetStringAsync(BASE_URL + "api/matches/agenda");
+			json = await client.GetStringAsync(BASE_URL + "api/matches/list/agenda");
 			
 
 			ObservableCollection<Match> matches = JsonConvert.DeserializeObject<ObservableCollection<Match>>(json);
-			//await TournamentListVM.getInstance().LoadTournaments();
+			await TournamentListVM.getInstance().LoadTournaments();
 			
 			foreach (var m in matches)
 			{
@@ -73,15 +75,23 @@ namespace WuHu.Terminal.ViewModels
 
 			foreach(MatchVM m in listMatchIEn)
 			{
+				agendaList.Add(m);
+			}
+			AgendaList.Clear();
+			foreach (var m in agendaList.Where(m => m.Tournament.Timestamp > DateTime.Now))
+			{
 				AgendaList.Add(m);
 			}
+			
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AgendaList)));
 		}
 
 		private async void LoadRanks()
 		{
+			ObservableCollection<Tuple<int, PlayerVM>> rankList = new ObservableCollection<Tuple<int, PlayerVM>>();
 			var list = new ObservableCollection<PlayerVM>();
 			IEnumerable<PlayerVM> listRankIEn;
-			RankList.Clear();
+			rankList.Clear();
 
 			string json;
 			HttpClient client = new HttpClient();
@@ -102,8 +112,12 @@ namespace WuHu.Terminal.ViewModels
 			int count = 0;
 			foreach (PlayerVM p in listRankIEn)
 			{
-				RankList.Add(Tuple.Create(++count, p));
+				rankList.Add(Tuple.Create(++count, p));
 			}
+
+			RankList.Clear();
+			RankList = rankList;
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RankList)));
 		}
 
 		private async void LoadStatistics()

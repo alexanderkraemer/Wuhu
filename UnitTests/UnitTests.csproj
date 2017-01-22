@@ -67,6 +67,11 @@
     <Compile Include="4TestTournamentDao.cs" />
     <Compile Include="2TestMatchDao.cs" />
     <Compile Include="1TestStatisticsDao.cs" />
+    <Compile Include="BLAuthenticationTest.cs" />
+    <Compile Include="BLMatchTest.cs" />
+    <Compile Include="BLPlayerTest.cs" />
+    <Compile Include="BLStatisticTest.cs" />
+    <Compile Include="BLTournamentTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -76,6 +81,10 @@
       <Project>{df452363-c535-4368-b025-1deff1bc6294}</Project>
       <Name>InitDatabase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WuHu.BusinessLogic\WuHu.BusinessLogic.csproj">
+      <Project>{457FC88E-1C41-4B7C-B609-3287BECC71DE}</Project>
+      <Name>WuHu.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WuHu.Common\WuHu.Common.csproj">
       <Project>{0a9ecfc0-b340-41b8-b94d-302bdbb6162d}</Project>
       <Name>WuHu.Common</Name>
@@ -84,7 +93,7 @@
       <Project>{5834d772-3dcf-44c3-88d9-9d76732bc033}</Project>
       <Name>WuHu.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Wuhu.Server\Wuhu.Server.csproj">
+    <ProjectReference Include="..\Wuhu.InitDatabase\Wuhu.InitDatabase.csproj">
       <Project>{e1a388d1-f08e-4a14-a7b0-d153c0256758}</Project>
       <Name>Wuhu.Server</Name>
     </ProjectReference>

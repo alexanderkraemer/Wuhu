@@ -128,14 +128,6 @@ namespace Wuhu.UnitTests
 		}
 
 		[TestMethod]
-		public void FindByDayException()
-		{
-			PlayerDao pd = new PlayerDao(database);
-
-			Assert.IsNull(dao.FindByDay(new DateTime(1999, 11, 23)));
-		}
-
-		[TestMethod]
 		public void FindById()
 		{
 			PlayerDao pd = new PlayerDao(database);

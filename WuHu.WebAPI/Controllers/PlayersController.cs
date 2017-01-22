@@ -156,7 +156,7 @@ namespace WuHu.WebAPI.Controllers
 
 			if (!isAuthenticated)
 			{
-				return new HttpResponseMessage(HttpStatusCode.Conflict);
+				return Request.CreateResponse<bool>(HttpStatusCode.OK, false);
 			}
 			else
 			{

@@ -20,7 +20,7 @@ namespace WuHu.InitDatabase
 
 		private bool RandomBool()
 		{
-			Random rand = new Random();
+			Random rand = new Random(DateTime.Now.Millisecond);
 			double randNumb = rand.NextDouble();
 			if (randNumb > 0.5)
 			{

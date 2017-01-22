@@ -16,7 +16,7 @@ namespace WuHu.WebAPI
 			GlobalConfiguration.Configure(WebApiConfig.Register);
 
 			Registry r = new Registry();
-			r.Schedule<DecayJob>().ToRunNow().AndEvery(1).Days();
+			r.Schedule<DecayJob>().ToRunNow().AndEvery(7).Days();
 
 			JobManager.Initialize(r);
 		}

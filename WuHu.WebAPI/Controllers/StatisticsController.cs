@@ -26,12 +26,15 @@ namespace WuHu.WebAPI.Controllers
 
 			var retList = new List<Serialize>();
 
-			foreach (Player p in PlayerDao.FindAll())
+			int i = 0;
+			foreach (Player p in PlayerDao.FindAll().OrderByDescending(s => s.Skills))
 			{
-
-				var list = StatisticDao.FindAll().Where(s => { return s.PlayerID == p.ID; }).ToList();
-
-				retList.Add(new Serialize(p, list));
+				if(i < 5)
+				{
+					var list = StatisticDao.FindAll().Where(s => { return s.PlayerID == p.ID; }).ToList();
+					retList.Add(new Serialize(p, list));
+				}
+				i++;
 			}
 
 			return Request.CreateResponse<List<Serialize>>(HttpStatusCode.OK, retList);

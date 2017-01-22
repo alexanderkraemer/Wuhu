@@ -9,6 +9,9 @@ using System.Windows.Controls;
 using WuHu.Domain;
 using WuHu.Terminal.ViewModels;
 using WuHu.Terminal.Views;
+using WuHu.Terminal.Views.Matches;
+using WuHu.Terminal.Views.Player;
+using WuHu.Terminal.Views.Tournaments;
 using WuHu.WebAPI.Controllers;
 
 namespace WuHu.Terminal
@@ -27,11 +30,42 @@ namespace WuHu.Terminal
 			currentTab = page;
 			if (isAuthenticated)
 			{
+				page = reInstance(page);
 				MainWindow.main.Content = page;
 			}
 			else
 			{
 				MainWindow.main.Content = new Login();
+			}
+		}
+
+		private static UserControl reInstance(UserControl page)
+		{
+			if(page is MatchList)
+			{
+				if (TournamentListVM.getInstance().IsEditing)
+				{
+					TournamentListVM.getInstance().UnlockTournament();
+				}
+				return new MatchList();
+			}
+			else if(page is PlayerList)
+			{
+				if (TournamentListVM.getInstance().IsEditing)
+				{
+					TournamentListVM.getInstance().UnlockTournament();
+				}
+				return new PlayerList();
+			}
+			else if(page is TournamentList)
+			{
+				TournamentListVM.getInstance().LoadTournaments();
+				TournamentListVM.getInstance().LockTournament();
+				return new TournamentList();
+			}
+			else
+			{
+				return null;
 			}
 		}
 

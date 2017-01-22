@@ -57,9 +57,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\WuHu.Common\WuHu.Common.csproj">
       <Project>{0A9ECFC0-B340-41B8-B94D-302BDBB6162D}</Project>
       <Name>WuHu.Common</Name>
@@ -68,13 +65,12 @@
       <Project>{5834D772-3DCF-44C3-88D9-9D76732BC033}</Project>
       <Name>WuHu.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WuHu.SQLServer\WuHu.SQLServer.csproj">
+      <Project>{B4787157-AED5-4E2A-964D-107E7919C067}</Project>
+      <Name>WuHu.SQLServer</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="photo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="img\profiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

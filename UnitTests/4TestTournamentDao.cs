@@ -30,13 +30,7 @@ namespace WuHu.UnitTests
 
 			Assert.IsNotNull(database);
 		}
-		[TestMethod]
-		public void InitDB()
-		{
-			DatabaseReset.Clear(database);
-			DatabaseReset.Insert(database);
-		}
-
+		
 		[TestMethod]
 		public int InsertTournaments(string teamname = "Testtournament")
 		{

@@ -78,10 +78,13 @@ namespace WuHu.Terminal
 
 		public void NavTournamentsButton(object sender, object e)
 		{
-			TournamentListVM.getInstance().LockTournament();
-			
-			ChangeButtonColor(TournamentsButton);
 			Authentication.CheckIfLoggedIn(new TournamentList());
+			if(Authentication.isAuthenticated)
+			{
+				TournamentListVM.getInstance().LockTournament();
+			}
+			ChangeButtonColor(TournamentsButton);
+			
 		}
 	}
 }

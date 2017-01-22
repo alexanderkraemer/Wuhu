@@ -26,7 +26,10 @@ namespace WuHu.Terminal.Views.Matches
 		public MatchList()
 		{
 			InitializeComponent();
-			this.DataContext = MatchListVM.getInstance();
+			if(Authentication.isAuthenticated)
+			{
+				this.DataContext = MatchListVM.getInstance();
+			}
 		}
 
 		private void EditMatchButtonClick(object sender, RoutedEventArgs e)

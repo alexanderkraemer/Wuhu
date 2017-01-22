@@ -57,7 +57,14 @@ namespace WuHu.Terminal.ViewModels
 						}
 						else
 						{
-							Create(currentTournament);
+							if(currentTournament.Name != null && currentTournament.Timestamp != new DateTime(0001, 01, 01, 00, 00, 00))
+							{
+								Create(currentTournament);
+							}
+							else
+							{
+								Notification = "Bitte füllen Sie alle Felder aus!";
+							}
 						}
 					});
 				}

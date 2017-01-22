@@ -51,7 +51,7 @@ namespace WuHu.UnitTests
 			int p3id = plist[2].ID;
 			int p4id = plist[3].ID;
 
-			Match m = new Match(p1id, p2id, p3id, p4id, tId);
+			Match m = new Match(p1id, p2id, p3id, p4id, tId, false);
 
 			Assert.AreEqual(p1id, m.Team1Player1);
 			Assert.AreEqual(p2id, m.Team1Player2);
@@ -80,13 +80,44 @@ namespace WuHu.UnitTests
 			int p3id = plist[2].ID;
 			int p4id = plist[3].ID;
 
-			Match m = new Match(p1id, p2id, p3id, p4id, tId);
+			Match m = new Match(p1id, p2id, p3id, p4id, tId, false);
 
 
 			int stat1 = MatchDao.FindAll().Count;
 			MatchDao.Insert(m);
 			int stat2 = MatchDao.FindAll().Count;
-			Assert.IsTrue(stat1 == stat2-1);
+			Assert.IsTrue(stat1 == stat2 - 1);
+		}
+
+		[TestMethod]
+		public void Update()
+		{
+			MatchDao MatchDao = new MatchDao(database);
+
+			TestPlayerDao pdao = new TestPlayerDao();
+			TournamentDao td = new TournamentDao(database);
+			var list = td.FindAll();
+			int tId = list[0].ID;
+
+			PlayerDao pd = new PlayerDao(database);
+			var plist = pd.FindAll();
+
+			int p1id = plist[0].ID;
+			int p2id = plist[1].ID;
+			int p3id = plist[2].ID;
+			int p4id = plist[3].ID;
+
+			Match m = new Match(p1id, p2id, p3id, p4id, tId, false);
+
+			int id = MatchDao.Insert(m);
+			Assert.IsNotNull(id);
+			
+			Match n = MatchDao.FindById(id);
+			n.Finished = true;
+			MatchDao.Update(n);
+
+			Assert.IsTrue(MatchDao.FindById(id).Finished);
+
 		}
 
 		[TestMethod]
@@ -106,7 +137,7 @@ namespace WuHu.UnitTests
 			int p3id = plist[2].ID;
 			int p4id = plist[3].ID;
 
-			Match m = new Match(p1id, p2id, p3id, p4id, tId);
+			Match m = new Match(p1id, p2id, p3id, p4id, tId, false);
 
 			int id = MatchDao.Insert(m);
 
@@ -156,7 +187,7 @@ namespace WuHu.UnitTests
 			int p3id = plist[2].ID;
 			int p4id = plist[3].ID;
 
-			Match m = new Match(p1id, p2id, p3id, p4id, tId);
+			Match m = new Match(p1id, p2id, p3id, p4id, tId, false);
 
 			int retValue = MatchDao.Insert(m);
 

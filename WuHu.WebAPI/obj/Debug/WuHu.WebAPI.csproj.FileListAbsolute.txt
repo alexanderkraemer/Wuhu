@@ -14,6 +14,7 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.WebAPI.dll.config
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.WebAPI.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.WebAPI.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\FluentScheduler.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -22,193 +23,34 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.WindowsServer.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.ApplicationInsights.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.WebSockets.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Newtonsoft.Json.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Net.Http.Formatting.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Cors.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.Cors.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.WebHost.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.BusinessLogic.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Common.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Domain.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.dll
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.BusinessLogic.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Common.pdb
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Domain.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\FluentScheduler.pdb
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\FluentScheduler.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.Web.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.ApplicationInsights.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.xml
+C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.Cors.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Newtonsoft.Json.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Net.Http.Formatting.xml
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.WebHost.xml
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.csprojResolveAssemblyReference.cache
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.pdb
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.BusinessLogic.dll
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.BusinessLogic.pdb
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\ApplicationInsights.config
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\csc.exe
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.CSharp.Core.targets
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\System.Collections.Immutable.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\System.Reflection.Metadata.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\vbc.exe
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\VBCSCompiler.exe
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\VBCSCompiler.exe.config
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.WebAPI.dll.config
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.WebAPI.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.WebAPI.pdb
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.Agent.Intercept.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.DependencyCollector.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.PerfCounterCollector.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.ServerTelemetryChannel.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.Web.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.WindowsServer.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.ApplicationInsights.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Newtonsoft.Json.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Net.Http.Formatting.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.WebHost.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.BusinessLogic.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Common.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Domain.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.BusinessLogic.pdb
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Common.pdb
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Domain.pdb
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.pdb
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.DependencyCollector.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.Web.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.WindowsServer.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.ApplicationInsights.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Newtonsoft.Json.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Net.Http.Formatting.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.WebHost.xml
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.csprojResolveAssemblyReference.cache
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.dll
-\\psf\Home\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.pdb
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\ApplicationInsights.config
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\csc.exe
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\System.Collections.Immutable.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\System.Reflection.Metadata.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\vbc.exe
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\VBCSCompiler.exe
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\roslyn\VBCSCompiler.exe.config
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.WebAPI.dll.config
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.WebAPI.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.WebAPI.pdb
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.Agent.Intercept.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.DependencyCollector.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.PerfCounterCollector.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.ServerTelemetryChannel.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.Web.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.WindowsServer.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.ApplicationInsights.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Newtonsoft.Json.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Net.Http.Formatting.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Http.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Http.WebHost.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.BusinessLogic.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.Common.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.Domain.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.SQLServer.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.BusinessLogic.pdb
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.Common.pdb
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.Domain.pdb
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\WuHu.SQLServer.pdb
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.DependencyCollector.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.Web.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.AI.WindowsServer.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.ApplicationInsights.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Newtonsoft.Json.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Net.Http.Formatting.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Http.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Http.WebHost.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.csprojResolveAssemblyReference.cache
-C:\programmieren\Wuhu\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.pdb
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.dll
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\ApplicationInsights.config
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\csc.exe
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.CSharp.Core.targets
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\System.Collections.Immutable.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\System.Reflection.Metadata.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\vbc.exe
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\VBCSCompiler.exe
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\roslyn\VBCSCompiler.exe.config
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.WebAPI.dll.config
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.WebAPI.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.WebAPI.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.Agent.Intercept.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.DependencyCollector.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.PerfCounterCollector.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.ServerTelemetryChannel.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.Web.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.WindowsServer.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.ApplicationInsights.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Newtonsoft.Json.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Net.Http.Formatting.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.WebHost.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.BusinessLogic.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Common.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Domain.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Wuhu.Server.exe
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.BusinessLogic.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Common.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.Domain.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Wuhu.Server.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\WuHu.SQLServer.pdb
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.DependencyCollector.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.Web.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.AI.WindowsServer.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.ApplicationInsights.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Newtonsoft.Json.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Net.Http.Formatting.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.WebHost.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.csprojResolveAssemblyReference.cache
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.dll
-\\SynologyNAS\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\obj\Debug\WuHu.WebAPI.pdb
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\FluentScheduler.dll
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\FluentScheduler.pdb
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\FluentScheduler.xml
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.Cors.dll
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Http.Cors.xml
-C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.WebAPI\bin\System.Web.Cors.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\FluentScheduler.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Http.Cors.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\FluentScheduler.pdb
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\FluentScheduler.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Http.Cors.xml
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\System.Web.Cors.dll
-C:\programmieren\Wuhu\WuHu.WebAPI\bin\Microsoft.WebSockets.dll

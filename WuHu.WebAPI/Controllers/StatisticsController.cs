@@ -49,15 +49,15 @@ namespace WuHu.WebAPI.Controllers
 		[Route("{id}")]
 		public HttpResponseMessage FindById(int id)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
 				return Request.CreateResponse<Statistic>(HttpStatusCode.OK, StatisticDao.FindById(id));
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpGet]
@@ -79,56 +79,56 @@ namespace WuHu.WebAPI.Controllers
 		[Route("day/{timestamp}")]
 		public HttpResponseMessage FindByTimestamp(DateTime timestamp)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
 				return Request.CreateResponse<IList<Statistic>>(HttpStatusCode.OK, StatisticDao.FindByDay(timestamp));
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpPut]
 		[Route("{id}")]
 		public void Update(Statistic team)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
 				StatisticDao.Update(team);
-			}
+			//}
 		}
 
 		[HttpPost]
 		[Route("")]
 		public HttpResponseMessage Insert(Statistic team)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
 				return Request.CreateResponse<int>(HttpStatusCode.OK, StatisticDao.Insert(team));
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpDelete]
 		[Route("{id}")]
 		public HttpResponseMessage DeleteById(int id)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IStatisticDao StatisticDao = DalFactory.CreateStatisticDao(database);
 				return Request.CreateResponse<bool>(HttpStatusCode.OK, StatisticDao.DeleteById(id));
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 	}
 

@@ -78,17 +78,17 @@ namespace WuHu.WebAPI.Controllers
 		[Route("byday/{day}")]
 		public HttpResponseMessage GetPlayerByDay (DateTime day)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
 				return Request.CreateResponse<IEnumerable<Player>>(HttpStatusCode.OK,
 					BLPlayer.GetPlayerByDay(day, PlayerDao.FindAll()));
-			}
-			else
-			{
-				return new HttpResponseMessage(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpGet]
@@ -112,22 +112,22 @@ namespace WuHu.WebAPI.Controllers
 		[Route("{playerId}")]
 		public void Update([FromBody]Player player, int playerId)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 				Player p = new Player(playerId, player.isAdmin, player.FirstName, player.LastName,
 					player.Nickname, player.Skills, player.PhotoPath, player.Password, player.isMonday,
 					player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday);
 				PlayerDao.Update(p);
-			}
+			//}
 		}
 
 		[HttpPost]
 		[Route("")]
 		public HttpResponseMessage Insert([FromBody]Player player)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 				player.Password = BLAuthentication.Hash(player.Password);
 
@@ -140,11 +140,11 @@ namespace WuHu.WebAPI.Controllers
 				{
 					return new HttpResponseMessage(HttpStatusCode.Created);
 				}
-			}
-			else
-			{
-				return new HttpResponseMessage(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpPost]
@@ -180,8 +180,8 @@ namespace WuHu.WebAPI.Controllers
 		[Route("photo/{nickname}")]
 		public HttpResponseMessage uploadPhoto(string nickname)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				var httpRequest = HttpContext.Current.Request;
 				if (httpRequest.Files.Count < 1)
 				{
@@ -199,11 +199,11 @@ namespace WuHu.WebAPI.Controllers
 				}
 
 				return Request.CreateResponse(HttpStatusCode.Created);
-			}
-			else
-			{
-				return new HttpResponseMessage(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			//}
 			
 		}
 
@@ -231,34 +231,34 @@ namespace WuHu.WebAPI.Controllers
 		[Route("nickname/{nickname}")]
 		public HttpResponseMessage FindByNickname(string nickname)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
 				return Request.CreateResponse<Player>(HttpStatusCode.OK,
 					PlayerDao.FindByNickname(nickname));
-			}
-			else
-			{
-				return new HttpResponseMessage(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpDelete]
 		[Route("{id}")]
 		public HttpResponseMessage DeleteById(int id)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
 				return Request.CreateResponse<bool>(HttpStatusCode.OK,
 					PlayerDao.DeleteById(id));
-			}
-			else
-			{
-				return new HttpResponseMessage(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return new HttpResponseMessage(HttpStatusCode.Forbidden);
+			//}
 		}
 	}
 

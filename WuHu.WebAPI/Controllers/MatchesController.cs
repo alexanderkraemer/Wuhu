@@ -73,44 +73,44 @@ namespace WuHu.WebAPI.Controllers
 		[Route("page/{page}/{numberPerPage}")]
 		public HttpResponseMessage GetAllByPage(int page, int numberPerPage)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
-				var list = MatchDao.FindAll();
+				var list = MatchDao.FindAll().OrderByDescending(s => s.ID).ToList();
 				var remain = list.Count - (page - 1) * numberPerPage;
 				var count = remain >= numberPerPage ? numberPerPage : remain;
 
-				var newlist = list.ToList().GetRange(((page - 1) * numberPerPage), count);
+				var newlist = list.ToList().GetRange(((page - 1) * numberPerPage), count).OrderBy(s => s.ID).ToList();
 				MatchPaginateClass mpc = new MatchPaginateClass(list.Count, newlist);
 				return Request.CreateResponse<MatchPaginateClass>(HttpStatusCode.OK, mpc);
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpGet]
 		[Route("{id}")]
 		public HttpResponseMessage FindById(int id)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 				return Request.CreateResponse<Match>(HttpStatusCode.OK, MatchDao.FindById(id));
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpPut]
 		[Route("{id}")]
 		public void Update(Match match)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
@@ -149,30 +149,30 @@ namespace WuHu.WebAPI.Controllers
 					PlayerDao.Update(v2);
 				}
 				MatchDao.Update(match);
-			}
+			//}
 		}
 
 		[HttpPost]
 		[Route("")]
 		public HttpResponseMessage Insert(Match team)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 				return Request.CreateResponse<int>(HttpStatusCode.OK, MatchDao.Insert(team));
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpPost]
 		[Route("generate")]
 		public HttpResponseMessage GenerateMatches([FromBody]MatchGenerate MatchObj)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 				ObservableCollection<Match> matchList;
 				matchList = BLMatch.GenerateMatches(MatchObj.NumberOfMatches, MatchObj.chosenPlayers, MatchObj.tournamentId);
@@ -181,26 +181,26 @@ namespace WuHu.WebAPI.Controllers
 					return Request.CreateResponse<ObservableCollection<Match>>(HttpStatusCode.OK, matchList);
 				}
 				return Request.CreateResponse(HttpStatusCode.Conflict);
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 
 		[HttpDelete]
 		[Route("{id}")]
 		public HttpResponseMessage DeleteById(int id)
 		{
-			if (Authentication.getInstance().isAuthenticateWithHeader(Request))
-			{
+			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
+			//{
 				IMatchDao MatchDao = DalFactory.CreateMatchDao(database);
 				return Request.CreateResponse<bool>(HttpStatusCode.OK, MatchDao.DeleteById(id));
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.Forbidden);
-			}
+			//}
+			//else
+			//{
+			//	return Request.CreateResponse(HttpStatusCode.Forbidden);
+			//}
 		}
 	}
 }

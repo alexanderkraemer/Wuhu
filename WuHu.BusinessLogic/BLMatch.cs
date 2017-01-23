@@ -75,7 +75,7 @@ namespace WuHu.BusinessLogic
 		{
 			var list = potentialPlayerListOfRange.OrderBy(p => p.Skills);
 
-			int maxIndex = list.Count()-1;
+			int maxIndex = list.Count()-2;
 			
 			int randomIndex = rand.Next(0, maxIndex);
 			Player p1;

@@ -30,7 +30,7 @@ namespace WuHu.Terminal
 			currentTab = page;
 			if (isAuthenticated)
 			{
-				page = reInstance(page);
+				//page = reInstance(page);
 				MainWindow.main.Content = page;
 			}
 			else
@@ -41,6 +41,7 @@ namespace WuHu.Terminal
 
 		private static UserControl reInstance(UserControl page)
 		{
+			
 			if(page is MatchList)
 			{
 				if (TournamentListVM.getInstance().IsEditing)

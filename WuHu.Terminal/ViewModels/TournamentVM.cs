@@ -74,7 +74,7 @@ namespace WuHu.Terminal.ViewModels
 
 		private async void Create(Tournament currentTournament)
 		{
-			TournamentListVM.getInstance().Tournaments.Add(new TournamentVM(currentTournament));
+			TournamentListVM.getInstance().Tournaments.Insert(0, new TournamentVM(currentTournament));
 
 			HttpClient client = new HttpClient();
 			string json = JsonConvert.SerializeObject(currentTournament);

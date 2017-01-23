@@ -147,10 +147,7 @@ namespace WuHu.SQLServer
 
 		public int Insert(Tournament tournament)
 		{
-			DateTime myDateTime = DateTime.Now;
-			DateTime d = new DateTime(myDateTime.Year, myDateTime.Month, myDateTime.Day);
-
-			using (DbCommand command = CreateInsertCommand(tournament.Name, d))
+			using (DbCommand command = CreateInsertCommand(tournament.Name, tournament.Timestamp))
 			{
 				try
 				{

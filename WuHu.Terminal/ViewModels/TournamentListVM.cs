@@ -107,7 +107,7 @@ namespace WuHu.Terminal.ViewModels
 
 			ObservableCollection<Tournament> tournaments = JsonConvert.DeserializeObject<ObservableCollection<Tournament>>(json);
 			Tournaments.Clear();
-			foreach (var t in tournaments)
+			foreach (var t in tournaments.OrderByDescending(s => s.Timestamp))
 			{
 				Tournaments.Add(new TournamentVM(t));
 			}
@@ -214,7 +214,7 @@ namespace WuHu.Terminal.ViewModels
 						Players.Remove(CurrentPlayer);
 					}, a =>
 					{
-						return !IsLocked || isEditing;
+						return !IsLocked || IsEditing;
 					});
 				}
 				return _addPlayerCommand;
@@ -233,7 +233,7 @@ namespace WuHu.Terminal.ViewModels
 						Players.Add((PlayerVM)param);
 					}, a =>
 					{
-						return !IsLocked || isEditing;
+						return !IsLocked || IsEditing;
 					});
 				}
 				return _activePlayerClickedCommand;

@@ -40,7 +40,7 @@
 				</Grid.RowDefinitions>
 				<StackPanel Grid.Row="0">
 					<Border BorderThickness="1" BorderBrush="Black">
-						<Image Source="{Binding Photopath}" />
+						<Image Source="{Binding PhotoPath}" />
 					</Border>
 				</StackPanel>
 				<StackPanel Grid.Row="1">

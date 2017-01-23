@@ -1,8 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.Serialization;
@@ -14,13 +17,30 @@ using WuHu.Terminal.Views.Player;
 
 namespace WuHu.Terminal.ViewModels
 {
-	public class PlayerVM
+	public class PlayerVM: INotifyPropertyChanged
 	{
 		private const string BASE_URL = "http://localhost:42382/";
 		private ICommand _saveCommad;
 		private ICommand _cancelCommad;
 		private ICommand _createCommand;
+		private ICommand _uploadCommand;
 		public Player currentPlayer;
+		private string fileLabel;
+		public string absolutePath = BASE_URL + "api/players/image/";
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public string FileLabel
+		{
+			get { return fileLabel; }
+			set
+			{
+				if(value != fileLabel)
+				{
+					fileLabel = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FileLabel)));
+				}
+			}
+		}
 
 		public PlayerVM()
 		{
@@ -30,7 +50,11 @@ namespace WuHu.Terminal.ViewModels
 		public PlayerVM(Player p)
 		{
 			currentPlayer = p;
+			setProp(p);
+		}
 
+		private void setProp(Player p)
+		{
 			ID = p.ID;
 			isAdmin = p.isAdmin;
 			FirstName = p.FirstName;
@@ -38,8 +62,8 @@ namespace WuHu.Terminal.ViewModels
 			Nickname = p.Nickname;
 			Skills = p.Skills;
 
+			PhotoPath = absolutePath + p.ID;
 
-			PhotoPath = p.PhotoPath;
 			Password = p.Password;
 			isMonday = p.isMonday;
 			isTuesday = p.isTuesday;
@@ -98,6 +122,48 @@ namespace WuHu.Terminal.ViewModels
 			}
 		}
 
+		// UploadCommand
+		public ICommand UploadCommand
+		{
+			get
+			{
+				if (_uploadCommand == null)
+				{
+					_uploadCommand = new RelayCommand(async param =>
+					{
+						OpenFileDialog op = new OpenFileDialog();
+						op.Title = "Select a userphoto!";
+						if(op.ShowDialog() == true)
+						{
+							
+
+							HttpClient client = new HttpClient();
+							client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
+
+							byte[] b = File.ReadAllBytes(op.FileName);
+
+							string json = JsonConvert.SerializeObject(b);
+
+							var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+							HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/players/image/" + currentPlayer.ID, httpContent);
+							if(response.IsSuccessStatusCode)
+							{
+								FileLabel = "Successfully uploaded!";
+							}
+							else
+							{
+								FileLabel = "Failed Upload";
+							}
+						}
+						//Upload(photo);
+					});
+				}
+				return _uploadCommand;
+			}
+		}
+
+
+
 		public ICommand CancelCommand
 		{
 			get
@@ -119,13 +185,16 @@ namespace WuHu.Terminal.ViewModels
 			string json = await client.GetStringAsync(BASE_URL + "api/players/" + currentPlayer.ID);
 			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			Player player = JsonConvert.DeserializeObject<Player>(json);
+
+			PlayerListVM.getInstance().CurrentPlayer = new PlayerVM(player);
+			setProp(player);
 			currentPlayer = player;
 			MainWindow.main.Content = new PlayerList();
 		}
 
 		private async void Create(Player currentPlayer)
 		{
-			currentPlayer.PhotoPath = "img/profiles/" + currentPlayer.Nickname + ".jpg";
+			currentPlayer.PhotoPath = currentPlayer.Nickname + ".png";
 
 
 			isAdmin = currentPlayer.isAdmin;

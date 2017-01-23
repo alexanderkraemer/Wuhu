@@ -18,12 +18,14 @@
 			</Grid.RowDefinitions>
 			<StackPanel Grid.Row="0">
 				<Border BorderThickness="1" BorderBrush="Black">
-					<Image Source="images/pic.jpg" />
+					<Image Source="{Binding PhotoPath}" />
 				</Border>
 			</StackPanel>
 			<StackPanel Grid.Row="1" Margin="0 10">
 				<Button Command="{Binding SaveCommand}">Save</Button>
 				<Button Command="{Binding CancelCommand}">Cancel</Button>
+				<Button Command="{Binding UploadCommand}" Content="Upload File"></Button>
+				<TextBlock Text="{Binding FileLabel}"></TextBlock>
 			</StackPanel>
 		</Grid>
 		<Grid Grid.Column="1">

@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace WuHu.Terminal.ViewModels
 {
-	public class LoginVM
+	public class LoginVM: INotifyPropertyChanged
 	{
 		ICommand _loginCommand;
 		private string nickname;
@@ -42,7 +42,6 @@ namespace WuHu.Terminal.ViewModels
 				{
 					labelmessage = value;
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LabelMessage)));
-					Debug.WriteLine(labelmessage);
 				}
 			}
 		}

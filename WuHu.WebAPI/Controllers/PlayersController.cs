@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 using System.Linq;
+using System.Drawing;
 
 namespace WuHu.WebAPI.Controllers
 {
@@ -46,6 +47,37 @@ namespace WuHu.WebAPI.Controllers
 			return Request.CreateResponse<IOrderedEnumerable<Player>>(PlayerDao.FindAll().OrderByDescending(s => s.Skills));
 		}
 
+		[Route("image/{playerId}")]
+		[HttpPost]
+		public HttpResponseMessage PostImage([FromBody] byte[] file, int playerId)
+		{
+			IPlayerDao playerDAO = DalFactory.CreatePlayerDao(database);
+			Player player = playerDAO.FindById(playerId);
+
+			try
+			{
+				using (MemoryStream ms = new MemoryStream(file))
+				{
+					Image.FromStream(ms);
+				}
+			}
+			catch (ArgumentException)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest);
+			}
+
+			string absolutePath = ConfigurationManager.AppSettings["ImageFolder"].ToString() + "\\" + player.PhotoPath;
+
+			try
+			{
+				File.WriteAllBytes(absolutePath, file);
+				return Request.CreateResponse(HttpStatusCode.OK);
+			}
+			catch
+			{
+				return Request.CreateResponse(HttpStatusCode.BadGateway);
+			}
+		}
 
 		[Route("image/{playerId}")]
 		[HttpGet]
@@ -72,7 +104,7 @@ namespace WuHu.WebAPI.Controllers
 
 			response.Content = new ByteArrayContent(b);
 			response.Content.LoadIntoBufferAsync(b.Length).Wait();
-			response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+			response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
 			return response;
 		}
 
@@ -116,9 +148,12 @@ namespace WuHu.WebAPI.Controllers
 		{
 			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			//{
-				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+
+			Player pl = PlayerDao.FindById(player.ID);
+				
 				Player p = new Player(playerId, player.isAdmin, player.FirstName, player.LastName,
-					player.Nickname, player.Skills, player.PhotoPath, player.Password, player.isMonday,
+					player.Nickname, player.Skills, pl.PhotoPath, player.Password, player.isMonday,
 					player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday);
 				PlayerDao.Update(p);
 			//}

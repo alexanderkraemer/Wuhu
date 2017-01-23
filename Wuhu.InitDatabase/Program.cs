@@ -46,7 +46,7 @@ namespace Wuhu.Server
 		public static void CreateDatabase(IDatabase database)
 		{
 			// hier den Absoluten Pfad zur Dateil "create_database.sql" eingeben:
-			string sqlPath = "C:\\Users\\Alexander\\Desktop\\create_database.sql";
+			string sqlPath = "C:\\programmieren\\Wuhu\\create_database.sql";
 			string script = File.ReadAllText(sqlPath);
 			DbCommand cmd = database.CreateCommand(script);
 			database.ExecuteNonQuery(cmd);

@@ -5,3 +5,10 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Common\obj\Debug\WuHu.Common.csprojResolveAssemblyReference.cache
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Common\obj\Debug\WuHu.Common.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.Common\obj\Debug\WuHu.Common.pdb
+C:\programmieren\Wuhu\WuHu.Common\bin\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\WuHu.Common\bin\Debug\WuHu.Common.pdb
+C:\programmieren\Wuhu\WuHu.Common\bin\Debug\WuHu.Domain.dll
+C:\programmieren\Wuhu\WuHu.Common\bin\Debug\WuHu.Domain.pdb
+C:\programmieren\Wuhu\WuHu.Common\obj\Debug\WuHu.Common.csprojResolveAssemblyReference.cache
+C:\programmieren\Wuhu\WuHu.Common\obj\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\WuHu.Common\obj\Debug\WuHu.Common.pdb

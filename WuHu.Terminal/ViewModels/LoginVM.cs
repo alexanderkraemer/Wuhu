@@ -15,6 +15,9 @@ namespace WuHu.Terminal.ViewModels
 		ICommand _loginCommand;
 		private string nickname;
 		private string password;
+		private string labelmessage;
+
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		private static LoginVM instance;
 		public static LoginVM getInstance()
@@ -28,7 +31,20 @@ namespace WuHu.Terminal.ViewModels
 
 		private LoginVM()
 		{
-			
+		}
+
+		public string LabelMessage
+		{
+			get { return labelmessage; }
+			set
+			{
+				if (value != labelmessage)
+				{
+					labelmessage = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LabelMessage)));
+					Debug.WriteLine(labelmessage);
+				}
+			}
 		}
 
 		public string Nickname
@@ -68,6 +84,10 @@ namespace WuHu.Terminal.ViewModels
 						var password = login_password.Password;
 						Password = password;
 						Authentication.getInstance().Authenticate(Nickname, Password);
+						if(!Authentication.isAuthenticated)
+						{
+							LabelMessage = "Falsche Anmeldedaten";
+						}
 					});
 				}
 				return _loginCommand;

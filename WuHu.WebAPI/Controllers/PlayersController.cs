@@ -13,6 +13,7 @@ using System.Web;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Runtime.Serialization;
+using System.Linq;
 
 namespace WuHu.WebAPI.Controllers
 {
@@ -41,7 +42,8 @@ namespace WuHu.WebAPI.Controllers
 		public HttpResponseMessage GetRanks()
 		{
 			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-			return Request.CreateResponse<IList<Player>>(PlayerDao.FindAll());
+	
+			return Request.CreateResponse<IOrderedEnumerable<Player>>(PlayerDao.FindAll().OrderByDescending(s => s.Skills));
 		}
 
 
@@ -156,7 +158,7 @@ namespace WuHu.WebAPI.Controllers
 
 			if (!isAuthenticated)
 			{
-				return Request.CreateResponse<bool>(HttpStatusCode.OK, false);
+				return Request.CreateResponse<bool>(HttpStatusCode.Forbidden, false);
 			}
 			else
 			{

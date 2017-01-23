@@ -128,7 +128,7 @@ namespace WuHu.InitDatabase
 				playerlist.Add(GeneratePlayer());
 			}
 
-			Player alex = new Player(true, "Alexander", "Krämer", "Alex", 1790, "alex.png",
+			Player alex = new Player(true, "Alexander", "Krämer", "Alex", 1000, "alex.png",
 				"$2y$10$10000$6MkE05hvO5ktC+/1Z1P+kdBFWN80p/mG6d8T9LqDmAjYrupL", true, true, true, false, false, false);
 			playerlist.Add(alex);
 
@@ -152,7 +152,7 @@ namespace WuHu.InitDatabase
 
 			int counter = 0;
 
-			foreach (DateTime day in EachDay(DateTime.Today.AddYears(-1), DateTime.Today))
+			foreach (DateTime day in EachDay(DateTime.Today.AddYears(-1), DateTime.Today.AddDays(-1)))
 			{
 				++counter;
 				tournamentList.Add(new Tournament("Tournament " + counter, day));
@@ -203,10 +203,10 @@ namespace WuHu.InitDatabase
 				int i = 0;
 				Random rand = new Random();
 
-				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID, rand.Next(0, 10), rand.Next(0, 10), RandomBool()));
-				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID, rand.Next(0, 10), rand.Next(0, 10), RandomBool()));
-				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID, rand.Next(0, 10), rand.Next(0, 10), RandomBool()));
-				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID, rand.Next(0, 10), rand.Next(0, 10), RandomBool()));
+				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID, rand.Next(0, 10), rand.Next(0, 10), true));
+				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID, rand.Next(0, 10), rand.Next(0, 10), true));
+				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID, rand.Next(0, 10), rand.Next(0, 10), true));
+				matchlist.Add(new Match(newList[i++].ID, newList[i++].ID, newList[i++].ID, newList[i++].ID, t.ID, rand.Next(0, 10), rand.Next(0, 10), true));
 			}
 
 			return matchlist;

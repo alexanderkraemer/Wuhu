@@ -54,7 +54,7 @@ namespace WuHu.WebAPI.Controllers
 			//{
 				//var time = UnixTimeStampToDateTime(day);
 				ITournamentDao TournamentDao = DalFactory.CreateTournamentDao(database);
-				return Request.CreateResponse<IList<Tournament>>(TournamentDao.FindByDay(day));
+				return Request.CreateResponse<IList<Tournament>>(HttpStatusCode.OK, TournamentDao.FindByDay(day));
 			//}
 			//else
 			//{
@@ -95,7 +95,7 @@ namespace WuHu.WebAPI.Controllers
 				int id = TournamentDao.Insert(tournament);
 				if (id == -1)
 				{
-					return new HttpResponseMessage(HttpStatusCode.Conflict);
+					return Request.CreateErrorResponse(HttpStatusCode.Conflict, "Can't create two tournaments on one day!");
 				}
 				else
 				{

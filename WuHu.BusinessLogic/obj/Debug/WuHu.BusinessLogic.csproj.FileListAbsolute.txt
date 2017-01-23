@@ -9,3 +9,14 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.pdb
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.BusinessLogic.dll
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.BusinessLogic.pdb
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.Domain.dll
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.SQLServer.dll
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.Common.pdb
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.Domain.pdb
+C:\programmieren\Wuhu\WuHu.BusinessLogic\bin\Debug\WuHu.SQLServer.pdb
+C:\programmieren\Wuhu\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.csprojResolveAssemblyReference.cache
+C:\programmieren\Wuhu\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.dll
+C:\programmieren\Wuhu\WuHu.BusinessLogic\obj\Debug\WuHu.BusinessLogic.pdb

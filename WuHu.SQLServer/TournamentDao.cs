@@ -148,9 +148,9 @@ namespace WuHu.SQLServer
 		public int Insert(Tournament tournament)
 		{
 			DateTime myDateTime = DateTime.Now;
-			string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+			DateTime d = new DateTime(myDateTime.Year, myDateTime.Month, myDateTime.Day);
 
-			using (DbCommand command = CreateInsertCommand(tournament.Name, tournament.Timestamp))
+			using (DbCommand command = CreateInsertCommand(tournament.Name, d))
 			{
 				try
 				{

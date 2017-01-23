@@ -8,20 +8,23 @@
              d:DesignHeight="484" d:DesignWidth="858">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="1*" />
-			<RowDefinition Height="1*" />
-			<RowDefinition Height="1*" />
+			<RowDefinition Height="50" />
+			<RowDefinition Height="50" />
+			<RowDefinition Height="50" />
+			<RowDefinition Height="50" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="1*"/>
-			<ColumnDefinition Width="100"/>
+			<ColumnDefinition Width="200"/>
 		</Grid.ColumnDefinitions>
-		<Label Grid.Column="0" Grid.Row="0">Nickname:</Label>
-		<TextBox Grid.Column="1" Grid.Row="0" Margin="10" Text="{Binding Nickname}"/>
-		
-		<Label Grid.Column="0" Grid.Row="1">Password:</Label>
-		<PasswordBox Name="login_password" Grid.Column="1" Grid.Row="1" Margin="10"/>
+		<Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Nickname:</Label>
+		<TextBox Grid.Column="1" Grid.Row="0" Margin="10" VerticalAlignment="Center" Padding="5" Text="{Binding Nickname}"/>
+
+		<Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Password:</Label>
+		<PasswordBox Name="login_password" Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" Padding="5" Margin="10"/>
 
 		<Button Grid.Column="1" Grid.Row="2" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=login_password}" Margin="10">Login!</Button>
+
+		<TextBlock Grid.Column="1" Grid.Row="3" Margin="10" Text="{Binding LabelMessage, Mode=OneWay}"/>
 	</Grid>
 </UserControl>

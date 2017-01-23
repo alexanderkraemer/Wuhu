@@ -51,7 +51,7 @@ namespace WuHu.BusinessLogic
 			var randomIndex = rand.Next(0, list.Count() - 1);
 			var skillMid = list.ElementAt(randomIndex).Skills;
 
-			
+			/*
 			var potentialPlayers = new ObservableCollection<Player>();
 
 			while (potentialPlayers.Count() < 4)
@@ -68,7 +68,8 @@ namespace WuHu.BusinessLogic
 					potentialPlayers.Add(p);
 				}
 			}
-			return potentialPlayers;
+			*/
+			return playerList;
 		}
 
 		private static Match GenerateMatch(ObservableCollection<Player> potentialPlayerListOfRange, int tournamentId)
@@ -113,10 +114,26 @@ namespace WuHu.BusinessLogic
 			Match match = dao.FindById(obj.match);
 			if (obj.team == 1)
 			{
+				if(match.ResultPointsPlayer1 == null)
+				{
+					match.ResultPointsPlayer1 = 0;
+					if (match.ResultPointsPlayer2 == null)
+					{
+						match.ResultPointsPlayer2 = 0;
+					}
+				}
 				match.ResultPointsPlayer1++;
 			}
 			else if (obj.team == 2)
 			{
+				if (match.ResultPointsPlayer2 == null)
+				{
+					match.ResultPointsPlayer2 = 0;
+					if (match.ResultPointsPlayer1 == null)
+					{
+						match.ResultPointsPlayer1 = 0;
+					}
+				}
 				match.ResultPointsPlayer2++;
 			}
 

@@ -7,3 +7,12 @@ C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.csprojResolveAssemblyReference.cache
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.dll
 C:\Users\Alexander\Documents\CloudStation\FH\5. Semester\SWK\Uebung\Projekt\Wuhu.Server\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.pdb
+C:\programmieren\Wuhu\WuHu.SQLServer\bin\Debug\WuHu.SQLServer.dll
+C:\programmieren\Wuhu\WuHu.SQLServer\bin\Debug\WuHu.SQLServer.pdb
+C:\programmieren\Wuhu\WuHu.SQLServer\bin\Debug\WuHu.Common.dll
+C:\programmieren\Wuhu\WuHu.SQLServer\bin\Debug\WuHu.Domain.dll
+C:\programmieren\Wuhu\WuHu.SQLServer\bin\Debug\WuHu.Common.pdb
+C:\programmieren\Wuhu\WuHu.SQLServer\bin\Debug\WuHu.Domain.pdb
+C:\programmieren\Wuhu\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.csprojResolveAssemblyReference.cache
+C:\programmieren\Wuhu\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.dll
+C:\programmieren\Wuhu\WuHu.SQLServer\obj\Debug\WuHu.SQLServer.pdb

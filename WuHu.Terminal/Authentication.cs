@@ -112,8 +112,15 @@ namespace WuHu.Terminal
 			{
 				string val = await response.Content.ReadAsStringAsync();
 				token = Newtonsoft.Json.JsonConvert.DeserializeObject<ResponseObject>(val);
-				isAuthenticated = true;
-				GetPlayerData(nickname);
+				if(token.Player.isAdmin)
+				{
+					isAuthenticated = true;
+					GetPlayerData(nickname);
+				}
+				else
+				{
+					isAuthenticated = false;
+				}
 				CheckIfLoggedIn(currentTab);
 			}
 			else

@@ -88,7 +88,7 @@
 							 Margin="0 0 5 0" 
 							 ItemsSource="{Binding Path=Players}" 
 							 SelectedValue="{Binding Path=CurrentPlayer}" 
-							 DisplayMemberPath="FullName" IsEnabled="{Binding isAdmin, Mode=OneWay}"/>
+							 DisplayMemberPath="FullName"/>
 						<Button Grid.Column="1" Command="{Binding AddPlayerCommand}">Add Player</Button>
 					</Grid>
 				</Grid>

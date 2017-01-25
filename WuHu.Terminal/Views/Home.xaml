@@ -52,7 +52,7 @@
 			</Grid.RowDefinitions>
 
 			<Grid Grid.Row="0">
-				<ListBox Grid.Row="1" SelectedIndex="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=AgendaList}"  SelectedItem="{Binding CurrentMatch}">
+				<ListBox Grid.Row="1" SelectedIndex="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding AgendaList}"  SelectedItem="{Binding CurrentMatch}">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Grid Grid.Row="0" Grid.Column="0">

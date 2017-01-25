@@ -180,7 +180,7 @@ namespace WuHu.SQLServer
 		public int Insert(Player player)
 		{
 			using (DbCommand command = CreateInsertCommand(player.isAdmin, player.Skills,
-				 player.FirstName, player.LastName, player.Nickname, player.PhotoPath, player.Password, player.isMonday,
+				 player.FirstName, player.LastName, player.Nickname, player.Nickname + ".png", player.Password, player.isMonday,
 				 player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday))
 			{
                 try

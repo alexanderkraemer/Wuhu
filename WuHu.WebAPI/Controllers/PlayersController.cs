@@ -29,8 +29,8 @@ namespace WuHu.WebAPI.Controllers
 		{
 			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			//{
-				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-				return Request.CreateResponse<IList<Player>>(HttpStatusCode.OK, PlayerDao.FindAll());
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			return Request.CreateResponse<IList<Player>>(HttpStatusCode.OK, PlayerDao.FindAll());
 			//}
 			//else
 			//{
@@ -43,7 +43,7 @@ namespace WuHu.WebAPI.Controllers
 		public HttpResponseMessage GetRanks()
 		{
 			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-	
+
 			return Request.CreateResponse<IOrderedEnumerable<Player>>(PlayerDao.FindAll().OrderByDescending(s => s.Skills));
 		}
 
@@ -92,7 +92,7 @@ namespace WuHu.WebAPI.Controllers
 			HttpResponseMessage response = new HttpResponseMessage();
 			Byte[] b;
 
-			if (!File.Exists(absolutePath + player.PhotoPath) || player == null)
+			if (player == null || !File.Exists(absolutePath + player.PhotoPath))
 			{
 				b = (File.ReadAllBytes(absolutePath + "default.png"));
 			}
@@ -110,14 +110,14 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpGet]
 		[Route("byday/{day}")]
-		public HttpResponseMessage GetPlayerByDay (DateTime day)
+		public HttpResponseMessage GetPlayerByDay(DateTime day)
 		{
 			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			//{
-				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-				return Request.CreateResponse<IEnumerable<Player>>(HttpStatusCode.OK,
-					BLPlayer.GetPlayerByDay(day, PlayerDao.FindAll()));
+			return Request.CreateResponse<IEnumerable<Player>>(HttpStatusCode.OK,
+				BLPlayer.GetPlayerByDay(day, PlayerDao.FindAll()));
 			//}
 			//else
 			//{
@@ -131,10 +131,10 @@ namespace WuHu.WebAPI.Controllers
 		{
 			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			//{
-				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-				return Request.CreateResponse<Player>(HttpStatusCode.OK,
-					PlayerDao.FindById(id));
+			return Request.CreateResponse<Player>(HttpStatusCode.OK,
+				PlayerDao.FindById(id));
 			//}
 			//else
 			//{
@@ -144,18 +144,28 @@ namespace WuHu.WebAPI.Controllers
 
 		[HttpPut]
 		[Route("{playerId}")]
-		public void Update([FromBody]Player player, int playerId)
+		public HttpResponseMessage Update([FromBody]Player player, int playerId)
 		{
 			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			//{
 			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
 			Player pl = PlayerDao.FindById(player.ID);
-				
-				Player p = new Player(playerId, player.isAdmin, player.FirstName, player.LastName,
-					player.Nickname, player.Skills, pl.PhotoPath, player.Password, player.isMonday,
-					player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday);
-				PlayerDao.Update(p);
+
+			Player p = new Player(playerId, player.isAdmin, player.FirstName, player.LastName,
+				player.Nickname, player.Skills, pl.PhotoPath, player.Password, player.isMonday,
+				player.isTuesday, player.isWednesday, player.isThursday, player.isFriday, player.isSaturday);
+			var boo = PlayerDao.Update(p);
+
+			if (boo)
+			{
+				return new HttpResponseMessage(HttpStatusCode.OK);
+			}
+			else
+			{
+				return Request.CreateResponse(HttpStatusCode.Conflict);
+			}
+
 			//}
 		}
 
@@ -165,18 +175,18 @@ namespace WuHu.WebAPI.Controllers
 		{
 			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			//{
-				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
-				player.Password = BLAuthentication.Hash(player.Password);
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			player.Password = BLAuthentication.Hash(player.Password);
 
-				int id = PlayerDao.Insert(player);
-				if (id == -1)
-				{
-					return new HttpResponseMessage(HttpStatusCode.Conflict);
-				}
-				else
-				{
-					return new HttpResponseMessage(HttpStatusCode.Created);
-				}
+			int id = PlayerDao.Insert(player);
+			if (id == -1)
+			{
+				return new HttpResponseMessage(HttpStatusCode.Conflict);
+			}
+			else
+			{
+				return Request.CreateResponse<int>(HttpStatusCode.OK, id);
+			}
 			//}
 			//else
 			//{
@@ -219,61 +229,61 @@ namespace WuHu.WebAPI.Controllers
 		{
 			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			//{
-				var httpRequest = HttpContext.Current.Request;
-				if (httpRequest.Files.Count < 1)
-				{
-					return Request.CreateResponse(HttpStatusCode.BadRequest);
-				}
+			var httpRequest = HttpContext.Current.Request;
+			if (httpRequest.Files.Count < 1)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest);
+			}
 
-				foreach (string file in httpRequest.Files)
-				{
-					var postedFile = httpRequest.Files[file];
-					string absolutePath = ConfigurationManager.AppSettings["ImageFolder"].ToString() + "\\";
+			foreach (string file in httpRequest.Files)
+			{
+				var postedFile = httpRequest.Files[file];
+				string absolutePath = ConfigurationManager.AppSettings["ImageFolder"].ToString() + "\\";
 
-					var filePath = HttpContext.Current.Server.MapPath(absolutePath + nickname);
-					postedFile.SaveAs(filePath);
-					// NOTE: To store in memory use postedFile.InputStream
-				}
+				var filePath = HttpContext.Current.Server.MapPath(absolutePath + nickname);
+				postedFile.SaveAs(filePath);
+				// NOTE: To store in memory use postedFile.InputStream
+			}
 
-				return Request.CreateResponse(HttpStatusCode.Created);
+			return Request.CreateResponse(HttpStatusCode.Created);
 			//}
 			//else
 			//{
 			//	return new HttpResponseMessage(HttpStatusCode.Forbidden);
 			//}
-			
+
 		}
 
-/*
-		[HttpPost]
-		[Route("photo/{nickname}")]
-		public Task Upload(IFormFile file)
-		{
-			Debug.WriteLine(file);
-			if (file == null) throw new Exception("File is null");
-			if (file.Length == 0) throw new Exception("File is empty");
-
-			using (Stream stream = file.OpenReadStream())
-			{
-				using (var binaryReader = new BinaryReader(stream))
+		/*
+				[HttpPost]
+				[Route("photo/{nickname}")]
+				public Task Upload(IFormFile file)
 				{
-					var fileContent = binaryReader.ReadBytes((int)file.Length);
-					await _uploadService.AddFile(fileContent, file.FileName, file.ContentType);
+					Debug.WriteLine(file);
+					if (file == null) throw new Exception("File is null");
+					if (file.Length == 0) throw new Exception("File is empty");
+
+					using (Stream stream = file.OpenReadStream())
+					{
+						using (var binaryReader = new BinaryReader(stream))
+						{
+							var fileContent = binaryReader.ReadBytes((int)file.Length);
+							await _uploadService.AddFile(fileContent, file.FileName, file.ContentType);
+						}
+					}
+
 				}
-			}
-		
-		}
-*/
+		*/
 		[HttpGet]
 		[Route("nickname/{nickname}")]
 		public HttpResponseMessage FindByNickname(string nickname)
 		{
 			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			//{
-				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-				return Request.CreateResponse<Player>(HttpStatusCode.OK,
-					PlayerDao.FindByNickname(nickname));
+			return Request.CreateResponse<Player>(HttpStatusCode.OK,
+				PlayerDao.FindByNickname(nickname));
 			//}
 			//else
 			//{
@@ -287,10 +297,10 @@ namespace WuHu.WebAPI.Controllers
 		{
 			//if (Authentication.getInstance().isAuthenticateWithHeader(Request))
 			//{
-				IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
+			IPlayerDao PlayerDao = DalFactory.CreatePlayerDao(database);
 
-				return Request.CreateResponse<bool>(HttpStatusCode.OK,
-					PlayerDao.DeleteById(id));
+			return Request.CreateResponse<bool>(HttpStatusCode.OK,
+				PlayerDao.DeleteById(id));
 			//}
 			//else
 			//{

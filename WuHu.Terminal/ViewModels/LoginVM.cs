@@ -77,12 +77,12 @@ namespace WuHu.Terminal.ViewModels
 			{
 				if (_loginCommand == null)
 				{
-					_loginCommand = new RelayCommand(param =>
+					_loginCommand = new RelayCommand(async param =>
 					{
 						var login_password = param as PasswordBox;
 						var password = login_password.Password;
 						Password = password;
-						Authentication.getInstance().Authenticate(Nickname, Password);
+						await Authentication.getInstance().Authenticate(Nickname, Password);
 						if(!Authentication.isAuthenticated)
 						{
 							LabelMessage = "Falsche Anmeldedaten";

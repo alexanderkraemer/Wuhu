@@ -20,8 +20,9 @@ namespace WuHu.Terminal.ViewModels
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private static MatchListVM instance;
-		public ObservableCollection<MatchVM> Matches { get; set; }
-		
+		public List<MatchVM> Matches { get; set; }
+		public ObservableCollection<MatchVM> matchesList { get; set; }
+
 		public static MatchListVM getInstance()
 		{
 			if (instance == null)
@@ -33,13 +34,15 @@ namespace WuHu.Terminal.ViewModels
 
 		private MatchListVM()
 		{
-			Matches = new ObservableCollection<MatchVM>();
+			matchesList = new ObservableCollection<MatchVM>();
+			Matches = new List<MatchVM>();
 			LoadMatches();
 		}
 
-		private async void LoadMatches()
+		public  async void LoadMatches()
 		{
 			Matches.Clear();
+			matchesList.Clear();
 
 			string json;
 			HttpClient client = new HttpClient();
@@ -53,8 +56,11 @@ namespace WuHu.Terminal.ViewModels
 			await tlvm.LoadTournaments();
 			foreach (var m in matches)
 			{
-				Matches.Add(new MatchVM(m));
+				matchesList.Add(new MatchVM(m));
 			}
+
+			Matches = matchesList.OrderByDescending(m => m.Tournament.Timestamp).ToList();
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Matches)));
 		}
 
 		private MatchVM currentMatch;

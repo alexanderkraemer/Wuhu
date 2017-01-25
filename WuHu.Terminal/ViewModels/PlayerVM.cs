@@ -26,6 +26,7 @@ namespace WuHu.Terminal.ViewModels
 		private ICommand _uploadCommand;
 		public Player currentPlayer;
 		private string fileLabel;
+		private string responseMessage;
 		public string absolutePath = BASE_URL + "api/players/image/";
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -38,6 +39,19 @@ namespace WuHu.Terminal.ViewModels
 				{
 					fileLabel = value;
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FileLabel)));
+				}
+			}
+		}
+
+		public string ResponseMessage
+		{
+			get { return responseMessage; }
+			set
+			{
+				if(value != responseMessage)
+				{
+					responseMessage = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ResponseMessage)));
 				}
 			}
 		}
@@ -211,7 +225,7 @@ namespace WuHu.Terminal.ViewModels
 			isFriday = currentPlayer.isFriday;
 			isSaturday = currentPlayer.isSaturday;
 
-			PlayerListVM.getInstance().Players.Add(new PlayerVM(currentPlayer));
+			
 
 			HttpClient client = new HttpClient();
 			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
@@ -219,20 +233,41 @@ namespace WuHu.Terminal.ViewModels
 
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			HttpResponseMessage response = await client.PostAsync(BASE_URL + "api/players/", httpContent);
-			Debug.WriteLine(response.Content);
-			MainWindow.main.Content = new PlayerList();
+
+			if(response.IsSuccessStatusCode)
+			{
+				string val = await response.Content.ReadAsStringAsync();
+				int id;
+				int.TryParse(val, out id);
+
+				currentPlayer.ID = id;
+				PlayerListVM.getInstance().Players.Add(new PlayerVM(currentPlayer));
+
+				MainWindow.main.Content = new PlayerList();
+			}
+			else
+			{
+				ResponseMessage = "Failed to create Player!";
+			}
 		}
 
-		public void Update(Player player)
+		public async void Update(Player player)
 		{
 			HttpClient client = new HttpClient();
 
 			string json = JsonConvert.SerializeObject(player);
 			client.DefaultRequestHeaders.Add("Authorization", Authentication.token.Token);
 			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-			client.PutAsync(BASE_URL + "api/players/" + currentPlayer.ID, httpContent);
-			
-			MainWindow.main.Content = new PlayerList();
+			HttpResponseMessage response = await client.PutAsync(BASE_URL + "api/players/" + currentPlayer.ID, httpContent);
+
+			if (response.IsSuccessStatusCode)
+			{
+				MainWindow.main.Content = new PlayerList();
+			}
+			else
+			{
+				FileLabel = "Failed to update Player!";
+			}
 		}
 
 		// to server

@@ -63,7 +63,7 @@ namespace WuHu.WebAPI.Controllers
 			var listMatchIEn = list.Where(m =>
 			{
 				return !m.Finished;
-			}).DefaultIfEmpty(null);
+			});
 
 			// MatchPaginateClass mpc = new MatchPaginateClass(list.Count, list);
 			return Request.CreateResponse<IEnumerable<Match>>(HttpStatusCode.OK, listMatchIEn);

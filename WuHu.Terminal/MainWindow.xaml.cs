@@ -71,7 +71,7 @@ namespace WuHu.Terminal
 			{
 				TournamentListVM.getInstance().UnlockTournament();
 			}
-
+			
 			ChangeButtonColor(MatchesButton);
 			Authentication.CheckIfLoggedIn(new MatchList());
 		}

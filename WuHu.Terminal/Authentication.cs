@@ -30,7 +30,6 @@ namespace WuHu.Terminal
 			currentTab = page;
 			if (isAuthenticated)
 			{
-				//page = reInstance(page);
 				MainWindow.main.Content = page;
 			}
 			else
@@ -100,7 +99,7 @@ namespace WuHu.Terminal
 			}
 		}
 
-		public async void Authenticate(string nickname, string password)
+		public async Task Authenticate(string nickname, string password)
 		{
 			HttpClient client = new HttpClient();
 			AuthObj obj = new AuthObj(nickname, password);

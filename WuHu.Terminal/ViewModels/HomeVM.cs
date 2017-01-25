@@ -78,7 +78,7 @@ namespace WuHu.Terminal.ViewModels
 				agendaList.Add(m);
 			}
 			AgendaList.Clear();
-			foreach (var m in agendaList.Where(m => m.Tournament.Timestamp > DateTime.Now))
+			foreach (var m in agendaList.Where(m => m.Tournament.Timestamp >= DateTime.Today).Where(m => m.Finished == false))
 			{
 				AgendaList.Add(m);
 			}
